@@ -1,0 +1,327 @@
+
+
+########################################
+#########       Atencao!    ###########
+########################################
+######### Nao foi burrice de webmaster setar esse monte de variavel
+######### abaixo com nome diferente. Isso fo necessario uma vez que as
+######### strings que vem da aplicacao ou passam pelos metodos JAVA
+######### ficam protegidas e nao podem ser sobreescritas por metodos
+######### do Velocity.
+########################################
+######### Não idente essas macros!!
+########################################
+#macro (LineBreakToBR $parametro)
+#set ($parametroa = $parametro.toString().replaceAll("<[bB][rR] ?/?>", "" ))
+#set ($parametrob = $parametroa.toString().replaceAll("\r\n", "<br />") )
+#set ($parametroc = $parametrob.toString().replaceAll("\r", "<br />") )
+#set ($parametrod = $parametroc.toString().replaceAll("\n", "<br />") )
+#set ($parametroe = $parametrod.toString().replaceAll("([^\"])(http://[^ \n\r\t><\"]+)", "$1<a href=\"$2\">$2</a>") )
+#set ($parametrof = $parametroe.toString().replaceAll("<a href=\"(([^&\"]|&amp;)+)&(([^a]|[^a][^m]|[^a][^m][^p]|[^a][^m][^p][^;])[^\"]+)\">[^>]+>","<a href=\"$1&amp;$2$3$4\">$1&amp;$2$3$4</a>") )
+#set ($parametrog = $parametrof.toString().replaceAll("<a href=\"(([^&\"]|&amp;)+)&(([^a]|[^a][^m]|[^a][^m][^p]|[^a][^m][^p][^;])[^\"]+)\">[^>]+>","<a href=\"$1&amp;$2$3$4\">$1&amp;$2$3$4</a>") )
+#set ($parametroh = $parametrog.toString().replaceAll("<a href=\"(([^&\"]|&amp;)+)&(([^a]|[^a][^m]|[^a][^m][^p]|[^a][^m][^p][^;])[^\"]+)\">[^>]+>","<a href=\"$1&amp;$2$3$4\">$1&amp;$2$3$4</a>") )
+#set ($parametroi = $parametroh.toString().replaceAll("<a href=\"(([^&\"]|&amp;)+)&(([^a]|[^a][^m]|[^a][^m][^p]|[^a][^m][^p][^;])[^\"]+)\">[^>]+>","<a href=\"$1&amp;$2$3$4\">$1&amp;$2$3$4</a>") )
+#set ($parametroj = $parametroi.toString().replaceAll("<a href=\"([^\"]+)&\">[^>]+>","<a href=\"$1\">$1</a>") )
+#set ($result = $parametroj.toString().replaceAll("&lt;[bB][rR] ?/?&gt;", "<br />") )
+$!result
+#end
+#macro (BRToLineBreak $parametro)
+#set ($parametroa = $parametro.toString().replaceAll("<[bB][rR] ?/?>", "" ) )
+#set ($parametrob = $parametroa.toString().replaceAll("&lt;[bB][rR] ?/?&gt;", "") )
+#set ($result = $parametrob.toString().replaceAll("<[^>]+>", "") )
+$!result
+#end
+
+########################################
+############## Mensagens ##############
+########################################
+## Dependendo das configs do velocity ##
+##       pode precisar reiniciar a app      ##
+########################################
+#macro (codeToMessage $code $ajax) #set ($code = $code.toString().trim())
+#if($code == "NET200")			#set($TIPO = "error")	#set($MSG = "Não foi possível identificar o destinatário.")
+#elseif ($code == "NET201")		#set($TIPO = "alert")	#set($MSG = "Por favor, digite uma mensagem.")
+#elseif ($code == "NET202")		#set($TIPO = "ok")	#set($MSG = "Seu depoimento foi enviado e será publicado após a aprovação do destinatário.")
+#elseif ($code == "NET203")		#set($TIPO = "error")	#set($MSG = "Não foi possível enviar o depoimento. Por favor, tente novamente.")
+#elseif ($code == "NET210")		#set($TIPO = "error")	#set($MSG = "Não foi possível identificar o destinatário.")
+#elseif ($code == "NET211")		#set($TIPO = "alert")	#set($MSG = "Por favor, digite uma mensagem.")
+#elseif ($code == "NET220")		#set($TIPO = "ok")	#set($MSG = "Operação salva com sucesso.") ## Pra corrigir bug de adicionar amigo. Precisa ser uma mensagem de sucesso genérica por que pode ser pra aprovar ou reprovar.
+#elseif ($code == "NET221")		#set($TIPO = "alert")	#set($MSG = "Você já adicionou essa pessoa")
+#elseif ($code == "NET222")		#set($TIPO = "ok")	#set($MSG = "Ops, esta pessoa já está na sua lista de amigos!")
+#elseif ($code == "NET223")		#set($TIPO = "ok")  	#set($MSG = "Mensagem alterada!")
+#elseif ($code == "NET224")		#set($TIPO = "error")	#set($MSG = "Não foi possível paquerar esta pessoa. Por favor, tente novamente.")
+#elseif ($code == "NET225")		#set($TIPO = "error")	#set($MSG = "Ops, aconteceu um erro ao adicionar o(a) amigo(a). Por favor, tente de novo.")
+#elseif ($code == "NET226")		#set($TIPO = "error")	#set($MSG = "Ops, aconteceu um erro ao adicionar como fã. Por favor, tente de novo.")
+#elseif ($code == "NET227")		#set($TIPO = "error")	#set($MSG = "Ops, não foi possível confirmar sua ligação com o(a) amigo(a). Por favor, tente novamente.")
+#elseif ($code == "NET228")		#set($TIPO = "error")	#set($MSG = "Desculpe, houve um erro ao excluir o(a) amigo(a). Por favor, tente novamente.")
+#elseif ($code == "NET229")		#set($TIPO = "ok")  	#set($MSG = "Parabéns, você acaba de incluir mais um(uma) amigo(a) à sua lista.")
+#elseif ($code == "NET230")		#set($TIPO = "alert")	#set($MSG = "Hmmm, nenhuma imagem foi recebida. Verifique se você escolheu o arquivo corretamente.")
+#elseif ($code == "NET231")		#set($TIPO = "alert")	#set($MSG = "Dica: o arquivo da imagem deve ser no formato .jpg. Exemplo: imagem.jpg")
+#elseif ($code == "NET232")		#set($TIPO = "error")	#set($MSG = "Desculpe, não foi possível completar a operação. Por favor, envie novamente.")
+#elseif ($code == "NET237")		#set($TIPO = "alert")	#set($MSG = "Ops, você já participa desta comunidade!")
+#elseif ($code == "NET240")		#set($TIPO = "alert")	#set($MSG = "Por favor, digite o texto da mensagem.")
+#elseif ($code == "NET241")		#set($TIPO = "alert")	#set($MSG = "Por favor, digite o título da mensagem.")
+#elseif ($code == "NET242")		#set($TIPO = "ok")  	#set($MSG = "Mensagem enviada!")
+#elseif ($code == "NET250")		#set($TIPO = "ok")  	#set($MSG = "Frase do dia alterada!")
+#elseif ($code == "NET251")		#set($TIPO = "ok")  	#set($MSG = "Sua paquera só será revelada se ele(a) também estiver interessada em você. Boa sorte.")
+#elseif ($code == "NET252")		#set($TIPO = "ok")  	#set($MSG = "Esta pessoa agora faz parte da sua lista de amigos.")
+#elseif ($code == "NET253")		#set($TIPO = "ok")  	#set($MSG = "Agora você é um fã desse(a) amigo(a).")
+#elseif ($code == "NET254")		#set($TIPO = "ok")  	#set($MSG = "Parabéns, você acaba de incluir mais um(a) amigo(a) à sua lista.")
+#elseif ($code == "NET255")		#set($TIPO = "ok")  	#set($MSG = "Pronto, esta pessoa foi retirada da sua lista de amigos.")
+#elseif ($code == "NET256")		#set($TIPO = "ok")  	#set($MSG = "Você alterou o tipo de visualização do seu amigo.")
+#elseif ($code == "NET257")		#set($TIPO = "error")	#set($MSG = "Desculpe, não foi possível alterar o tipo de visualização do seu amigo")
+#elseif ($code == "NET260")		#set($TIPO = "alert")	#set($MSG = "Ops! Você não tem permissão para executar esta ação.")
+#elseif ($code == "NET261")		#set($TIPO = "error")	#set($MSG = "Opa! Esta comunidade não existe.")
+#elseif ($code == "NET262")		#set($TIPO = "alert")	#set($MSG = "Que pena, este endereço já está em uso!")
+#elseif ($code == "NET263")		#set($TIPO = "alert")	#set($MSG = "Por favor, informe o nome da comunidade.")
+#elseif ($code == "NET264")		#set($TIPO = "alert")	#set($MSG = "Por favor, descreva os temas abordados na comunidade.")
+#elseif ($code == "NET265")		#set($TIPO = "alert")	#set($MSG = "Por favor, informe a visibilidade das mensagens e dos participantes desta comunidade.")
+#elseif ($code == "NET266")		#set($TIPO = "error")	#set($MSG = "Opa! Esta comunidade não existe.")
+#elseif ($code == "NET267")		#set($TIPO = "alert")	#set($MSG = "Ops, você já participa desta comunidade.")
+#elseif ($code == "NET268")		#set($TIPO = "alert")	#set($MSG = "Veja só: você já havia solicitado a participação nesta comunidade. Aguarde a aprovação do seu pedido. Se estiver demorando muito, fale com quem a criou.")
+#elseif ($code == "NET269")		#set($TIPO = "error")	#set($MSG = "Desculpe, não foi possível convidar esta pessoa.")
+#elseif ($code == "NET270")		#set($TIPO = "alert")	#set($MSG = "Por favor, informe seu apelido.")
+#elseif ($code == "NET271")		#set($TIPO = "alert")	#set($MSG = "Seu nome/apelido está muito pequeno. Por favor, aumente o número de caracteres. O nome/apelido deve ter pelo menos 2 caracteres.")
+#elseif ($code == "NET272")		#set($TIPO = "alert")	#set($MSG = "Seu nome/apelido está muito grande. Por favor, reduza o número de caracteres. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET273")		#set($TIPO = "alert")	#set($MSG = "Ops! O nome escolhido é inválido. Por favor, escolha outro nome.")
+#elseif ($code == "NET274")		#set($TIPO = "alert")	#set($MSG = "Por favor, escolha um endereço (URL) para seu UOL K.")
+#elseif ($code == "NET275")		#set($TIPO = "alert")	#set($MSG = "O endereço (URL) do seu UOL K está muito pequeno. Por favor, aumente o número de caracteres. O endereço deve ter pelo menos 2 caracteres.")
+#elseif ($code == "NET276")		#set($TIPO = "alert")	#set($MSG = "O endereço (URL) do seu UOL K está muito grande. Por favor, reduza o número de caracteres. Você pode usar até 75 caracteres.")
+#elseif ($code == "NET277")		#set($TIPO = "alert")	#set($MSG = "Atenção: não é possível usar este endereço (URL). Por favor, digite outro endereço.")
+#elseif ($code == "NET278")		#set($TIPO = "alert")	#set($MSG = "Atenção: este endereço (URL) já está em uso. Por favor, digite outro endereço.")
+#elseif ($code == "NET280")		#set($TIPO = "error")	#set($MSG = "Ops, este tópico não existe.")
+#elseif ($code == "NET281")		#set($TIPO = "alert")	#set($MSG = "Você já não faz parte dessa comunidade.")
+#elseif ($code == "NET282")		#set($TIPO = "alert")	#set($MSG = "Veja só: você tentou adicionar uma comunidade que já faz parte das comunidades relacionadas")
+#elseif ($code == "NET283")		#set($TIPO = "alert")	#set($MSG = "Ei, digite o texto da resposta, por favor")
+#elseif ($code == "NET284")		#set($TIPO = "ok")  	#set($MSG = "O participante foi retirado da comunidade com sucesso.")
+#elseif ($code == "NET285")		#set($TIPO = "ok")  	#set($MSG = "A permissão do participante foi alterada com sucesso")
+#elseif ($code == "NET286")		#set($TIPO = "ok")  	#set($MSG = "Participante aprovado.")
+#elseif ($code == "NET287")		#set($TIPO = "ok")  	#set($MSG = "Tópico aprovado.")
+#elseif ($code == "NET288")		#set($TIPO = "ok")  	#set($MSG = "Tópico apagado.")
+#elseif ($code == "NET289")		#set($TIPO = "ok")  	#set($MSG = "Resposta aprovada.")
+#elseif ($code == "NET290")		#set($TIPO = "ok")  	#set($MSG = "A resposta não foi aprovada.")
+#elseif ($code == "NET291")		#set($TIPO = "ok")	#set($MSG = "Seu pedido de participação nesta comunidade foi enviado ao proprietário. Por favor, aguarde a aprovação do seu pedido.")
+#elseif ($code == "NET299")		#set($TIPO = "ok")	#set($MSG = "Notificações de novidades alteradas com sucesso.")
+#elseif ($code == "NET2000-1") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da empresa está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2001-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da empresa contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2002-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2003-1") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2004-1") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2005-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2006-1") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2007-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2008-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da empresa não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-lo.")
+#elseif ($code == "NET2000-2") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da empresa está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2001-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da empresa contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2002-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2003-2") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2004-2") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2005-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2006-2") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2007-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2008-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-lo.")
+#elseif ($code == "NET2000-3") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da empresa está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2001-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da empresa contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2002-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2003-3") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2004-3") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2005-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2006-3") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2007-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2008-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-lo.")
+#elseif ($code == "NET2000-4") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da empresa está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2001-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da empresa contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2002-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2003-4") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2004-4") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2005-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2006-4") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2007-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2008-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-lo.")
+#elseif ($code == "NET2000-5") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da empresa está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2001-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da empresa contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2002-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2003-5") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2004-5") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2005-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2006-5") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2007-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2008-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-lo.")
+#elseif ($code == "NET2010-1") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da instituição de ensino está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2011-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição de ensino contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2012-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2013-1") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2014-1") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2015-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2016-1") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2017-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2018-1") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-la.")
+#elseif ($code == "NET2010-2") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da instituição de ensino está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2011-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição de ensino contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2012-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2013-2") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2014-2") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2015-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2016-2") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2017-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2018-2") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-la.")
+#elseif ($code == "NET2010-3") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da instituição de ensino está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2011-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição de ensino contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2012-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2013-3") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2014-3") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2015-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2016-3") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2017-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2018-3") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-la.")
+#elseif ($code == "NET2010-4") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da instituição de ensino está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2011-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição de ensino contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2012-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2013-4") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2014-4") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2015-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2016-4") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2017-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2018-4") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-la.")
+#elseif ($code == "NET2010-5") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome da instituição de ensino está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2011-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição de ensino contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2012-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o período/ano digitado é inválido. Por favor, corrija esta informação.")
+#elseif ($code == "NET2013-5") 		#set($TIPO = "error")	#set($MSG = "Ops, o período/ano digitado não existe.")
+#elseif ($code == "NET2014-5") 		#set($TIPO = "alert")	#set($MSG = "Problema: o nome do curso está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2015-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome do curso contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2016-5") 		#set($TIPO = "alert")	#set($MSG = "Por favor, reduza o número de caracteres do nome da cidade/estado. Você pode usar até 40 caracteres.")
+#elseif ($code == "NET2017-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da cidade/estado contém caracteres inválidos. Por favor, utilize somente caracteres alfanuméricos.")
+#elseif ($code == "NET2018-5") 		#set($TIPO = "error")	#set($MSG = "Problema: o nome da instituição não foi preenchido. Por favor, preencha o campo ou clique no botão para remove-la.")
+#elseif ($code == "NET2020")   		#set($TIPO = "alert")	#set($MSG = "Problema: o campo Literatura está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2021")   		#set($TIPO = "alert")	#set($MSG = "Problema: o campo Música está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2022")   		#set($TIPO = "alert")	#set($MSG = "Problema: o campo Audiovisual está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2023")   		#set($TIPO = "alert")	#set($MSG = "Problema: o campo Culinária está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2024")   		#set($TIPO = "alert")	#set($MSG = "Problema: o campo Esportes está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2025")   		#set($TIPO = "alert")	#set($MSG = "Problema: a sua descrição está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2030")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a orientação sexual não foi escolhida. Por favor, escolha dentre as opções definidas.")
+#elseif ($code == "NET2031")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a altura não foi escolhida. Por favor, escolha dentre as opções oferecidas.")
+#elseif ($code == "NET2032")   		#set($TIPO = "alert")	#set($MSG = "Atenção: o peso não foi escolhido. Por favor, escolha dentre as opções oferecidas.")
+#elseif ($code == "NET2033")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a cor dos olhos não foi escolhida. Por favor, escolha dentre as opções oferecidas.")
+#elseif ($code == "NET2034")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a cor dos cabelos não foi escolhida. Por favor, escolha dentre as opções oferecidas.")
+#elseif ($code == "NET2035")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a opção Estado civil não foi escolhida. Por favor, escolha dentre as opções oferecidas.")
+#elseif ($code == "NET2036")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a opção Encontrar amigos não foi selecionada")
+#elseif ($code == "NET2037")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a opção Conhecer pessoas não foi selecionada")
+#elseif ($code == "NET2038")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a opção Paquerar e namorar não foi selecionada")
+#elseif ($code == "NET2039")   		#set($TIPO = "alert")	#set($MSG = "Atenção: a opção Contatos profissionais não foi selecionada")
+#elseif ($code == "NET2040")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver o sua orientação sexual")
+#elseif ($code == "NET2041")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver a sua altura")
+#elseif ($code == "NET2042")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver o seu peso")
+#elseif ($code == "NET2043")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver a cor dos seus olhos")
+#elseif ($code == "NET2044")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver a cor do seu cabelo ")
+#elseif ($code == "NET2045")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver seu estado civil ")
+#elseif ($code == "NET2046")   		#set($TIPO = "alert")	#set($MSG = "Ops, você não informou quem poderá ver seus interesses")
+#elseif ($code == "NET2047")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização da sua altura")
+#elseif ($code == "NET2048")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização do seu peso")
+#elseif ($code == "NET2049")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização da cor dos seus olhos")
+#elseif ($code == "NET2050")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização da cor do seu cabelo")
+#elseif ($code == "NET2051")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização do seu estado civil")
+#elseif ($code == "NET2052")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização dos seus interesses")
+#elseif ($code == "NET2053")   		#set($TIPO = "error")	#set($MSG = "Desculpe, escolha outra opção de visualização da sua orientação sexual")
+#elseif ($code == "NET2100")   		#set($TIPO = "alert")	#set($MSG = "Problema: o texto do convite está muito grande. Por favor, reduza o número de caracteres.  Você pode usar até 512 caracteres.")
+#elseif ($code == "NET2101")   		#set($TIPO = "error")	#set($MSG = "Problema: o e-mail digitado é inválido. Por favor, sempre o formato usuario@dominio.xxx.xx")
+#elseif ($code == "NET300")   		#set($TIPO = "error")	#set($MSG = "Atenção: feche todas as comunidades que você é dono antes de apagar seu UOL K.")
+#elseif ($code == "NET301")   		#set($TIPO = "ok")	#set($MSG = "Seu UOL K foi apagado com sucesso")
+#elseif ($code == "NET302")   		#set($TIPO = "error")	#set($MSG = "Desculpe, não foi possível apagar seu UOL K")
+#elseif ($code == "NET292")   		#set($TIPO = "ok")	#set($MSG = "O convite foi enviado com sucesso")
+#elseif ($code == "NET293")   		#set($TIPO = "error")	#set($MSG = "Desculpe, não foi possível convidar os seus amigos.")
+#elseif ($code == "NET295")   		#set($TIPO = "alert")	#set($MSG = "Desculpe, você atingiu o limite de criação de comunidades. Para criar mais comunidades, apague as antigas.")
+#elseif ($code == "NET296")   		#set($TIPO = "alert")	#set($MSG = "Desculpe, você atingiu o limite participação de comunidades. Saia de algumas comunidades para poder para participar de outras.")
+#elseif ($code == "NET297")   		#set($TIPO = "alert")	#set($MSG = "Ops, este endereço está reservado. Por favor, escolha outro.")
+#elseif ($code == "NET401")   		#set($TIPO = "alert")	#set($MSG = "Ops, sua frase do dia está muito grande. Tente uma um pouco menor.")
+#elseif ($code == "NET2102")   		#set($TIPO = "ok")	#set($MSG = "Convites enviados com sucesso. Um email foi enviado para cada um dos destinatários")
+#elseif ($code == "NET229")		#set($TIPO = "ok")	#set($MSG = "friend.person.error.other")
+#elseif ($code == "NET501")		#set($TIPO = "error")	#set($MSG = "Desculpe, não foi possível acessar o álbum")
+#elseif ($code == "NET502")		#set($TIPO = "info")	#set($MSG = "Por favor, escolha o endereço do seu álbum. Além de guardar as fotos do seu UOL K, você poderá criar outros álbuns neste mesmo endereço.")
+#elseif ($code == "NET503")		#set($TIPO = "ok")	#set($MSG = "Álbum apagado com sucesso")
+#elseif ($code == "NET410")		#set($TIPO = "alert") 	#set($MSG = "Por favor, escolha o destinatário")
+#elseif ($code == "NET411")	 	#set($TIPO = "alert") 	#set($MSG = "Por favor, digite uma mensagem")
+#elseif ($code == "NET412")		#set($TIPO = "alert") 	#set($MSG = "Por favor, digite o assunto da mensagem")
+#elseif ($code == "NET413")		#set($TIPO = "alert") 	#set($MSG = "Por favor, escolha um cartão")
+#elseif ($code == "NET414")		#set($TIPO = "ok")	#set($MSG = "Cartão enviado com sucesso!")
+
+#else
+	#set($TIPO = "error")
+	#set($MSG = "Ih, falha nossa! Por favor, tente novamente.")
+#end
+	#if($ajax == "no")
+		<dl class="msg ${TIPO}">
+			<dt>${MSG}</dt>
+			<dd>(${code})</dd>
+		</dl>
+	#end
+#end
+
+#macro (printmessage $message)
+<h1>$message</h1>
+#end
+
+
+
+
+
+
+
+######## Macro para mostrar um INTEREST se estiver selecionado  ########
+#macro(isInterestShow $num $str)
+#foreach($atual in $hotFields.sexualInterest.toString().toCharArray())
+#if($atual.toString().equals($num.toString()))
+#if(!$ISFIRST)
+<br />
+#end
+$str
+#if ( $ISFIRST )
+#set ( $ISFIRST = false )
+#end
+#end
+#end
+#end
+#################################################################
+
+######## Macro para mostrar um FETISH se estiver selecionado  ########
+#macro(isFetishShow $num $str)
+#foreach($atual in $hotFields.fetish.toString().toCharArray())
+#if($atual.toString().equals($num.toString()))
+#if(!$ISFIRST)
+<br />
+#end
+$str
+#if ( $ISFIRST )
+#set ( $ISFIRST = false )
+#end
+#end
+#end
+#end
+#################################################################
+
+######## Macro para ver se o INTEREST está selecionado  ########
+#macro(isInterestCheck $num)
+#foreach($atual in $hotFieldsForm.sexualInterest)
+#if($atual.toString().equals($num.toString())) checked="checked" #end
+#end
+#end
+#################################################################
+
+######## Macro para ver se o FETISH está selecionado  ########
+#macro(isFetishCheck $num)
+#foreach($atual in $hotFieldsForm.fetish)
+#if($atual.toString().equals($num.toString())) checked="checked" #end
+#end
+#end
+#################################################################
+
+## Apresenta lista de "options" de determinado "select"
+## o bean deve definir getId() e getName()
+#macro (showSelectInfo $beanList $element)
+	#foreach ($bean in $beanList)
+		<option value="$bean.getId()" #if ($element && $bean.getId().toString().equals($element.toString())) selected="selected" #end >$bean.getDescription()#if($bean.getDescription() == '')&nbsp;#end</option>
+	#end
+#end
+
+
+
+

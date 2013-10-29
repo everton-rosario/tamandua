@@ -1,0 +1,122 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Comunicar erro</strong>
+</div>
+<div id="titulo">
+	<h2>Comunicar erro</h2>
+    <h3>Encontrou algum erro, tem dúvidas, dicas ou reclamações?</h3>
+</div>
+				
+<article id="text" class="forms">
+	<div id="reportError">
+		<fieldset>
+			<form id="reportErrorForm" action="/usuario/reportError" method="post">
+				<label for="name">Nome:</label>
+				<input name="name" id="nameMailTo" type="text" size="45" class="validate[required,maxLength[100]]">
+					
+				<label for="email">E-mail:</label>
+				<input name="email" id="mailMailTo" type="text" size="45" class="validate[required,custom[email],maxLength[100]]">
+													
+				<label for="assunto">Escolha uma opção:</label>
+				<select name="assunto" id="subjectMailTo">
+					<option value="Comunicar Erro - Site não funciona">Comunicar erro - Site não funciona</option>
+					<option value="Comunicar Erro - Informações Erradas">Comunicar erro - Informações Erradas</option>					
+					<option value="Dicas/Sugestões">Dicas/Sugestões</option>
+					<option value="Dúvidas">Dúvidas</option>
+					<option value="Reclamações">Reclamações</option>
+				</select>						
+				
+				<div id="urlMessage">
+					<label for="url">URL:</label>
+					<input name="url" id="url" type="text" size="45" class="validate[required,maxLength[100]]">
+				</div>
+				
+				<div id="simpleMessage">
+					<label for="mensagem">Mensagem:</label>
+					<textarea cols="32" rows="5" name="mensagem" id="messageMailTo" class="validate[required]"></textarea>
+				</div>
+					
+				<div id="technicalMessage">
+					<label id="problemLabel" for="problema">Voc&ecirc; teve problemas ao acessar:</label>
+					<div id="problemList">
+						<input value="Listagem de m&uacute;sicas" id="optmusicas" name="problema" class="radio" type="radio" checked="checked">Listagem de m&uacute;sicas<br>
+						<input value="Listagem de artistas" id="optartistas" name="problema" class="radio" type="radio">Listagem de artistas<br>
+						<input value="Letra de uma m&uacute;sica" name="problema" id="optmusica" class="radio" type="radio">Letra de uma m&uacute;sica<br>
+						<input value="Login" name="problema" id="optlogin" class="radio" type="radio">Login<br>
+					</div>
+                    
+                    <label for="descricaoProblema">Se preferir, descreva o erro:</label>
+                    <textarea cols="32" rows="5" name="descricaoProblema" id="problemDescriptionMailTo"></textarea><br>                    
+				</div>
+				
+				<div id="actions">
+					<button id="submitButton" value="Enviar" type="button" class="botao-form enviar">Enviar</button>
+					<button id="resetButton" value="Limpar" type="button" class="botao-form limpar">Limpar</button>
+				</div>
+			</form>					
+			</fieldset>
+		
+	</div>
+</article>
+<script type="text/javascript">
+
+	function showTechnicalMessage(){	
+		$("#simpleMessage").hide();		
+		$("#technicalMessage").show();
+		$("#urlMessage").show();
+		
+		$("#url").addClass('validate[required,maxLength[100]]');
+		$("#messageMailTo").removeClass('validate[required]');
+	}
+	
+	function closePromptErrors(){
+		$("#url").closePrompt();
+		$("#nameMailTo").closePrompt(true);
+		$("#mailMailTo").closePrompt(true);	
+		$("#messageMailTo").closePrompt();
+	}
+	
+	var func = function () {
+		if ($(this).val() == "Comunicar Erro - Site não funciona") {
+			showTechnicalMessage();
+		} else {
+			if($(this).val() == "Comunicar Erro - Informações Erradas"){
+				$("#urlMessage").show();
+				$("#url").addClass('validate[required,maxLength[100]]');		
+			}else{
+				$("#urlMessage").hide();
+				$("#url").removeClass('validate[required,maxLength[100]]');
+			}
+			$("#simpleMessage").show();
+			$("#technicalMessage").hide();
+
+			$("#messageMailTo").addClass('validate[required]');
+		}
+		$("#resetButton").click();
+	};
+		
+	$("#reportErrorForm").validationEngine({
+		submitFunction:function(){
+			$("#basic-modal-content").modal();
+		}
+	});
+
+	$("#subjectMailTo").bind("click, change", func);
+	
+	$("#submitButton").click(function(){
+		$("#reportErrorForm").submit();
+	});
+		
+	$("#resetButton").click(function(){
+		closePromptErrors();
+		$("#url").val("");
+		$("#nameMailTo").val("");
+		$("#mailMailTo").val("");	
+		$("#messageMailTo").val("");
+		$("#problemDescriptionMailTo").val("");
+		var problema = $('input:radio[name=problema]');
+		problema.filter('[value=Música]').attr('checked', true);
+	});
+	
+	showTechnicalMessage();
+</script>

@@ -1,0 +1,13 @@
+<section id="navLetter">
+	<ul id="artistas-az">
+	
+#set ($letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0"])
+#foreach ($letter in $letters)
+		<li class="letter">
+			#set ($htmlLetter = $letter + '.html')
+			<a href="/admin/letra/$htmlLetter">$letter.toUpperCase()</a>
+		</li>
+#end
+	</ul>
+	
+</section>

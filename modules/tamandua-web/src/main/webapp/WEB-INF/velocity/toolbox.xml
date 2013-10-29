@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<toolbox>
+    <tool>
+        <key>escapeTool</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.EscapeTool</class>
+    </tool>
+    <tool>
+        <key>permalinkTool</key>
+        <scope>application</scope>
+        <class>br.com.tamandua.service.util.PermalinkTool</class>
+    </tool>
+    <tool>
+	   <key>date</key>
+	   <scope>application</scope>
+	   <class>org.apache.velocity.tools.generic.DateTool</class>
+	   <parameter name="format" value="dd/MM/yyyy"/>
+ 	</tool>
+</toolbox>

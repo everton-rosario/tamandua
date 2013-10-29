@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                              http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers/>
+    <profiles>
+
+        <profile>
+            <id>desenv</id>
+            <properties>
+                <ws.send.mail>smart@smartsw.com.br</ws.send.mail>
+                <ws.receive.mail>smart@smartsw.com.br</ws.receive.mail>
+
+                <persistence.mailSender.host>smtp.smartsw.com.br</persistence.mailSender.host>
+                <persistence.mailSender.port>587</persistence.mailSender.port>
+                <persistence.mailSender.username>smart@smartsw.com.br</persistence.mailSender.username>
+                <persistence.mailSender.password>teste00</persistence.mailSender.password>
+
+                <generator.bucket.name>tocaletra-test</generator.bucket.name>
+
+                <redirect.pages.source>LOCAL</redirect.pages.source>
+                <redirect.path.files>${env.TC_DOCUMENTS}/pages</redirect.path.files>
+                <redirect.url.redirect>http://${generator.bucket.name}.s3.amazonaws.com/pages</redirect.url.redirect>
+                <redirect.url.artist.images>http://tocaletraimg.s3.amazonaws.com/artist</redirect.url.artist.images>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homolog</id>
+            <properties>
+                <ws.send.mail>tocaletra@gmail.com</ws.send.mail>
+                <ws.receive.mail>tocaletra@gmail.com</ws.receive.mail>
+
+                <persistence.mailSender.host>localhost</persistence.mailSender.host>
+                <persistence.mailSender.port>25</persistence.mailSender.port>
+                <persistence.mailSender.username>tocaletra@gmail.com</persistence.mailSender.username>
+                <persistence.mailSender.password>tamandua2</persistence.mailSender.password>
+
+                <generator.bucket.name>tocaletra-test</generator.bucket.name>
+
+                <redirect.pages.source>S3</redirect.pages.source>
+                <redirect.path.files>/export/htdocs/tocaletra.com.br/pages</redirect.path.files>
+                <redirect.url.redirect>http://${generator.bucket.name}.s3.amazonaws.com/pages</redirect.url.redirect>
+                <redirect.url.artist.images>http://tocaletraimg.s3.amazonaws.com/artist</redirect.url.artist.images>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <ws.send.mail>tocaletra@gmail.com</ws.send.mail>
+                <ws.receive.mail>tocaletra@gmail.com</ws.receive.mail>
+
+                <persistence.mailSender.host>localhost</persistence.mailSender.host>
+                <persistence.mailSender.port>25</persistence.mailSender.port>
+                <persistence.mailSender.username>tocaletra@gmail.com</persistence.mailSender.username>
+                <persistence.mailSender.password>tamandua2</persistence.mailSender.password>
+
+                <generator.bucket.name>tocaletra-2010</generator.bucket.name>
+
+                <redirect.pages.source>S3</redirect.pages.source>
+                <redirect.path.files>/export/htdocs/tocaletra.com.br/pages</redirect.path.files>
+                <redirect.url.redirect>http://${generator.bucket.name}.s3.amazonaws.com/pages</redirect.url.redirect>
+                <redirect.url.artist.images>http://tocaletraimg.s3.amazonaws.com/artist</redirect.url.artist.images>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <localRepository>/home/work/maven/repository.tocaletra</localRepository>
+    <offline>false</offline>
+    <activeProfiles>
+        <activeProfile>desenv</activeProfile>
+<!--
+-->
+    </activeProfiles>
+</settings>
+

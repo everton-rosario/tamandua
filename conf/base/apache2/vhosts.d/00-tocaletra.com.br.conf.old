@@ -1,0 +1,27 @@
+NameVirtualHost loghost:80
+
+<VirtualHost loghost:80>
+     ServerName www.tocaletra.com.br
+     ServerAlias tocaletra.com.br www.tocaletras.com.br tocaletras.com.br www.tocacifra.com.br tocacifra.com.br www.tokaletra.com.br tokaletras.com.br
+     DocumentRoot /export/htdocs/tocaletra.com.br/
+
+     ProxyPass           /letra                 http://127.0.0.1:8080/tamandua-redirect/letra    
+     ProxyPassReverse    /letra                 http://127.0.0.1:8080/tamandua-redirect/letra   
+     ProxyPass           /artista               http://127.0.0.1:8080/tamandua-redirect/artista  
+     ProxyPassReverse    /artista               http://127.0.0.1:8080/tamandua-redirect/artista  
+     ProxyPass           /musica                http://127.0.0.1:8080/tamandua-redirect/musica   
+     ProxyPassReverse    /musica                http://127.0.0.1:8080/tamandua-redirect/musica   
+
+#  ProxyPass / http://d2ymqns072o7gt.cloudfront.net/
+#     ProxyPassReverse / http://d2ymqns072o7gt.cloudfront.net/
+
+    # Configuracao para arquivos que sao servidos direto do htdocs
+    ProxyPassMatch     /.+\.(css|js|inc|xml|html|ansi|swf) !
+ 
+    <proxy *>
+        Order deny,allow
+        Allow from all
+    </proxy>
+
+</VirtualHost>
+

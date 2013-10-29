@@ -1,0 +1,211 @@
+
+	    <script type="text/javascript">		
+	         $(function () {
+			 	  	$('#musicEdit').hide();
+					$('#newLyric').hide();
+			 	  	$('#music').show();
+			 	  	$('#alterar').hide();
+			 	  	$('#music_dtRelease').mask("99/99/9999");   
+			 	  	
+			 	  	$('#button_dtRelease').click(function(){
+							$(this).calendario({ 
+							target:'#music_dtRelease'
+						});
+		  			});
+		  			
+		  			$(".tab_content").hide();
+					$("ul.tabs li:first").addClass("active").show();
+					$(".tab_content:first").show(); 
+	
+
+					$("ul.tabs li").click(function() {
+						$("ul.tabs li").removeClass("active"); 
+						$(this).addClass("active"); 
+						$(".tab_content").hide(); 
+						var activeTab = $(this).find("a").attr("href");
+						$(activeTab).fadeIn(); //Fade in the active content
+						return false;
+					});
+					
+					#if($music.flag_public == "S")
+						$('#buttonPublic').hide();
+						$('#buttonNoPublic').show();
+					#else	
+						$('#buttonPublic').show();
+						$('#buttonNoPublic').hide();
+					#end
+					
+					
+					#if($music.flag_moderate == "S")
+						$('#buttonModerate').hide();
+						$('#buttonNoModerate').show();
+					#else
+						$('#buttonModerate').show();
+						$('#buttonNoModerate').hide();
+					#end
+		  			
+			 });
+	        
+			 function editMusic(){
+			 		$('#music').hide();
+			 		$('#buttonEdit').hide();
+			 	 	$('#musicEdit').show();
+			 	 	$('#idTextarea').removeAttr('disabled').css('border','outset');
+			 
+			 }
+			 function newMusic(){
+			 		$('#music').hide();
+			 		$('#buttonNew').hide();
+			 	 	$('#musicEdit').hide();
+					$('#newLyric').show();
+			 }
+			 function cancelEdit(){
+	 	  			$('#musicEdit').hide();
+	 	  			$('#buttonEdit').show();
+	 	  			$('#music').show();	
+	 		}
+			 function cancelNew(){
+	 	  			$('#newLyric').hide();
+	 	  			$('#buttonNew').show();
+	 		}
+	 			 			 
+	    </script>
+        
+    	<style>
+			.styleTextarea{
+				font-size: 13px;
+				background-color:#FFFFFF;
+				border:none;
+			}
+		</style>
+      
+        <section id="destaque">
+			<h1>
+				 #set($htmlArtist = $music.artist.uri + '.html')
+     			 #set($htmlArtist = $htmlArtist.replaceAll("/","")) 
+				<a href="/admin/artista/$htmlArtist"><strong>$music.artist.name</strong></a> »
+				<a href="/admin/musica/$music.url">$music.title</a>
+			</h1>
+			
+			#if ($music.musicArtists.size() > 0)
+			<h3>Composição: 
+				#foreach($musicArtist in $music.musicArtists)
+				$musicArtist.artist.name, 
+				#end 
+			</h3>
+			#end
+		</section>
+		
+		<article id="text">
+		
+			<input type="button" id="buttonEdit" class="buttonAdm" value="Editar Música" onclick="javascript:editMusic()"/> ||
+			<input type="button" class="buttonAdm" value="Moderar" onclick="publishModerate('musics', 'moderate', true);" /> ||
+			<input type="button" class="buttonAdm" value="Desmoderar" onclick="publishModerate('musics', 'moderate', false);" /> ||
+			<input type="button" class="buttonAdm" value="Publicar" onclick="publishModerate('musics', 'publish', true);" /> ||
+			<input type="button" class="buttonAdm" value="Despublicar" onclick="publishModerate('musics', 'publish', false);" /> 
+			<br />
+			<br />
+			
+			<fieldset id="musicEdit">
+				<form method="post" id="form-music">
+					<input type="hidden" name="music_id" id="music_id" value="$!music.idMusic" />
+					<input type="hidden" name="music_uri" id="music_uri" value="$!music.uri" />
+					<input type="hidden" name="lyricType" id="lyricType" value="$!music.lyrics.lyricType" />
+					<p>
+						<label>Nome da Música:</label>
+					    <label><input size="20" type="text" id="music_name" name="music_name" value="$!music.title" style="width:300px;"/></label>
+					</p>
+					
+					<p>
+						<label>Data de release:</label>
+						<label>
+					    	<input type="text" id="music_dtRelease" name="music_dtRelease" value="$!date.format($music.dtRelease)" style="width:80px;"/>
+					    	<input type="button" class="buttonCalendar" id="button_dtRelease" />
+					    </label>
+					</p>			
+					
+					<p>
+						Música Original:
+					     
+						  #set( $countLyric = 1)
+						 	<select name="idLyrics" id="idLyrics">
+
+								#foreach ($musics in $music.lyrics)
+									<option value="$musics.idLyric"
+										#if($musics.flag == "S")
+											selected="selected"
+										#end>
+									Letra $countLyric</option>
+									#set( $countLyric = $countLyric + 1)
+								#end
+							
+							</select>
+					</p>	
+					
+						
+					<div style="float:left; padding:10px;">
+						<input type="button" value="Salvar" id="salvar_musica" />
+						<input type="reset" value="Cancelar" id="cancelar_música" onclick="javascript:cancelEdit();" />
+					</div>	
+				</form>	
+																	
+			##$music.lyrics.size()
+			
+					#set( $count = 1)
+												
+					<div class="container">
+					    <ul class="tabs">
+						    #foreach( $musics in $music.lyrics )
+		    					<li><a href="#tab$count">Letra $count</a></li>
+		    					#set( $count = $count + 1)
+		    				#end
+						        
+					    </ul>
+						<div class="tab_container">
+						   	#set( $count = 1)
+						   	#foreach( $musics in $music.lyrics )
+						   	<div id="tab$count" class="tab_content">
+			    					<form method="post" id="form-lyric$count">
+										<input type="hidden" name="music_id" id="music_id$count" value="$!music.idMusic" />
+										<input type="hidden" name="music_uri" id="music_uri$count" value="$!music.uri" />
+										<input type="hidden" name="lyric_id" id="lyric_id$count" value="$!musics.idLyric" />
+										<input type="hidden" name="lyric_uri" id="lyric_uri$count" value="$!musics.uri" />
+										<input type="hidden" name="lyric_prov" id="lyric_prov$count" value="$!musics.provider" />
+										<input type="hidden" name="music_name" id="music_name$count" value="$!music.title" >
+										<input type="hidden" name="lyric_title" id="lyric_title$count" value="$!musics.lyricTitle" />
+										<input type="hidden" name="lyric_type" id="lyric_type$count" value="$!musics.lyricType" />
+										<input type="hidden" name="lyric_language" id="lyric_language$count" value="$!musics.laguage" />
+										<br />
+			    						<br />
+			    						<textarea rows="30" cols="70" class="styleTextarea" id="lyric_text$count">$musics.text</textarea>
+			    						<input type="button" value="Salvar" id="salvar_letra$count" onclick="javascript:salvaLetra($count);" />
+										<input type="reset" value="Cancelar" id="cancelar_musica$count" onclick="javascript:cancelEdit();" />
+			    					</form>
+						   	</div>
+						   	#set( $count = $count + 1)
+			    			#end
+						</div>
+					</div>
+					 		
+		 		<br/>
+			</fieldset>
+			
+			<div id="music">
+				$music.moderatedLyricDefault.text
+			</div>
+			
+			#if ($music.styles.size() > 0)	
+			<ul class="categ-rel">
+				<li><p>Estilos:</p></li>
+				#foreach($tag in $music.styles)
+				<li><a rel="category tag" title="Ver outras músicas de $tag.name" href="#">$tag.name</a>, </li>
+				#end
+			</ul>
+			#end
+			
+			
+			##<div class="dateauthor">
+			##	<p>Por: <a class="author" href="/autor/tocaletra">Tocaletra</a> , em <span class="date">18/02/2010</span> </p>
+			##</div>
+	
+		</article>

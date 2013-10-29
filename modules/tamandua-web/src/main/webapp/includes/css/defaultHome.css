@@ -1,0 +1,401 @@
+/* Padronizacao HTML5 */
+header, section, footer, article, aside, nav {display: block;}
+
+/* Padronizacao RESET */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset,  input, p, blockquote, th, td, html {
+    margin: 0; 
+    padding: 0; 
+}
+
+html {
+  height: 100%;
+}
+
+:focus {outline-color:#fff;outline-style:none;outline-width:medium;}
+
+
+body, textarea {
+    color: #333333;
+    font: 10px verdana, arial, helvetica, sans-serif;
+}
+
+body {
+    background: url('http://tocaletra.s3.amazonaws.com/images/patternBg.png') center top  #FCFCFC repeat-x;
+    line-height: 2.1em;
+    text-align: center;
+}
+
+fieldset, img {
+    border:0 none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Padronizacao FIM DO RESET */
+
+.imgreplace {
+    display: block;
+    overflow: hidden;
+    text-indent: -99999px;
+}
+
+header h1 a {
+    background:url("http://tocaletra.s3.amazonaws.com/images/logo.png") no-repeat scroll 0 0 transparent;
+    margin: 0 auto;
+    height:84px;
+    width:362px;
+}
+
+section#main {
+    margin: 0px auto 0 auto;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    width: 995px;
+}
+
+section#top {
+    height: 84px;
+    margin: 20px 0 20px;
+}
+
+section#mainContent form {
+    background:url("http://tocaletra.s3.amazonaws.com/images/bg_box_search.png") no-repeat scroll 0 0 transparent;
+    margin: 30px 0 0 190px;
+    padding: 6px 0 0 0;
+    width: 600px;
+    height: 74px;
+}
+
+section#mainContent form fieldset {
+    background:url("http://tocaletra.s3.amazonaws.com/images/bg_box_search_upper.png") no-repeat scroll 0 0 transparent;
+    margin: 0 0 6px 6px;
+    height: 62px;
+}
+
+section#mainContent form fieldset input#inputSearch {
+    border: 0 none;
+    color: #a3a9b5;
+    float: left;
+    font-size: 22px;
+    height: 48px;
+    margin: 7px 0px 0px 9px;
+    vertical-align: middle;
+    width: 510px;
+}
+
+section#mainContent form fieldset input.btSubmit {
+    background:url("http://tocaletra.s3.amazonaws.com/images/btSubmit.png") no-repeat scroll 0 0 transparent;
+    border:0 none;
+    cursor: pointer;
+    float:right;
+    height:46px;
+    margin:8px 16px 0 0;
+    width:47px;
+}
+
+section#mainContent #topMusics,
+section#mainContent #topArtists{
+    background: transparent url("http://tocaletra.s3.amazonaws.com/images/roundedBorder.png") no-repeat center bottom;
+    float: left;
+    margin: 30px 0 0 125px;
+    width: 300px;   
+}
+
+section#mainContent #topMusics h2,
+section#mainContent #topArtists h2{
+    background:url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat scroll 0 0 transparent;
+    height: 30px;
+    text-indent: -9999px;
+}
+
+section#mainContent #topMusics h2 {
+    background-position: 0 -150px;
+}
+
+section#mainContent #topMusics ol,
+section#mainContent #topArtists ol{
+    margin-left: 35px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+section#mainContent #topMusics ol li,
+section#mainContent #topArtists ol li{
+    float:left;
+    height:36px;
+    width:265px;
+}
+    /*
+section#mainContent #topMusics ol li a,
+section#mainContent #topArtists ol li a{
+    height: 30px;
+}*/
+    
+section#mainContent #topMusics ol li a,
+section#mainContent #topArtists ol li a{
+    color: #0d2d47;
+    display: block;
+    line-height: 1em;
+    padding: 3px 0 3px 3px;
+}
+
+section#mainContent #topMusics ol li a:hover,
+section#mainContent #topArtists ol li a:hover{
+    color: #fff;
+    background-color: #0d2d47;
+    text-decoration: none;
+}
+
+section#mainContent #topMusics ol li a span{
+    display: block;
+    font-weight: normal;
+    font-size: 0.8em;
+    
+}
+
+section#mainContent #topArtists h2{
+    background-position: 0 -180px
+}
+
+a.top{
+    font-size: 1.2em;
+    font-weight: bold;  
+    text-decoration: none;
+    background-color: #0d2d47;
+    color: #fff;
+    padding: 1px 10px 1px 175px;
+}
+
+section#mainContent #artistas-az{
+    clear: both;
+    height: 20px;
+    list-style-type: none;
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 655px;
+}
+
+section#mainContent ul#artistas-az li {
+    display:inline;
+    float: left;
+    width: 21px;
+}
+
+section#mainContent ul#artistas-az li:hover,
+section#mainContent ul#artistas-az li.selected {
+    background-color: #eb181e;
+}
+
+section#mainContent ul#artistas-az li:hover a,
+section#mainContent ul#artistas-az li.selected a{
+    color: #fff;
+}
+
+section#mainContent ul#artistas-az li.label{
+    width: 78px;
+}
+
+section#mainContent ul#artistas-az li.label:hover{
+    color: #eb181e;
+    background-color: #fff;
+}
+
+section#mainContent ul#artistas-az li a,
+section#mainContent ul#artistas-az li.label {
+    color: #eb181e;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+section#mainContent ul#artistas-az li a:hover {
+    text-decoration:  none;
+}
+
+#ads_fullbanner {
+    margin: 20px auto 0 auto;
+    width: 728px;
+}
+    
+footer {
+    clear: both;
+    color: #fff;
+    margin-top: 40px;
+}
+
+footer p {
+    line-height:2.7em;
+    text-align: center;
+}
+
+footer p.links a {
+    color: #272727;
+}
+
+footer div.clear {
+    margin: 20px 0 0;
+}
+
+footer div.clear p {
+    color: #000;
+    text-align: center;
+}
+
+.modulo {
+    float: right;
+    margin: 15px 0 10px;
+    padding-bottom: 3px;
+    text-align: left;
+    width: 314px;
+}
+.modulo a {
+    text-decoration: none;
+}
+.modulo a:hover {
+    text-decoration: underline;
+}
+.mod-noticias {
+    float: left;
+    height: 229px;
+    margin: 15px 122px 0;
+    overflow: hidden;
+    text-align: left;
+    width: 729px;
+}
+.latestnews {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #D3DDE7 #D3DDE7 -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    height: 208px;
+    overflow: auto;
+}
+.latestnews ul {
+    margin: 6px 0 0 6px;
+}
+.latestnews ul li {
+    border-bottom: 1px solid #EBEBEB;
+    clear: both;
+    font: 13px arial;
+    overflow: hidden;
+    padding: 5px;
+}
+.latestnews ul li strong {
+    background: none repeat scroll 0 0 #F3F4F6;
+    float: left;
+    font: bold 11px arial;
+    margin-right: 5px;
+    padding: 17px 26px;
+}
+.latestnews ul li span {
+    float: left;
+    width: 178px;
+}
+.latestnews ul li a {
+    color: #334049;
+}
+.latestnews ul li.foto div {
+    border: 1px solid #A7BCCF;
+    float: left;
+    margin-right: 5px;
+}
+.latestnews ul li.foto img {
+    height: 80px;
+    margin: 1px;
+    width: 80px;
+}
+.latestnews ul li.foto strong {
+    background: none repeat scroll 0 0 #F5F5F5;
+    display: block;
+    font: bold 11px/18px arial;
+    padding: 0;
+}
+.latestnews ul li.foto span {
+    display: block;
+    width: 175px;
+}
+.receba-noticias {
+    background: none repeat scroll 0 0 #EAEBED;
+    border-color: -moz-use-text-color #D3DDE7 #D3DDE7;
+    border-right: 1px solid #D3DDE7;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    clear: both;
+    height: 37px;
+    margin-bottom: 25px;
+    padding: 13px 0 14px 10px;
+    position: relative;
+    width: 302px;
+}
+.receba-noticias a {
+    text-decoration: none;
+}
+.receba-noticias a:hover {
+    text-decoration: underline;
+}
+.receba-noticias h4 {
+    color: #000000;
+    float: left;
+    font: bold 11px arial;
+    padding: 0;
+}
+.receba-noticias ul {
+    float: left;
+    height: 14px;
+    overflow: hidden;
+    padding: 10px 2px 0 0;
+    width: 290px;
+}
+.receba-noticias ul li {
+    border-right: 1px solid #000000;
+    float: left;
+    font: 10px arial;
+    margin-right: 5px;
+    padding: 0;
+    text-transform: uppercase;
+}
+.receba-noticias ul li a {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+    display: block;
+    margin-right: 5px;
+    padding: 0 0 0 14px;
+}
+.receba-noticias .boletim a {
+    background: url("http://img.uol.com.br/ico_boletim.gif") no-repeat scroll 0 0 transparent;
+}
+.receba-noticias .clipping a {
+    background: url("http://img.uol.com.br/ico_clipping.gif") no-repeat scroll 0 0 transparent;
+}
+.receba-noticias .widgets a {
+    background: url("http://img.uol.com.br/ico_widgets.gif") no-repeat scroll 0 0 transparent;
+}
+.receba-noticias .celular a {
+    background: url("http://img.uol.com.br/ico_celular.gif") no-repeat scroll 0 0 transparent;
+}
+.receba-noticias .celular {
+    border-right: 0 none;
+    padding: 0;
+}
+.receba-noticias .rss a {
+    background: url("http://home.img.uol.com.br/h1/rss_logo.gif") no-repeat scroll 0 0 transparent;
+    color: #000000;
+    display: block;
+    font: 11px arial;
+    height: 14px;
+    padding: 1px 0 0 17px;
+    position: absolute;
+    right: 13px;
+    top: 12px;
+}
+
+div#fbLike {
+    padding: 6px 0 0;
+}

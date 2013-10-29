@@ -1,0 +1,129 @@
+#gallery {position:relative; width:301px; height:200px; margin:auto;}
+
+#slideshow #slidesContainer {
+  margin:auto;
+  width:300px;
+  height:200px;
+  overflow:auto; /* allow scrollbar */
+  position:relative;
+}
+
+#slideshow #slidesContainer .slide {
+  margin:auto;
+  width:300px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 200px;
+  height:200px;
+}
+.control {
+  display:block;
+  width:39px;
+  height:24px;
+  text-indent:-10000px;
+  position:absolute;
+  cursor: pointer;
+  margin-top: 204px;
+}
+#leftControl {
+  top:0;
+  left:0;
+  background:url(http://tocaletra.s3.amazonaws.com/images/navegadores.gif) left no-repeat;
+}
+#rightControl {
+  top:0;
+  right:0;
+  background:url(http://tocaletra.s3.amazonaws.com/images/navegadores.gif) right no-repeat; 
+}
+.imgnav {
+	position:absolute; 
+	height:25px; 
+	width:20%; 
+	z-index:100; 
+	width:20%; 
+	z-index:100; 
+	outline:none; 
+	cursor:pointer;
+}
+
+#pagination {
+	right:45%; 
+	width:40px;
+	text-align:center;
+	padding-top: 10px;
+}
+#panel-gallery{
+	display:block;
+	height: 130px;
+	width: 130px;
+	position: relative;
+	overflow: hidden;
+}
+#panel-thumbnail{
+	display:block;
+	width: 130px;
+	height: 43px;
+	padding-top: 5px;
+	background: #003F62 none repeat scroll 0 0;
+}
+#enlarge{
+	display:block;
+	width:130px;
+	height:130px;
+	position:absolute;
+	z-index: 9999;
+	background: url(http://tocaletra.s3.amazonaws.com/images/lupa.png) no-repeat center center;
+	opacity: 0;
+	filter:alpha(opacity=0);
+	cursor: pointer;
+}
+#enlarge:hover{
+	opacity: 1.0;
+	filter:alpha(opacity=50);
+}
+img.gallery{
+	position: absolute;
+	display: none;
+}
+div.thumbselec{
+	margin-left: 9px;
+	border: 1px solid #fff;
+	position: absolute;
+	width: 54px;
+	height: 39px;
+	z-index: 9999;
+}
+div.thumbs{
+	width: 112px;
+	overflow: hidden;
+	position: absolute;
+	margin-left: 9px;
+}
+li.thumbs{
+	width: 54px;
+	height: 40px;
+	overflow: hidden;
+	display: inline;
+	/*border: 1px solid transparent;*/
+	margin-left: 1px;
+	margin-right: 1px;
+	float: left;	
+}
+.thumbnav{
+	width:10px;
+	height:30px;
+	padding-top:10px;
+	cursor: pointer;
+	position: absolute;
+	z-index: 9999;
+}
+.prev{
+	float: left;
+	background:url(http://tocaletra.s3.amazonaws.com/images/setas.png) no-repeat scroll 1px 16px;
+	margin-left:-2px;
+}
+.next{
+	float: right;
+	background:url(http://tocaletra.s3.amazonaws.com/images/setas.png) no-repeat scroll -8px 16px;
+	margin-left: 121px;
+}

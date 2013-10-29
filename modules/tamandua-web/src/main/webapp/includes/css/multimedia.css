@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+#nav-aba{
+	display:block;
+	width:309px;
+	height:25px;
+	position:relative;
+	z-index:2;
+}
+#nav-aba ul li{
+	display:none;
+	width:103px;
+	float:left;
+	text-align:center;
+	height:22px;
+	padding-top:3px;
+}
+#nav-aba ul li a{
+	color:#333;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+}
+#nav-aba ul li a:hover{
+	font-weight:bold;
+}
+#nav-aba ul li.selecionado{
+	background:url(http://tocaletra.s3.amazonaws.com/images/abas-sprite.png);
+	background-position:0 0;
+}
+#nav-aba ul li.no-selec{
+	background:url(http://tocaletra.s3.amazonaws.com/images/abas-sprite.png) no-repeat;
+	background-position:-103px 0;
+}
+.aba{
+	display:none;
+}
+#multimedia{
+	display:table;
+	width:309px;
+}
+#multi{
+	display:table;
+	width:303px;
+	padding:2px 2px;
+	float:left;
+	border-top:1px solid #928d8d;
+	border-left:1px solid #928d8d;
+	border-right:1px solid #928d8d;
+	margin-top:-1px;
+	z-index:1;
+}
+#radio, #video, #galeria{
+	min-width:303px;
+	min-height:210px;
+	text-align: center;
+	padding-top: 10px;
+}
+#galeria{
+	padding-bottom: 20px;
+}
+#multi-buttons{
+	width:303px;
+}
+#multi-content{
+	width:303px;
+	float: left;
+}
+#btnMinMax.minimizar, #btnMinMax.maximizar, #btnScroll.move, #btnScroll.stop{
+	display: block;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	float: left;
+	margin: 3px 0 3px 3px;
+}
+#btnScroll.move, #btnScroll.stop{
+	margin-left: 252px; 
+}
+#btnMinMax.minimizar{
+	background:url(http://tocaletra.s3.amazonaws.com/images/buttons-multimedia.png) no-repeat;
+	background-position: 0 -20px;
+}
+#btnMinMax.maximizar{
+	background:url(http://tocaletra.s3.amazonaws.com/images/buttons-multimedia.png) no-repeat;
+	background-position: 0 0;
+}
+#btnScroll.move{
+	background:url(http://tocaletra.s3.amazonaws.com/images/buttons-multimedia.png) no-repeat;
+	background-position: 0 -40px;
+}
+#btnScroll.stop{
+	background:url(http://tocaletra.s3.amazonaws.com/images/buttons-multimedia.png) no-repeat;
+	background-position: 0 -60px;
+}
+#playerVideo{
+  margin:auto;
+  width:300px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 240px;
+  height:240px;
+}
+.videoControl {
+  display:block;
+  width:39px;
+  height:24px;
+  cursor: pointer;
+  text-indent:-10000px;
+}
+#previousControl {
+  background:url(http://tocaletra.s3.amazonaws.com/images/navegadores.gif) left no-repeat;
+  float: left;
+}
+#nextControl {
+  background:url(http://tocaletra.s3.amazonaws.com/images/navegadores.gif) right no-repeat;
+  float: right; 
+}
+.videonav {
+	float:left;
+	width:50px;
+	text-align:center;	 
+	outline:none; 
+	cursor:pointer;
+	margin-left: 85px;
+	margin-top: 5px;
+}
+#loadingVideo {
+	margin-left:115px;
+	margin-top:75px;
+	position:absolute;
+	z-index:-999;
+}

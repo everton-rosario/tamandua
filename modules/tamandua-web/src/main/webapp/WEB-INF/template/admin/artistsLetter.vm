@@ -1,0 +1,145 @@
+ <script type="text/javascript"> 
+		$(function () {
+			   $('#editArtist').hide();
+			   $('#artist_dtBirth').mask("99/99/9999");   
+			   $('#artist_dtEnd').mask("99/99/9999"); 
+			   $('#button_dtBirth').click(function(){
+					$(this).calendario({ 
+					target:'#artist_dtBirth'
+					});
+			  });
+			  
+			  $('#button_dtEnd').click(function(){
+					$(this).calendario({ 
+					target:'#artist_dtEnd'
+					});
+			  });
+		});
+				
+		function showEdit(){
+		  $('#editArtist').show();
+		  $('#buttonEdit').hide();
+		}
+				
+		function cancelEdit(){
+		  $('#editArtist').hide();
+		  $('#buttonEdit').show();	
+		}
+		
+</script>
+	
+<section id="destaque">
+<h1>
+	#set ($htmlLetter = $letter + '.html')
+	<a href="/admin/letra/$htmlLetter">Letra <strong>$letter.toUpperCase()</strong></a> 
+</h1>
+<h2>&nbsp;</a></h2>
+<h3>$artists.size() artistas</h3>
+		<input type="button" id="buttonEdit" class="buttonAdm" value="Novo Artista" onclick="javascript:showEdit();"/> ||
+		<input type="button" class="buttonAdm" value="Publicar Letra" onclick="publicLetter(true);" /> ||
+		<input type="button" class="buttonAdm" value="Despublicar Letra" onclick="publicLetter(false);" /> ||
+		<input type="button" class="buttonAdm" value="Moderar Todos" onclick="publishModerateAll('artists', 'moderate', true);"/> ||
+		<input type="button" class="buttonAdm" value="Publicar Todos" onclick="publishModerateAll('artists', 'publish', true);"/> ||
+		<input type="button" class="buttonAdm" value="Desmoderar Todos" onclick="publishModerateAll('artists', 'moderate', false);"/> ||
+		<input type="button" class="buttonAdm" value="Despublicar Todos" onclick="publishModerateAll('artists', 'publish', false);"/> 
+		
+		<fieldset id="editArtist">
+			<form method="post" id="form-contato">
+					<p>
+					    <label>Artista:</label><br />
+					    <label><input size="20" type="text" name="artist_name" id="artist_name" style="width:300px;"/></label>
+					</p>
+					<p>
+					    <label>Data de Nascimento:</label><br />
+					    <label>
+					    	<input type="text" id="artist_dtBirth" name="artist_dtBirth"  style="width:80px;"/>
+					    	<input type="button" class="buttonCalendar" id="button_dtBirth" />
+					    </label>
+					</p>
+					<p>
+					    <label>Data de Falecimento:</label><br />
+					    <label>
+					    	<input type="text" id="artist_dtEnd" name="artist_dtEnd"  style="width:80px;"/>
+					    	<input type="button" class="buttonCalendar" id="button_dtEnd" />	
+					    </label>
+					</p>
+					
+					<br />	
+					<input type="submit" value="Salvar" id="enviar_artista" />
+					<input type="reset" value="Cancelar" id="cancelar_artista" onclick="javascript:cancelEdit();" />
+				</form>
+		</fieldset>
+
+</section>
+		
+		<article id="text">
+			
+			#set ($maxColumn = $artists.size()/2)
+			#set ($maxColumnBase = $maxColumn)
+			#set ($indexItemHi = 0)
+			#set ($indexItemBase = 0)
+			#set ($control = 0)			
+
+			##Hack para garantir mesmo tamanho visual das colunas			
+			#foreach ($artist in $artists)
+           		## aumento divisor de colunas caso nome da listaquebra linha
+           	    #if ($artist.name.length() > 39)
+           	    	#set ($control = $control + 1)
+           	    	#if ($control == 2)
+           	    		#set ($control = 0)
+	           	    	#if ($indexItemBase < $maxColumnBase)
+			       	    	#set ($maxColumn = $maxColumn - 1)
+			       	    	#if ($artist.name.length() > 78)
+			       	    		#set ($maxColumn = $maxColumn - 1)
+			       	    	#end
+			       	    #else
+			       	    	#set ($maxColumn = $maxColumn + 1)
+			       	    	#if ($artist.name.length() > 78)
+			       	    		#set ($maxColumn = $maxColumn + 1)
+			       	    	#end
+			       	    #end
+			    	#end
+           	    #end
+           	    #set ($indexItemBase = $indexItemBase+1)
+           	#end
+
+			<input type="hidden" name="letter_artist" id="letter_artist" value="$!letter"/>
+			<input type="button" class="buttonAdm" value="Moderar Selecionados" onclick="publishModerateSelected('artists', 'moderate', true)"/> ||
+            <input type="button" class="buttonAdm" value="Desmoderar Selecionados" onclick="publishModerateSelected('artists', 'moderate', false)"/> ||
+            <input type="button" class="buttonAdm" value="Publicar Selecionados" onclick="publishModerateSelected('artists', 'publish', true)"/> ||
+            <input type="button" class="buttonAdm" value="Despublicar Selecionados" onclick="publishModerateSelected('artists', 'publish', false)"/> 
+
+            <br />
+            <br />
+            <input type="button" class="buttonAdm" name="check" value="Habilitar todos" onclick="checkAll('artistId', true);"/> || 
+			<input type="button" class="buttonAdm" name="noCheck" value="Desabilitar todos" onclick="checkAll('artistId', false);"/>
+			<br />
+			<br />
+			<ol class="defaultList">
+               #foreach ($artist in $artists)
+              
+	           		#if ($indexItemHi == $maxColumn)
+	           	    	#set ($indexRestart = $indexItemHi + 1)
+						</ol>
+						<ol class="defaultList" start="$indexRestart">
+	           	    #end
+	     			    #set($htmlArtist = $artist.uri + '.html')
+	     			    #set($htmlArtist = $htmlArtist.replaceAll("/","")) 
+	     				    
+						#if($artist.flag_moderate == "N" && $artist.flag_public == "N")
+							<li class="marcacao_vermelha">
+						#elseif($artist.flag_moderate == "S" && $artist.flag_public == "N")
+							<li class="marcacao_amarelo">
+						#elseif($artist.flag_moderate == "S" && $artist.flag_public == "S")
+							<li class="marcacao_verde">
+						#else
+							<li class="marcacao_azul">
+						#end
+								<input type="checkbox" name="artist_ids" id="artist_ids" value="$artist.idArtist"><a title="Ver músicas de $artist.name" href="/admin/artista/$htmlArtist">$artist.name</a>
+							</li>
+							
+					#set ($indexItemHi = $indexItemHi + 1)
+			   #end
+           </ol>
+	
+		</article>

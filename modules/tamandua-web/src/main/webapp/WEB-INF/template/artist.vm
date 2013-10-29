@@ -1,0 +1,69 @@
+<meta name="title" content="$artist.name - $musics.size() Letras de Músicas e Vídeos" />
+<meta name="description" content="Lista de $musics.size() letras de música de $artist.name - no TocaLetra você encontra mais de 2 milhões de Letras de Música. Também encontra Vídeos, Imagens, Cifras e ouve as músicas de seus artistas preferidos." />
+<title>$artist.name - $musics.size() Letras de Músicas</title>
+<link rel="canonical" href="http://www.tocaletra.com.br$permalinkTool.linkToArtistUri($artist.uri)" />
+<!-- X -->
+<script>
+	letter = "$letter";		
+	descrColor="000000"; titleColor="CC0000"; urlColor="000066"; borderColor="000033"; bgColor="FFFFFF"; altColor="FFFFFF";
+	coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="2"; deslabel="pag-letra"; numads="2"; type="1";
+</script>
+
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> »
+	<a href="$permalinkTool.linkToLetter($letter)" title="Listagem de Artistas -  $artists.size() iniciando com $letter.toUpperCase()">Letra $letter.toUpperCase()</a> » 
+	<strong>$artist.name</strong>
+</div>
+
+<div id="panel-artistas">
+	<div id="fotos-artista">
+	  <div id="panel-gallery"></div>
+	</div>
+	<div id="info-artistas" class="info-no-thumb">
+		<div id="dados-artista">
+		    <p id="nome-musica">$artist.name</p>
+		    <p id="nome-artista">$musics.size() músicas</p>
+		</div>		
+		<div id="share-panel">
+			<a id="orkut-button" class="share-button" title="Orkut" href="javascript: void(0)"
+				onclick="shareOrkut('http://www.tocaletra.com.br$permalinkTool.linkToArtistUri($artist.uri)')"></a>
+			<a id="twitter-button" class="share-button" title="Twitter" href="javascript: void(0)"
+				onclick="shareTwitter('http://www.tocaletra.com.br$permalinkTool.linkToArtistUri($artist.uri)', 'Lista de $musics.size() letras de $artist.name no @tocaletra.')"></a>
+			<fb:like href="http://www.tocaletra.com.br$permalinkTool.linkToArtistUri($artist.uri)" layout="button_count" show_faces="false" width="300"></fb:like>
+		</div>
+	</div>
+</div>
+
+<div class="banner"><script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script></div>
+
+<div id="listagem">
+	#set ($maxColumn = 1) 
+	#if ($musics.size() > 3)	
+		#set ($maxColumn = $musics.size()/3)
+		#set ($modColumn = $musics.size()%3)
+		#if ($modColumn > 0) 
+			#set ($maxColumn = $maxColumn + 1)
+		#end
+	#end
+	#set ($maxColumnBase = $maxColumn)
+	#set ($indexItemHi = 0)
+
+   <div class="coluna">
+       <ol>
+		   #foreach ($music in $musics)
+		   	    #if ($indexItemHi >= $maxColumn)
+		   	    	#set ($maxColumn = $maxColumn + $maxColumn)
+		   	    	#set ($indexRestart = $indexItemHi + 1)
+					</ol>
+					</div>
+					<div class="coluna">
+					<ol start="$indexRestart">    	
+		   	    #end	     
+					<li><a title="$music.title - Letras, cifras e música" href="$permalinkTool.linkToMusicUri($music.uri)">$music.title</a></li>			
+				#set ($indexItemHi = $indexItemHi + 1)
+		   #end
+	   </ol>
+   </div>
+</div>
+
+<div class="banner"><script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script></div>

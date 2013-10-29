@@ -1,0 +1,17 @@
+127.0.0.1         localhost localhost.localdomain
+173.203.215.116   slice165334 loghost pubhost www.tocaletra.com.br tocaletra.com.br ws.tocaletra.com.br
+
+127.0.0.1         drums.srv.intranet
+127.0.0.1         localhost localhost.localdomain
+127.0.0.1         drums.tocaletra.com.br #ws.tocaletra.com.br
+127.0.0.1         base.tocaletra.com.br
+
+#maquinas de prod
+173.203.243.138   drums.public
+173.203.215.139   show.public
+173.203.206.233   base.public
+
+10.177.135.142    drums.intranet
+10.177.135.208    show.intranet
+10.177.135.68     base.intranet
+

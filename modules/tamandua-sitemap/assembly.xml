@@ -1,0 +1,49 @@
+<!--
+    Document   : assembly.xml
+    Created on : 25/05/2010
+    Author     : Gabriel Palacio
+    Description: Montar o pacote para execucoes do client
+-->
+<assembly>
+    <id>bin</id>
+    <formats>
+    	<format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>config</outputDirectory>
+            <includes>
+                <include>*.xml</include>
+                <include>*.properties</include>
+            </includes>
+            <lineEnding>unix</lineEnding>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>scripts</outputDirectory>
+            <includes>
+                <include>*.sh</include>
+                <include>*.bat</include>
+            </includes>
+            <lineEnding>unix</lineEnding>
+            <fileMode>0755</fileMode>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>true</useProjectArtifact>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <outputDirectory>lib</outputDirectory>
+            <excludes>
+                <exclude>*.xml</exclude>
+                <exclude>*.properties</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

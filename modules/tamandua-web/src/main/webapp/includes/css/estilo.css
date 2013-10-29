@@ -1,0 +1,879 @@
+@charset "utf-8";
+a{
+	text-decoration:none;
+}
+ul, li, ol{
+	list-style-type: none; 
+}
+body, div, dl, dt, dd, ul, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
+	margin: 0; 
+	padding: 0; 
+}
+body{
+	background:url(http://tocaletra.s3.amazonaws.com/images/body.png) repeat-x;
+	line-height: 2.1em;
+	color: #333333;
+	font: 10px verdana, arial, helvetica, sans-serif;
+}
+#geral{
+	display:table;
+	width:1000px;
+	margin:0 auto;
+}
+#barrauol{
+	width: 1000px;
+}
+#topo{
+	display:block;
+	width:1000px;
+	height:99px;
+	background-color:#fff;
+}
+#logo{
+	display:block;
+	width:240px;
+	height:79px;
+	padding:20px 0 0 10px;
+	float:left;
+}
+img{
+	border: none;
+}
+#banner-topo{
+	display:block;
+	width:728px;
+	height:90px;
+	margin:5px 10px 0px 0px;
+	float:right;
+}
+#artista-letra{
+	display:block;
+	width:1000px;
+	height:36px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/bg-bar-artista.png) repeat-x;
+}
+#artista-letra, #artista-letra li a{
+	color:#fff;
+}
+#artista-letra li{
+	float:left;
+}
+#artista-letra li a{
+	display:block;
+	width:20px;
+	height:29px;
+	padding-top:7px;
+	font-size:12px;
+	text-align:center;
+}
+#artista-letra li a:hover, .selecionado{
+	background:url(http://tocaletra.s3.amazonaws.com/images/bg-indice.png) no-repeat;
+	font-weight:bold;
+}
+#conteudo{
+	display:block;
+	width:1000px;
+}
+#breadcrumbs{
+	width:630px;
+	color: #333333;
+	font: 10px verdana, arial, helvetica, sans-serif;
+ 	height:28px;
+	padding:7px 0 10px 25px;
+	color:#fff;
+	background:url(http://tocaletra.s3.amazonaws.com/images/bg-breadcrumbs.png) no-repeat;
+}
+#breadcrumbs a{
+	color:#fff;
+	text-decoration:none; /*usar a tag a{text-decoration:none;} para tirar o sublinhado de tds os links do site*/
+}
+#breadcrumbs a:hover{
+	text-decoration:underline;
+}
+#info-artistas{
+	display:block;
+	width:485px;
+	min-height:80px;
+	padding-left:5px;
+	float: left;
+}
+.info-with-thumb{
+	height: 177px;
+}
+.info-no-thumb{
+	height: 133px;
+}
+
+#panel-artistas{
+	display:table;
+	width:635px;
+}
+
+#share-panel {
+	float: left;
+	margin-top: -22px;
+}
+#share-panel-no-gallery {
+	float: left;
+	width: 635px;
+}
+.share-button {
+	background:transparent url(http://tocaletra.s3.amazonaws.com/images/redes_sociais.gif) no-repeat scroll 0 0;
+	display:block;
+	float:left;
+	margin-right:10px;
+	height:21px;
+}
+#orkut-button {
+	background-position: 0 -84px;
+	width:58px;
+}
+#twitter-button {
+	background-position: 0 0;
+	width:55px;
+}
+
+#fotos-artista{
+	width: 130px;
+	float:left;
+	border: 3px solid #003f62;
+}
+
+.foto-letra{
+	background:transparent url(http://tocaletra.s3.amazonaws.com/images/paleta-tocaletra.png) no-repeat scroll 25px 25px;
+	border:2px solid #0D2D47;
+	height:130px;
+}
+
+#dados-artista{
+	float:left;
+	height: 100%;
+	width: 100%;
+	padding-left: 5px;
+}
+
+#dados-letra{
+	float:left;
+	width: 635px;
+	padding-left: 5px;
+	margin-bottom: 5px;
+}
+
+#info-letras{
+	display:block;
+	width:635px;
+	min-height:80px;
+	padding:10px;
+	/*border:1px dashed #003; RETIRAR: apenas para ter uma dimensão da div*/
+}
+
+#img-art, #img-letter{
+	display:block;
+	width:80px;
+	height:80px;
+	border:2px solid #0d2d47;
+	margin-right:35px;
+	text-align: center;
+	float:left;
+}
+
+#img-art{
+	background:url(http://tocaletra.s3.amazonaws.com/images/paleta-tocaletra.png) no-repeat;
+}
+
+#no-img-art{
+	display:block;
+	width:140px;
+	height:195px;
+	border:2px solid #0d2d47;
+	margin-right:35px;
+	text-align: center;
+	float:left;
+	position: relative;
+	background:url("../../images/no-image.png") no-repeat;
+}
+
+
+#gallery_wrap{
+	display:block;
+	width:160px;
+	height:170px;
+	margin-right:35px;
+	text-align: center;
+	float:left;
+	border:2px solid #0d2d47;
+}
+
+/*#img-art{
+	background:url(http://tocaletra.s3.amazonaws.com/images/paleta-tocaletra.png) no-repeat;
+}*/
+#img-letter{
+	background:url(http://tocaletra.s3.amazonaws.com/images/paleta-tocaletra.png) no-repeat;
+	font-family:Arial, Verdana, Helvetica, sans-serif;
+}
+#info {
+	width: 365px;
+	float:left;
+}
+
+#nome-musica{
+	color:#0d2d47;
+	font-style:italic;
+	font-size:24px;
+	margin-top:3px;
+}
+#nome-artista{
+	margin-top:2px;
+	color:#a7121f;
+	font-size:18px;
+}
+#nome-artista a{
+	color:#a7121f;
+	text-decoration:none;
+}
+#nome-artista a:hover{
+	color:#a7121f;
+	text-decoration:underline;
+}
+#composicao{
+	color:#ea650b;
+	font-size:11px;
+	margin-top:7px;
+}
+#esquerdo{
+	display:table;
+	width:675px;
+	float:left;
+}
+#direito{
+	display:table;
+	width:315px;
+	float:left;
+}
+#letra{
+	display:block;
+	width:335px;
+	float:left;
+	font-size: 11px;
+	margin: 20px 0 20px 0;
+	padding-left: 10px;
+	line-height: 1.5em;
+	color:#333;
+}
+
+#letra p {	
+	margin-bottom: 25px;
+}
+
+#letra ul.categ-rel li {
+	float: left;
+	list-style: none outside none;
+}
+
+#letra .dateauthor {
+	clear: both;
+}
+
+#letra pre{
+	white-space: normal;
+	overflow:hidden;
+}
+
+#patrocinios{
+	display:table;
+	width:301px;
+	float:right;
+}
+#rodape{
+	display:table;
+	width:1000px;
+	height:37px;
+	background-color:#0d2d47;
+	margin-top:10px;
+	color:#fff;
+}
+#rodape ul {
+	float:right;
+	padding-right:20px;
+}
+#rodape ul li{
+	float:left;
+	padding:10px 7px 0 0;
+}
+.rodape-txt, #rodape a{
+	color:#fff;
+	font-size:13px;
+	padding-top:10px;
+}
+#rodape a:hover {
+	text-decoration: underline;
+}
+.esq{
+	float:left;
+}
+
+.artista{
+	float:left;
+	width:55px;
+	padding:8px 0 0 20px;
+	font-size:12px;
+}
+.busca{
+	padding:3px 20px 0 0;
+}
+.divisao{
+	float:left;
+	padding-right:10px;
+}
+.botao{
+	width:88px;
+	height:23px;
+	font-size:10px;
+	font-weight:bold;
+	background:url(http://tocaletra.s3.amazonaws.com/images/botao.png) no-repeat;
+	border:none;
+	letter-spacing:1px;
+	cursor:pointer;
+}
+.letra{
+	color:#666;
+	font-size:13px;
+	margin:10px 0 0 10px;
+	float:left
+}
+
+.banner{
+	background:url(http://tocaletra.s3.amazonaws.com/images/img-teste/banner.png);
+	width:468px;
+	height:60px;
+	margin:20px 0 18px 10px;
+	float:left;
+}
+/* Artist/Music Cloud */
+#artistCloud, #musicCloud {
+	text-align: center;
+	background-color:#fff;
+}
+#artistCloud a, #musicCloud a{
+	color: #3F3F3F;
+	display: inline-table;
+	line-height: 1.7em;
+	margin: 0 1px;
+	text-decoration: none;
+}
+#artistCloud a.cloud0, #musicCloud a.cloud0,
+#artistCloud a.cloud1, #musicCloud a.cloud1,
+#artistCloud a.cloud2, #musicCloud a.cloud2,
+#artistCloud a.cloud3, #musicCloud a.cloud3 {
+	background-color: #fff;
+	color: #3F3F3F;
+}
+#artistCloud a.cloud1, #musicCloud a.cloud1 {
+	font-size: 0.9em;
+}
+#artistCloud a.cloud2, #musicCloud a.cloud2 {
+	font-size: 1.1em;
+}
+#artistCloud a.cloud3, #musicCloud a.cloud3 {
+	color: #333333;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+/*
+#artistCloud a.cloud4 {
+	color: #B81A26;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#artistCloud a.cloud4:hover {
+	background-color: #B81A26;
+	color: #fff;
+}
+#artistCloud .footer { background-position:0px -240px; }
+*/
+#artistCloud a.cloud4, #musicCloud a.cloud4 {
+	color: #0D2D47;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#artistCloud a.cloud4:hover, #musicCloud a.cloud4:hover {
+	background-color: #0D2D47;
+	color: #fff;	
+}
+#artistCloud h2 {
+	background:url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat scroll 0 0 transparent;
+	height: 30px;
+	text-indent: -9999px;
+}
+#musicCloud h2 {
+	background:url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat scroll 0 -210px transparent;
+	height: 30px;
+	text-indent: -9999px;
+}
+#artistCloud .cloud, #musicCloud .cloud {
+	display:block;
+	width:298px;
+	min-height:200px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+#artistCloud .footer, #musicCloud .footer {
+	width:300px;
+	height:18px; 
+	margin-bottom:10px;
+	margin-top: 0;	
+	background: url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat;	
+}
+#artistCloud .footer, #musicCloud .footer {
+	background-position:0px -258px;
+}
+
+#artistCloud .footer a, #musicCloud .footer a{
+	color:#fff;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight: bold;
+	margin-left: 180px;
+	margin-top: -2px;
+}
+
+
+/* Logged Box */
+div.loggedBox{
+	background: #FFFFFF url("http://tocaletra.s3.amazonaws.com/images/roundedBorder.png") no-repeat bottom;
+	margin: 10px 0 15px 0;
+	padding: 0 0 5px 0;
+	position: relative;
+	width:300px;
+	min-height: 160px
+}
+div.loggedBox h2 {
+	background:url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat scroll 0 0 transparent;
+	background-position: 0 -120px;
+	color: #313A45;
+	height: 30px;
+	text-indent: -9999px;
+}
+
+div.loggedBox a.avatar img{
+	float: left;
+	margin: 5px;
+	width: 100px; height: 120px;
+}
+
+div.loggedBox h3{
+	font-size: 17px;
+}
+
+div.loggedBox h3 a{
+	color: #3F3F3F;
+	font-size:10px;
+	font-weight: normal;
+}
+
+div.loggedBox p{
+	margin-top: 17px
+}
+
+div.loggedBox p a{
+	color: #096C8B;
+}
+
+div.loggedBox p a.denuncia{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/redFlag.png") no-repeat;
+	color: #f35959;
+	padding: 0px 0 0px 14px;
+}
+
+div.loggedBox p a.erro{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/erro.png") no-repeat;
+	color: #313A45;
+	padding: 0px 0 0px 14px;
+}
+div.loggedBox p a.new{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/new.png") no-repeat;
+	padding: 0px 0 0px 14px;
+}
+	
+div.loggedBox p a:hover {
+	text-decoration: underline;
+}
+
+/* Loading Box*/ 
+
+.imgLoadingBox{
+	text-align:center; 
+	margin:30px 0 30px 0;
+}
+
+/* Login Box */
+div.loginBox {
+	background: #FFFFFF url("http://tocaletra.s3.amazonaws.com/images/roundedBorder.png") no-repeat bottom;
+	color: #313A45;
+	margin: 10px 0 15px 0;
+	padding: 0 0 5px 0;
+	position: relative;
+	width:300px;
+}
+div.loginBox h2 {
+	color: #313A45;
+	background:url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat scroll 0 0 transparent;
+	background-position: 0 -90px;
+	height: 30px;
+	text-indent: -9999px;
+}
+
+div.loginBox fieldset {
+	padding:20px 20px;
+	border:0;
+}
+
+div.loginBox input {
+	border:1px solid #666;
+	font-size:11px;
+	height: 17px;
+	margin-bottom: 10px;
+	width: 200px;
+}
+
+div.loginBox input#passLogin {
+	margin-right: 70px;
+	width: 130px;
+	
+}
+
+div.loginBox input#keepConnected {
+	margin: 10px 0 0 2px;
+	width: 10px;
+	border: 0px;
+}
+
+div.loginBox label{
+	height: 17px;
+	vertical-align: middle;
+}
+div.loginBox label.phrase{
+	vertical-align: super;
+}
+
+div.loginBox p{
+	color: #FF3300;
+	line-height: 11px;
+	margin: 5px 0 15px 15px;
+	font-size: 10px;
+	text-align: center;	
+}
+
+div.loginBox a {
+	color: #096C8B;
+}
+
+div.loginBox a:hover {
+	text-decoration: underline;
+}
+
+div.loginBox input#submit {
+	background-color: #086C8B;
+	border: 0;
+	color: #FFFFFF;
+	cursor: pointer;
+	margin: 0 0 15px 110px;
+	padding-bottom: 3px;
+	width: 80px;
+	text-align: center;
+}
+
+div.loginBox input#submit:hover {
+	background-color: #FFFFFF;
+	border: 1px solid #086C8B;
+	color: #086C8B;
+}
+div#loginAlert{
+	background-color:#FFFAC7;
+	border:1px solid #FFD115;
+	color:#CC9800;
+	display:none;
+	margin:10px 0 0 10px;
+	min-height:30px;
+	padding:2px;
+	width:276px;
+}
+div#loginAlert label{
+	margin-left:5px;
+}
+
+/* Footer */
+div.footer {
+	margin: 20px 0 20px;
+}
+
+div.footer p {
+	color: #000;
+	text-align: center;
+	line-height: 2.0em;
+}
+/* Listagem */
+#listagem{
+	display:table;
+	width:655px;
+	margin:10px 0 10px 10px;
+}
+#listagem div.coluna{
+	display:table;
+	float:left;
+	width:215px;
+}
+#listagem div.coluna ol li{
+	list-style-type:decimal;
+	font-family:Arial, Helvetica, sans-serif; /*RETIRAR*/
+	font-size:11px;
+	font-weight:bold;
+	color:#a7121f;
+}
+#listagem div.coluna ol li a{
+	font-weight:normal;
+	color:#333;
+}
+#listagem div.coluna ol li a:hover{
+	background-color: #ccc;
+	color:#a7121f;
+}
+/* Listagem TOP */
+#listagem-top{
+	display:table;
+	width:655px;
+	margin:10px 0 10px 10px;
+}
+#listagem-top div.coluna{
+	display:table;
+	float:left;
+	width:600px;
+}
+#listagem-top div.coluna ol li{
+	list-style-type:decimal;
+	font-family:Arial, Helvetica, sans-serif; /*RETIRAR*/
+	font-size:11px;
+	font-weight:bold;
+	color:#a7121f;
+}
+#listagem-top div.coluna ol li a{
+	font-weight:normal;
+	color:#333;
+}
+#listagem-top div.coluna ol li a:hover{
+	background-color: #ccc;
+	color:#a7121f;
+}
+.letra-cx{
+	display:block;
+	color:#f3f3f3;
+	text-align:center;
+	padding-top:17px;
+	font-size:40px;
+	font-weight:bold;
+}
+/* ---- formulário ---- */
+#inputSearch {
+	color: #a3a9b5;
+}
+#register fieldset, #forgotPassword fieldset, #reportContent fieldset, #reportError fieldset, #newMusic fieldset, #edit fieldset{
+	padding:30px 20px;
+	border:none;
+}
+#register label, #forgotPassword label, #reportError label, #reportContent label, #newMusic label, #edit label{
+	display:block;
+	float:left;
+	width: 140px;
+	text-align:right;
+	margin-right:20px;
+}
+#register input, #forgotPassword input, #reportError input, #reportError select, #reportContent input, #newMusic input, #edit input{
+	display:block;
+	height:17px;
+	border:1px solid #666;
+	margin-bottom:20px;
+	font-size:11px;
+}
+
+#register input.fileAvatar,
+#edit input.fileAvatar{
+	width:250px;
+	margin-left:160px;
+	font-size:11px;
+	height:18px;
+	border: 1px solid #444;
+}	
+#reportContent textarea, #reportError textarea, #newMusic textarea{
+	display:block;
+	border:1px solid #666;
+	margin-bottom:20px;
+	font-size:11px;
+}
+#edit p{
+	font-weight: bold;
+	margin-bottom:20px;
+}
+#forgotPassword p{
+	color:#ee0101;
+	font-size:11px;
+	font-weight:bold;
+	margin:-10px 0 20px 100px;
+}
+#technicalMessage label{
+	display:block;
+	float:left;
+	width: auto;
+	margin-right:5px;
+}
+#technicalMessage input{
+	float:left;
+	margin:0 0 20px 5px;
+	border:none;
+}
+#problemLabel{
+	height:60px;
+}
+#problemList {
+	display:table;
+	margin-bottom: 20px;
+}
+#problemList input {
+	display:inline;
+	float:none;
+	margin:0 5px 0 0;
+}
+#idioma, #traducao{
+	width:450px;
+	min-height:40px;
+	float:left;
+}
+#translateBox{
+	float:left;
+	width: 600px;
+	display: none;
+}
+#idioma label, #idioma input, #traducao label, #traducao input{
+	width:auto;
+	margin-right:10px;
+	float:left;
+	border:none;
+}
+.botao-form{
+	display:block;
+	width:70px;
+	height:24px;
+	padding-bottom:4px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/botao-form.png) no-repeat;
+	color:#fff;
+	float:left;
+	border:none;
+}
+.enviar{
+	background-position:0px 0px;
+	margin-left:73px;
+}
+.limpar{
+	background-position:-70px 0px;
+	margin-left:17px;
+}
+.acessar{
+	background-position:-70px 0px;
+	margin-left:95px;
+}
+.limpar:hover, .enviar:hover, .acessar:hover{
+	background-position:-140px 0px;
+}
+.recuperar{
+	width:130px;
+	background-position:-210px 0px;
+	margin-left:14px;
+}
+.recuperar:hover{
+	background-position:-340px 0px;
+}
+#actions {
+	padding-left: 87px;
+}
+#titulo {
+	padding-left: 30px;
+}
+#titulo h2{
+	font-size:22px;
+}
+#titulo h3{
+	color:#a7121f;
+	font-size:13px;
+}
+.selecionar{
+	width:px;
+	background-position:0px 0px;
+}
+button{
+	cursor:pointer;
+}
+#privacyPolicies{
+	display:block;
+	width:650px;
+	float:left;
+	font-size: 11px;
+	margin: 20px 0 20px 0;
+	padding-left: 10px;
+	line-height: 1.5em;
+	color:#333;
+}
+
+#privacyPolicies p {
+	margin-left: 20px;	
+	margin-bottom: 25px;
+}
+
+div#text {
+	float: left;
+	width: 600px;
+	display: table;
+	margin-top: 20px;
+}
+
+/**
+ * Listagem de busca
+ */
+
+div#text ol.search li{
+	list-style-type:decimal;
+	font-family:Arial, Helvetica, sans-serif; /*RETIRAR*/
+	font-size:11px;
+	margin-bottom: 20px;
+}
+
+div#text ol.search li:hover{
+	background-color: #ccc;
+}
+	
+div#text ol.search li p{
+	color: #000;
+	margin: 0;
+}
+div#text ol.search a{
+	color: #313A45;
+	display: block;
+	text-decoration: none;
+}
+div#text ol.search li h3{ 
+	font-size:13px;
+}
+div#text ol.search a:hover,
+div#text ol.search li h3 a{
+	color: #BA1C27;
+}
+div#search-bar{
+	margin-left:250px;
+	margin-top:100px;
+	width: 209px;
+	position:absolute;
+	z-index:-999;
+}
+div#search-bar label{
+	color:#333;
+	font-size:13px;
+	font-weight:bold;
+}

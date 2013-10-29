@@ -1,0 +1,24 @@
+#! /bin/bash
+# My firewall.
+
+# Close de door 
+iptables -t nat -F
+iptables -t mangle -F
+iptables -F
+iptables -X
+iptables -P INPUT DROP
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+
+# The public IP address is eth0. You can let me know the exactly ip to allow IN in case you have more than one.
+PUB_IF="eth0"
+PUB_IP=`ifconfig $PUB_IF | grep 'inet addr' | awk '{ print $2; }' | cut -d: -f2`
+
+# WEB
+iptables -A INPUT -d $PUB_IP -m state --state NEW -p tcp --dport 80 -j ACCEPT
+
+# SSH
+iptables -A INPUT -d $PUB_IP -m state --state NEW -p tcp --dport 22 -j ACCEPT
+
+#It seems that I have another interface non public, let me open it:
+iptables -A INPUT -i eth1 -j ACCEPT

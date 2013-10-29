@@ -1,0 +1,82 @@
+<meta name="title" content="$!music.title de $music.artist.name - Letra, música, vídeo e imagens" />
+<meta name="description" content="$!music.title de $music.artist.name - no TocaLetra você encontra mais de 2 milhões de Letras de Música. Também encontra Vídeos, Imagens, Cifras e ouve as músicas de seus artistas preferidos." />
+<title>$!music.title de $music.artist.name</title>
+<link rel="canonical" href="http://www.tocaletra.com.br$permalinkTool.linkToMusicUri($music.uri)" />
+<!-- X -->
+<script>
+	letter = "$letter";
+	descrColor="000000"; titleColor="CC0000"; urlColor="000066"; borderColor="000033"; bgColor="FFFFFF"; altColor="FFFFFF";
+	coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="2"; deslabel="pag-letra"; numads="2"; type="1";
+</script>
+
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<a href="$permalinkTool.linkToLetter($letter)" title="Listagem de Artistas -  $artists.size() iniciando com $letter.toUpperCase()">Letra $letter.toUpperCase()</a> » 
+	<a href="$permalinkTool.linkToArtistUri($music.artist.uri)" title="$music.artist.name - $musics.size() Letras de Músicas">$music.artist.name</a> »
+	<strong>$music.title</strong>
+</div>		    
+<div id="panel-artistas">
+	<div id="fotos-artista">
+	  <div id="panel-gallery"></div>
+	</div>
+	<div id="info-artistas" class="info-no-thumb">
+		<div id="dados-artista">
+		    <p id="nome-musica">$!music.title</p>
+		    <p id="nome-artista">
+		    	<a href="$permalinkTool.linkToArtistUri($music.artist.uri)" title="$music.artist.name - $musics.size() Letras de Músicas e Vídeos">$music.artist.name</a>
+		    </p>
+		    #if ($music.musicArtists.size() > 0)
+		    <p id="composicao">Composição: 
+		    	#set ($count = 1)
+				#foreach($musicArtist in $music.musicArtists)			
+					#if ($count < $music.musicArtists.size())
+						$musicArtist.artist.name,
+					#end
+					#if ($count == $music.musicArtists.size())
+						$musicArtist.artist.name
+					#end
+					#set ($count = $count + 1)
+				#end
+		    </p>		        
+			#end
+		</div>
+		<div id="share-panel">
+			<a id="orkut-button" class="share-button" title="Orkut" href="javascript: void(0)"
+				onclick="shareOrkut('http://www.tocaletra.com.br$permalinkTool.linkToMusicUri($music.uri)')"></a>
+			<a id="twitter-button" class="share-button" title="Twitter" href="javascript: void(0)"
+				onclick="shareTwitter('http://www.tocaletra.com.br$permalinkTool.linkToMusicUri($music.uri)', '$!music.title de $music.artist.name no @tocaletra.')"></a>
+			<fb:like href="http://www.tocaletra.com.br$permalinkTool.linkToMusicUri($music.uri)" layout="button_count" show_faces="false" width="300"></fb:like>
+		</div>
+	</div>
+</div>
+
+<div class="banner"><script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script></div>
+
+<div id="letra">
+   	$music.moderatedLyric.text
+</div>
+
+<div id="multimedia" style="display: none">
+    <div id="nav-aba">
+        <ul>
+            <li id="aba-radio" class="no-selec"><a href="#radio">rádio</a></li>
+            <li id="aba-video" class="no-selec"><a href="#video">video</a></li>
+            <li id="aba-galeria" class="no-selec"><a href="#galeria">galeria</a></li>
+        </ul>
+    </div>
+	<div id="multi">
+		<div id="multi-buttons"> 
+			<a href="javascript: void(0)" id="btnScroll" class="stop"></a>
+			<a href="javascript: void(0)" id="btnMinMax" class="minimizar"></a>
+		</div>
+		<div id="multi-content">		
+			<div id="radio" class="aba"></div>
+			<div id="video" class="aba"></div>
+			<div id="galeria" class="aba"></div>
+		</div>
+	</div>
+    <img src="http://tocaletra.s3.amazonaws.com/images/fim-multimedia.png" style="float:left;" />
+</div>
+
+
+<div class="banner"><script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script></div>

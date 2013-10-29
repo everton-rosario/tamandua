@@ -1,0 +1,26 @@
+#set ($title = "TocaLetra.com.br - O seu site de letras, traduções e cifras")
+#set ($description = "TocaLetra.com.br - O seu site de letras, traduções e cifras")
+
+#if ($type == "letter")
+	#set ($title = "Artistas de A a Z - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+	#set ($description = "Artistas de A a Z - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+#end
+
+#if ($type == "lyric")
+	#set ($title = "[Nome da mœsica] de [Artista] - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+	#set ($description = "Letra da mœsica [Nome da mœsica] de [Artista] - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+#end
+
+#if ($type == "artist")
+	#set ($title = "Letras de [Artista] - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+	#set ($description = "Todas as letras de [Artista] - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+#end
+
+#if ($type == "query")
+	#set ($title = "Busca: [Termo] - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+	#set ($description = "Busca: [Termo] - TocaLetra.com.br - O seu site de letras, traduções e cifras")
+#end
+
+<title>$title</title>
+<meta name="title" content="$title" />
+<meta name="description" content="$description" />

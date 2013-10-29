@@ -1,0 +1,22 @@
+<body>
+	<h2>Músicas mais populares</h2>
+	<div class="cloud">
+	#foreach ($topMusic in $topMusics)
+		#set ($class = "cloud0")
+		#if ($topMusic.position <= 5)
+			#set ($class = "cloud4")
+		#end
+		#if ($topMusic.position > 5 && $topMusic.position <= 10)
+			#set ($class = "cloud3")
+		#end
+		#if ($topMusic.position > 10 && $topMusic.position <= 15)
+			#set ($class = "cloud2")
+		#end
+		#if ($topMusic.position > 15 && $topMusic.position <= 20)
+			#set ($class = "cloud1")
+		#end
+		<a class="$class" alt="$topMusic.title - Letras,cifras e m&uacute;ica" title="$topMusic.title - Letras,cifras e m&uacute;sica" rel="tag" href="$permalinkTool.linkToMusicUri($topMusic.uri)">$topMusic.title</a>
+	#end
+	</div>
+	<div class="footer"><a href="/top/musicas.html" title="TOP 100 M&uacute;sicas Mais Acessados">TOP 100 M&uacute;sicas</a></div>
+</body>

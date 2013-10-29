@@ -1,0 +1,1 @@
+ALTER TABLE music ADD url_video_clip VARCHAR(1500) NULL COMMENT 'Coluna com a url do vídeo clip do youtube.' ;

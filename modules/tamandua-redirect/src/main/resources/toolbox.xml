@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<tools>
+    <toolbox scope="application">
+        <tool key="escapeTool" class="org.apache.velocity.tools.generic.EscapeTool" />
+        <tool key="permalinkTool" class="br.com.tamandua.service.util.PermalinkTool" />
+    </toolbox>
+</tools>

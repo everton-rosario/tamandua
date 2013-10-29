@@ -1,0 +1,613 @@
+@charset "utf-8";
+/* Padronizacao RESET */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset,  input, p, blockquote, th, td, html {
+    margin: 0; 
+    padding: 0; 
+}
+
+html {
+  height: 100%;
+}
+
+:focus {outline-color:#fff;outline-style:none;outline-width:medium;}
+
+
+body, textarea {
+    color: #333333;
+    font: 10px verdana, arial, helvetica, sans-serif;
+}
+
+fieldset, img {
+    border:0 none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Padronizacao FIM DO RESET */
+
+/* CSS Document */
+#ads_fullbanner {
+    margin: 0px auto 0 auto;
+    width: 728px;
+}
+#geral{
+	display:table;
+	width:1000px;
+	margin:0 auto;
+	background:#f0f0f0;
+}
+#conteudo{
+	display:block;
+	width:1000px;
+	margin:0;
+	padding:0;
+}
+#esquerdo{
+	display:table;
+	width:675px;
+	float:left;
+	margin:0;
+  	padding:0;
+}
+#direito{
+	display:table;
+	width:315px;
+	float:left;
+	margin:0;
+  	padding:0;
+}
+#top-musicas, #top-artistas{
+	display:block;
+	width:300px;
+	float:left;
+	margin-left:25px;
+}
+#top-musicas h2, #top-artistas h2, #nuvem-artista h2, #ultimas-noticias h2, #nuvem-musica h2, #login h2 {
+	height:30px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/bartitle3.png) no-repeat;
+	text-indent:-9999px;
+	margin:0;
+  	padding:0;
+	display:block;
+}
+#top-musicas h2{
+	background-position:0 -120px;
+} 
+#nuvem-artista h2{
+	background-position:0 -90px;
+}
+#ultimas-noticias h2{
+	background-position:0 -30px;
+}
+#nuvem-musica h2{
+	background-position:0 -60px;
+}
+#top-musicas li, #top-artistas li, #nuvem-artista li{
+	border-bottom:1px dotted #ccc;
+	margin-right:20px;
+	padding:5px 0px;
+	font-weight:bold;
+}
+#top-musicas li span, #top-artistas li span, #nuvem-artista li span{
+	font-weight:normal;
+	font-size:10px;
+}
+#top-artistas li{
+	line-height:48px;
+	padding:0;
+}
+#top-artistas ul.artist-image{
+	display:block;
+	width:60px;
+	height:500px;
+	list-style:none;
+	margin:0px 20px 0 10px;
+	padding:0;
+	float:left;
+}
+#top-artistas ul.artist-image li{
+	display:block;
+	width:44px;
+	height:47px;
+	align:middle;
+	margin-bottom:1px;
+	border:none;
+}
+#top-artistas img{
+	margin-top:7px;
+}
+#propaganda{
+	display:block;
+	width:300px;
+	height:240px;
+	margin-bottom:10px;
+}
+#twitter{
+	display:table;
+	width:625px;
+	float:left;
+	margin-left:25px;
+	margin-bottom: 12px;
+}
+#facebook{
+	display:table;
+	width:625px;
+	float:left;
+	margin-left:25px;
+}
+#twitter h2, #facebook h2{
+	display:block;
+	height:30px;
+	text-indent:-9999px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/barcomments.png);
+	padding:0px;
+	margin:0;
+}
+#twitter h2{
+	background-position:0px -0px;
+}
+#facebook h2{
+	background-position:0px -30px;
+}
+#fb-root {
+	padding-left: 20px;
+}
+/*-------------tags-------------*/
+body{
+	font-family:Arial, Helvetica, sans-serif;
+}
+ul{
+	list-style:decimal;
+	list-style-position:outside;
+	margin-top:0;
+	padding-left: 47px;
+	font-size:15px;
+	color:#125286;
+}
+a{
+	text-decoration:none;
+	color:#125286;
+}
+img{
+	border:none;
+}
+
+div#mainContent form {
+    background:url("http://tocaletra.s3.amazonaws.com/images/bg_box_search.png") no-repeat scroll 0 0 transparent;
+    margin: 30px 0 0 190px;
+    padding: 6px 0 0 0;
+    width: 600px;
+    height: 74px;
+}
+
+div#mainContent form fieldset {
+    background:url("http://tocaletra.s3.amazonaws.com/images/bg_box_search_upper.png") no-repeat scroll 0 0 transparent;
+    margin: 0 0 6px 6px;
+    height: 62px;
+}
+
+div#mainContent form fieldset input#inputSearch {
+    border: 0 none;
+    color: #a3a9b5;
+    float: left;
+    font-size: 22px;
+    height: 48px;
+    margin: 7px 0px 0px 9px;
+    vertical-align: middle;
+    width: 510px;
+}
+
+div#mainContent form fieldset input.btSubmit {
+    background:url("http://tocaletra.s3.amazonaws.com/images/btSubmit.png") no-repeat scroll 0 0 transparent;
+    border:0 none;
+    cursor: pointer;
+    float:right;
+    height:46px;
+    margin:8px 16px 0 0;
+    width:47px;
+}
+#artistas-az{
+    clear: both;
+	font-weight: bold;
+    height: 20px;
+    list-style-type: none;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    width: 745px;
+}
+
+#artistas-az li {
+    display:inline;
+    float: left;
+    width: 21px;
+}
+
+#artistas-az li:hover a,
+#artistas-az li.selected a{
+    color: #fff;
+	background-color: #125286;
+}
+
+#artistas-az li.label{
+    width: 78px;
+}
+
+#artistas-az li a,
+#artistas-az li.label {
+    font-weight: bold;
+}
+
+#artistas-az li a:hover {
+    text-decoration:  none;
+}
+#footer {
+    clear: both;
+    color: #fff;
+    margin-top: 40px;
+}
+
+#footer p {
+    line-height:2.7em;
+    text-align: center;
+}
+
+#footer p.links a {
+    color: #272727;
+}
+
+#footer div.clear {
+    margin: 20px 0 0;
+}
+
+#footer div.clear p {
+    color: #000;
+    text-align: center;
+}
+
+/*-------------classes-------------*/
+.header h1 a {
+    background:url("http://tocaletra.s3.amazonaws.com/images/logo.png") no-repeat scroll 0 0 transparent;
+    margin: 0 auto;
+	margin-top: 20px;
+    height:84px;
+    width:362px;
+}
+.list-top{
+	display:block;
+	width:298px;
+	min-height:500px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	background:#fff;
+	padding-top:5px;
+}
+.footer-top{
+	display:block;
+	width:300px;
+	height:18px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/bartitle3.png) no-repeat 0 -210px;
+	text-align:right;
+	margin-bottom:10px;
+}
+.footer-comments{
+	display:block;
+	width:625px;
+	height:18px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/barcomments.png) no-repeat 0 -60px;
+	text-align:right;
+	margin-bottom:10px;
+}
+.footer-top a, .footer-comments a{
+	color:#fff;
+	padding-right:15px;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.list-top-min{
+	display:block;
+	width:298px;
+	height:230px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	background:#fff;
+	padding-top:5px;
+}
+.list-top-max{
+	display:block;
+	width:623px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+	background:#fff;
+	padding-top:5px;
+}
+.cloud {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    display: block;
+    padding-top: 5px;
+    width: 298px;
+}
+.footer {
+    background: url("http://tocaletra.s3.amazonaws.com/images/bartitle3.png") no-repeat scroll 0 -210px transparent;
+    display: block;
+    height: 18px;
+    margin-bottom: 10px;
+    text-align: right;
+    width: 300px;
+}
+.footer a {
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 15px;
+    text-decoration: none;
+}
+.cloud a{
+	color: #125286;
+	display: inline-table;
+	line-height: 1.7em;
+	margin: 0 1px;
+	text-decoration: none;
+}
+
+.cloud a.cloud0,
+.cloud a.cloud1,
+.cloud a.cloud2,
+.cloud a.cloud3 {
+	background-color: #fff;
+	color: #125286;
+}
+
+.cloud a.cloud0:hover,
+.cloud a.cloud1:hover,
+.cloud a.cloud2:hover,
+.cloud a.cloud3:hover {
+	background-color:#125286;
+	color: #fff;
+}
+.cloud a.cloud0 {
+	font-size: 1em;
+}
+
+.cloud a.cloud1 {
+	font-size: 1.2em;
+}
+
+.cloud a.cloud2 {
+	font-size: 1.2em;
+}
+
+.cloud a.cloud3 {
+	color: #125286;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.cloud a.cloud4 {
+	color: #125286;
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+.cloud a.cloud4:hover {
+	background-color: #125286;
+	color: #fff;
+}
+.latestnews {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 230px;
+	margin-top: -2px;
+    overflow: auto;
+	padding-top: -5px;
+}
+.latestnews  li{
+    border-bottom: 1px dotted #CCCCCC;
+	font-size: 1.2em;
+	padding-bottom: 3px;
+    padding-top: 3px;
+}
+.horarioNoticia {
+    font-size: 1.2em;
+	display: inline;
+}
+.noticia {
+    display: block; 
+	font-size: 1.2em; 
+	margin-left: 49px; 
+	margin-top: -17px;
+}
+.imgreplace {
+    display: block;
+    overflow: hidden;
+    text-indent: -99999px;
+}
+
+.botao-form {
+	display:block;
+	width:70px;
+	height:24px;
+	padding-bottom:4px;
+	background:url(http://tocaletra.s3.amazonaws.com/images/botao-form.png) no-repeat;
+	color:#fff;
+	float:left;
+	border:none;
+	background-position:-70px 0px;
+	margin-left:95px;
+}
+.botao-form:hover{
+	background-position:-140px 0px;
+}
+
+/**
+ * Box login
+ */
+
+div#login {
+	font: 10px verdana, arial, helvetica, sans-serif;
+}
+
+#login div.loginBox h2 {
+	background-position: 0 -150px;
+}
+div.loginBox {
+	background: #FFFFFF url("http://tocaletra.s3.amazonaws.com/images/roundedBorder.png") no-repeat bottom;
+	color: #313A45;
+	position: relative;
+	width:300px;
+}
+div.loginBox h2 {
+	color: #313A45;
+}
+
+div.loginBox fieldset {
+	padding:20px 20px;
+	border:0;
+}
+
+div.loginBox input {
+	border:1px solid #666;
+	font-size:11px;
+	height: 17px;
+	margin-bottom: 10px;
+	width: 200px;
+}
+
+div.loginBox input#passLogin {
+	margin-right: 70px;
+	width: 130px;
+
+}
+
+div.loginBox input#keepConnected {
+	margin: 10px 0 0 2px;
+	width: 10px;
+	border: 0px;
+}
+
+div.loginBox label{
+	height: 17px;
+	vertical-align: middle;
+}
+div.loginBox label.phrase{
+	vertical-align: super;
+}
+
+div.loginBox p{
+	color: #FF3300;
+	line-height: 11px;
+	margin: 5px 0 15px 15px;
+	font-size: 10px;
+	text-align: center;
+}
+
+div.loginBox a {
+	color: #096C8B;
+}
+
+div.loginBox a:hover {
+	text-decoration: underline;
+}
+
+div.loginBox input#submit {
+	background-color: #086C8B;
+	border: 0;
+	color: #FFFFFF;
+	cursor: pointer;
+	margin: 0 0 15px 110px;
+	padding-bottom: 3px;
+	width: 80px;
+	text-align: center;
+}
+
+div.loginBox input#submit:hover {
+	background-color: #FFFFFF;
+	border: 1px solid #086C8B;
+	color: #086C8B;
+}
+div#loginAlert{
+	background-color:#FFFAC7;
+	border:1px solid #FFD115;
+	color:#CC9800;
+	display:none;
+	margin:10px 0 0 10px;
+	min-height:30px;
+	padding:2px;
+	width:276px;
+}
+div#loginAlert label{
+	margin-left:5px;
+}
+
+/* Logged Box */
+#login div.loggedBox h2 {
+	background-position: 0 -180px;
+}
+div.loggedBox{
+	background: #FFFFFF url("http://tocaletra.s3.amazonaws.com/images/roundedBorder.png") no-repeat bottom;
+	position: relative;
+	width:300px;
+	min-height: 160px
+}
+div.loggedBox h2 {
+	color: #313A45;
+}
+
+div.loggedBox a.avatar img{
+	float: left;
+	margin: 5px;
+	width: 100px; height: 120px;
+}
+
+div.loggedBox h3{
+	font-size: 17px;
+}
+
+div.loggedBox h3 a{
+	color: #3F3F3F;
+	font-size:10px;
+	font-weight: normal;
+}
+
+div.loggedBox p{
+	margin-top: 17px
+}
+
+div.loggedBox p a{
+	color: #096C8B;
+}
+
+div.loggedBox p a.denuncia{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/redFlag.png") no-repeat;
+	color: #f35959;
+	padding: 0px 0 0px 14px;
+}
+
+div.loggedBox p a.erro{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/erro.png") no-repeat;
+	color: #313A45;
+	padding: 0px 0 0px 14px;
+}
+div.loggedBox p a.new{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/new.png") no-repeat;
+	padding: 0px 0 0px 14px;
+}
+
+div.loggedBox p a:hover {
+	text-decoration: underline;
+}
+
+/* Loading Box*/
+
+.imgLoadingBox{
+	text-align:center;
+	margin:30px 0 30px 0;
+}

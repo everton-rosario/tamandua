@@ -1,0 +1,19 @@
+Para testar o artista com a possibilidade de editar as imagens rode esse pequeno script no banco
+
+INSERT INTO `tamandua_db`.`artist_image` 
+(`id_artist_image`, `id_artist`, `id_image`) 
+VALUES 
+(NULL, '3542', '710'),
+(NULL, '3542', '711'),
+(NULL, '3542', '712'),
+(NULL, '3542', '713'),
+(NULL, '3542', '714'),
+(NULL, '3542', '715'),
+(NULL, '3542', '716'),
+(NULL, '3542', '717'),
+(NULL, '3542', '718'),
+(NULL, '3542', '719'),
+(NULL, '3542', '720');
+
+
+o Artista em questão é o Aerosmith

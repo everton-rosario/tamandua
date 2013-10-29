@@ -1,0 +1,69 @@
+<meta name="title" content="Listagem das TOP 100 músicas" />
+<meta name="description" content="Listagem das TOP 100 músicas - no TocaLetra você encontra mais de 2 milhões de Letras de Música. Também encontra Cifras, Vídeos, Imagens e ouve as músicas de seus artistas preferidos." />
+<title>Listagem das TOP 100 músicas</title>
+<link rel="canonical" href="http://www.tocaletra.com.br/top/musicas.html" />
+<!-- X -->
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> »
+	<strong>TOP 100 Músicas</strong>
+</div>
+
+<div id="info-artistas">
+    <div id="dados-letra">
+	    <p id="nome-musica">TOP 100 Músicas</p>
+	    <p id="nome-artista">Mais Acessadas</p>
+	</div>		
+	<div id="share-panel-no-gallery">
+		<a id="orkut-button" class="share-button" title="Orkut" href="javascript: void(0)"
+			onclick="shareOrkut('http://www.tocaletra.com.br/top/musicas.html')"></a>
+		<a id="twitter-button" class="share-button" title="Twitter" href="javascript: void(0)"
+			onclick="shareTwitter('http://www.tocaletra.com.br/top/musicas.html', 'Listagem das TOP 100 músicas no @tocaletra.')"></a>
+		<fb:like href="http://www.tocaletra.com.br/top/musicas.html" layout="button_count" show_faces="false" width="300"></fb:like>
+	</div>
+</div>
+
+<div class="banner">
+	<script type="text/javascript">		
+		descrColor="000000"; titleColor="CC0000"; urlColor="000066"; borderColor="000033"; bgColor="FFFFFF"; altColor="FFFFFF";
+		coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="2"; deslabel="pag-letra"; numads="2"; type="1";
+	</script>
+	<script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script>
+</div>
+
+<div id="listagem">
+	#set ($maxColumn = 1) 
+	#if ($topMusics.size() > 3)	
+		#set ($maxColumn = $topMusics.size()/3)
+		#set ($modColumn = $topMusics.size()%3)
+		#if ($modColumn > 0) 
+			#set ($maxColumn = $maxColumn + 1)
+		#end
+	#end
+	#set ($maxColumnBase = $maxColumn)
+	#set ($indexItemHi = 0)
+
+   <div class="coluna">
+       <ol>
+		   #foreach ($topMusic in $topMusics)
+		   	    #if ($indexItemHi >= $maxColumn)
+		   	    	#set ($maxColumn = $maxColumn + $maxColumn)
+		   	    	#set ($indexRestart = $indexItemHi + 1)
+					</ol>
+					</div>
+					<div class="coluna">
+					<ol start="$indexRestart">    	
+		   	    #end	     
+					<li><a title="$topMusic.title - Letras, cifras e música" href="$permalinkTool.linkToMusicUri($topMusic.uri)">$topMusic.artist.name - $topMusic.title</a></li>		
+				#set ($indexItemHi = $indexItemHi + 1)
+		   #end
+	   </ol>
+   </div>
+</div>
+
+<div class="banner">
+	<script type="text/javascript">		
+		descrColor="000000"; titleColor="CC0000"; urlColor="000066"; borderColor="000033"; bgColor="FFFFFF"; altColor="FFFFFF";
+		coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="2"; deslabel="pag-letra"; numads="2"; type="1";
+	</script>
+	<script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script>
+</div>

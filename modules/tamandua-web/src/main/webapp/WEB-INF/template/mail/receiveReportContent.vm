@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html lang="pt-br"> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />		
+</head> 
+ 
+<body>
+<div align="center">
+	<table width="470" cellpadding="0" cellspacing="0" border="0">
+		<tbody>
+			<tr>
+				<td>
+					<table cellpadding="0" cellspacing="0" border="0">
+						<tbody>
+							<tr>
+								<td>
+									<table cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td>
+													<img src="http://tocaletra.s3.amazonaws.com/images/logotipo-tl.png" width="237" height="59" border="0">
+												</td>
+											</tr>
+											<tr>
+												<td>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr><td height="15" ></td></tr>
+			<tr><td height="1" bgcolor="#c40033"></td></tr>
+			<tr><td>
+				<table width="470" cellpadding="0" cellspacing="0" border="0">
+					<tbody>
+						<tr>
+							<td colspan="2" height="20">&nbsp;</td>
+						</tr>
+						<tr>
+						
+							<td width="38">&nbsp;</td>
+							<td>
+								<font size="2" face="Arial, Helvetica, sans-serif" color="#666666">
+											
+									Nome: <strong>$!name</strong><br>
+									Email: <strong>$!email</strong><br>
+									Descrição: <strong>$!message</strong><br><br>
+																		
+									<br><br><strong>Equipe TocaLetra</strong>
+								</font>
+							</td>
+							<td width="38">&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+			</td></tr>
+			<tr><td height="15" ></td></tr>
+			<tr><td height="1" bgcolor="#c40033"></td></tr>
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>

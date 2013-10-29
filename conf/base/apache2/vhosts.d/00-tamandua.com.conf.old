@@ -1,0 +1,57 @@
+NameVirtualHost loghost:80
+
+<VirtualHost loghost:80>
+    ServerName tamandua.com
+    DocumentRoot /export/htdocs/musiczilla.com/
+
+    AddDefaultCharset UTF-8
+
+    #CacheIgnoreNoLastMod On
+    #CacheIgnoreCacheControl On
+    #CacheEnable  mem /
+    # Set up Cache Control headers
+    #ExpiresActive On
+    # Default - Set http header to expire 1 week from last access, set must-revalidate
+    #ExpiresDefault A3600
+    #Header append Cache-Control: "max-age=3600,must-revalidate"
+
+    #ProxyErrorOverride On
+    #ErrorDocument 404 /web/app/stc/error.htm
+    #ErrorDocument 500 /web/app/stc/error.htm
+    #ErrorDocument 501 /web/app/stc/error.htm
+    #ErrorDocument 502 /web/app/stc/error.htm
+    #ErrorDocument 503 /web/app/stc/error.htm
+    #ErrorDocument 504 /web/app/stc/error.htm
+    #ErrorDocument 505 /web/app/stc/error.htm
+
+    # Configuracao para arquivos que sao servidos direto do htdocs
+    ProxyPassMatch     /.+\.(css|js|inc|xml|html|ansi|swf) !
+
+    #ProxyPass           /                     http://127.0.0.1:8080/web/front/          nocanon disablereuse=On
+    #ProxyPassReverse    /                     http://127.0.0.1:8080/web/front/          nocanon
+    #ProxyPass           /letra                 http://127.0.0.1:8080/web/front/letra     nocanon disablereuse=On
+    #ProxyPassReverse    /letra                 http://127.0.0.1:8080/web/front/letra     nocanon
+    #ProxyPass           /musica                http://127.0.0.1:8080/web/front/musica    nocanon disablereuse=On
+    #ProxyPassReverse    /musica                http://127.0.0.1:8080/web/front/musica    nocanon
+    #ProxyPass           /artista               http://127.0.0.1:8080/web/front/artista   nocanon disablereuse=On
+    #ProxyPassReverse    /artista               http://127.0.0.1:8080/web/front/artista   nocanon
+
+    ProxyPass           /letra                 http://127.0.0.1:8080/web/front/letra    
+    ProxyPassReverse    /letra                 http://127.0.0.1:8080/web/front/letra     
+    ProxyPass           /musica                http://127.0.0.1:8080/web/front/musica    
+    ProxyPassReverse    /musica                http://127.0.0.1:8080/web/front/musica
+    ProxyPass           /artista               http://127.0.0.1:8080/web/front/artista   
+    ProxyPassReverse    /artista               http://127.0.0.1:8080/web/front/artista   
+
+
+    ProxyVia           Block
+    ProxyTimeout       10
+    ProxyPreserveHost  On
+    ProxyErrorOverride On
+
+<Directory proxy:>
+      Order Deny,Allow
+      Allow from all
+      </Directory>
+
+</VirtualHost>

@@ -1,0 +1,136 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Nova música</strong>
+</div>
+<div id="titulo">
+	<h2>Nova música</h2>
+	<h3>Tem alguma música que ainda não tem no site? Envie-nos!</h3>
+</div>	
+<article id="text" class="forms">
+	<div id="newMusic">
+		<fieldset>
+			<form id="newMusicForm" action="/usuario/saveMusic" method="post">					
+				<label for="nameMusic">Nome da música:</label>
+				<input name="music_name" value="$!music.title" id="music_name" type="text" size="45" class="validate[required,maxLength[100]]">
+					
+				<label for="nameArtist">Nome do interprete:</label>
+				<div id="select-scope" class="select-box closed">
+                    <input id="artistName" value="$!artist.name" name="artistName" autocomplete="off" type="text" size="45" class="validate[required,maxLength[100]]">
+                    <input id="artistUri" value="$!artist.uri" name="artistUri" type="hidden" class="select-value" style="display:none;" >
+				</div>
+
+				<label for="lyricMusic">Letra:</label>
+				<textarea cols="32" rows="5" name="lyric_text" id="lyric_text"  class="validate[required]"></textarea>
+
+				<label for="language">Qual o idioma?</label>
+				<div id="idioma">
+                    <label class="tab"><input value="pt-br" name="language" checked="checked" type="radio">Português (Brasil)</label>
+                    <label class="tab"><input value="es" name="language" type="radio">Espanhol</label>
+                    <label class="tab"><input value="en" name="language" type="radio">Inglês</label>
+				</div>
+                
+                <label for="translate" style="width:140px">Inserir tradução?</label>
+                <div id="traducao">
+                    <label class="tab"><input value="y" name="translate" type="radio">Sim</label>
+                    <label class="tab"><input value="n" name="translate" checked="checked" type="radio">Não</label>
+				</div>
+                
+				<div id="translateBox">
+					<label for="translateMusic">Tradução:</label>
+					<textarea cols="32" rows="5" name="translateMusic" id="translateMusic" class="validate[required]"></textarea>
+				</div>
+				
+				<div id="actions">
+					<button id="submitButton" value="Enviar" type="button" class="botao-form enviar">Enviar</button>
+					<button value="Limpar" type="reset" class="botao-form limpar" onclick="closePromptErrors();">Limpar</button>
+				</div>
+			</form>					
+		</fieldset>			
+	</div>
+</article>
+<script type="text/javascript">
+
+		
+		#if($musicExist)
+			$("#music_name").showPrompt("$musicExist","error",false,false,"centerRight");	
+			$("#lyric_text").text("$lyric.text");	
+			#if($translateMusic)
+				$("#translateMusic").text("$translateMusic");
+				var translate = $('input:radio[name=translate]');
+				translate.filter('[value=y]').attr('checked', true);
+			#end
+			
+			var language = $('input:radio[name=language]');
+			language.filter('[value=$lyric.laguage]').attr('checked', true);
+				
+		#end	
+		
+		function closePromptErrors(){
+			$("#music_name").closePrompt(true);
+			$("#artistName").closePrompt(true);
+			$("#lyric_text").closePrompt(true);	
+			$("#translateMusic").closePrompt(true);
+		}	
+		
+		$("#newMusicForm").validationEngine({
+			submitFunction:function(){
+			var artistUri = $("#artistUri").val();
+			
+				if (artistUri.length == 0){
+			 		$("#artistName").showPrompt("Artista não encontrado!","error",false,false,"centerRight");
+			 		return false;
+			 	}
+				$("#basic-modal-content").modal();
+			}
+		});
+	
+				
+		$("#submitButton").click(function(){
+			$("#newMusicForm").submit();
+		});
+	
+		var func = function () {
+			if ($(this).val() == "y") {
+				$("#translateBox").show();
+				$("#translateMusic").addClass("validate[required]");
+			} else {
+				$("#translateMusic").closePrompt();
+				$("#translateMusic").removeClass("validate[required]");
+				$("#translateBox").hide();
+			}
+		}
+		
+		$("input[name=translate]").click(func);
+		$("form").bind("reset", func);
+		$("input[name=translate]:checked").click();
+		
+	    $("#artistName").autocomplete("/search/search/artist", {
+	        parse: function(data){
+	            var results = new Array();
+	            $(data).find('resultList').each(function(){
+	                results.push({
+	                    data: $(this),
+	                    value: $(this).find("artistUri"),
+	                    result: $(this).find("artistName")
+	                });
+	            })
+	
+	            if(results.length == 1 && results[0].result.text().toLowerCase() == $("#artistName").val().toLowerCase()){
+	            	$("#artistUri").val(results[0].value.text());
+	            	return [];
+	            } else {
+	            	$("#artistUri").val("");
+	            	return results;
+	            }
+	        },
+	        dataType: "xml",
+	        width: 301,
+	        max: 10,
+	        highlight: false,
+	        formatItem: function(data, term){
+	            return '<strong>' + data.find('artistName').text() + '</strong>';
+	        }
+	    });
+	    	    
+	
+</script>

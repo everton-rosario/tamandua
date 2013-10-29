@@ -1,0 +1,35 @@
+<!--
+    Document   : assembly.xml
+    Created on : 25/05/2010
+    Author     : Gabriel Palacio
+    Description: Montar o pacote para execucoes do client
+-->
+<assembly>
+    <id>bin</id>
+    <formats>
+    	<format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+	  <fileSets>
+	    <fileSet>
+	      <directory>target/classes</directory>
+	      <outputDirectory></outputDirectory>
+	    </fileSet>
+	  </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>true</useProjectArtifact>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <outputDirectory></outputDirectory>
+            <unpack>true</unpack>
+      		<scope>runtime</scope>
+            <excludes>
+                <exclude>*.xml</exclude>
+                <exclude>*.properties</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

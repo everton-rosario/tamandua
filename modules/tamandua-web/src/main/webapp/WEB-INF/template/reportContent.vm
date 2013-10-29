@@ -1,0 +1,47 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Denunciar Conteúdo</strong>
+</div>
+<div id="titulo">
+	<h2>Denunciar Conteúdo</h2>
+    <h3>Denuncie agora mesmo um conteúdo que você achou impróprio.</h3>
+</div>
+				
+<article id="text" class="forms">
+	<div id="reportContent">
+		<fieldset>
+			<form id="reportContentForm" action="/usuario/reportContent" method="post">
+				
+				<label for="name">Nome:</label>
+				<input type="text" name="name" id="name" size="45" class="validate[required,maxLength[100]]">
+				
+				<label for="email">Email:</label>
+				<input type="text" name="email" id="email" size="45" class="validate[required,custom[email],maxLength[100]]">
+									
+				<label for="description">Descrição:</label>
+				<textarea cols="32" rows="5" name="description" id="description" class="validate[required,length[6,400]] text-input"></textarea>
+				
+				<div id="actions">
+					<button id="submitButton" value="Enviar" type="button" class="botao-form enviar">Enviar</button>
+					<button value="Limpar" type="reset" class="botao-form limpar" onclick="closePromptErrors();">Limpar</button>
+				</div>					
+			</fieldset>
+		</form>
+	</div>
+</article>
+<script>
+	function closePromptErrors(){
+			$("#name").closePrompt(true);
+			$("#email").closePrompt(true);
+			$("#description").closePrompt(true);	
+	}	
+
+	$("#reportContentForm").validationEngine({
+		submitFunction:function(){
+			$("#basic-modal-content").modal();
+		}
+	});
+	$("#submitButton").click(function(){
+		$("#reportContentForm").submit();
+	});
+</script>

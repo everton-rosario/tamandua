@@ -1,0 +1,33 @@
+Everton
+=======
+ * Executar gerador para massa completa do sistema
+	
+ * Scripts para remover text lyric null e acertar a URI das musicas (passar para o gabriel)
+	Recarregar do arquivo crawleado Conteúdos que ficaram nulos e/ou vazios
+        select * from lyric where text like '' || text is null   -- 354.816
+
+ * Configurar infra para "todo" ambiente
+
+Gabriel
+=======
+ * Montar/programar scripts de correcao da base
+ * Acertar o uploader
+ * Adicionar na estrutura os campos de flg moderated
+
+Rafael (Marley)
+======
+ * Definir tamanhos das imagens necessarias
+ * Subir/comitar conteudos da home
+ * Servlet da Home (markup)
+ * Integrar/merge paginas geradas pelos vms/modelos no markup correto
+ * Definir pagina de upload de letras
+ * definir estrutura de javascript/css
+
+
+Joao Paulo / Patricia
+==========
+ * Fazer Upload de imagens
+ * Exibir As imagens que estao sendo selecionadas
+ * CRUD Artista, Musica, Letra
+ * Criar novas musicas/Artistas
+ * Tela de Report do status do acervo

@@ -1,0 +1,335 @@
+<!DOCTYPE html> 
+<html lang="pt-br"> 
+<head> 
+ 
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    #if ($type == "include")
+        $head
+    #else
+    	<meta name="description" content="TocaLetra.com.br - O seu site de letras, traduções e cifras" />
+    	<meta name="title" content="TocaLetra.com.br - O seu site de letras, traduções e cifras" />
+    	<title>TocaLetra.com.br - O seu site de letras, traduções e cifras</title>
+    #end
+    
+    #if ($artistImages && $artistImages.size() > 0)
+    	<meta property="og:image" content="$artistImages.get(0).url"/>
+    #else
+    	<meta property="og:image" content="http://tocaletra.s3.amazonaws.com/images/paleta-tocaletra.png"/>
+    #end
+    
+    <meta name="keywords" content="letras de músicas, letras, músicas, letra de música, letra, letras de música, cifra de músicas, traduções de músicas" />
+    <meta name="verify-v1" content="" />
+    <link rel="index" title="TocaLetra.com.br - O seu site de letras, traduções e cifras" href="http://www.tocaletra.com.br" />
+    
+    <link rel="shortcut icon" href="http://tocaletra.s3.amazonaws.com/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="http://tocaletra.s3.amazonaws.com/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="/includes/css/combine.css" type="text/css" media="all" />
+    
+    <script type="text/javascript">
+        /* Padrao do HTML5 */
+        var elements = ['article', 'content', 'footer', 'header', 'nav', 'section', 'aside'];    
+        for (var i = 0, j = elements.length; i < j; i++){
+			document.createElement(elements[i]);
+        }
+
+	    var _gaq = _gaq || [];
+	    _gaq.push(['_setAccount', 'UA-9046263-2']);
+	    _gaq.push(['_trackPageview']);
+
+	    (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    })();
+
+        /* Variaveis de configuracao */
+        var DEaff="partocaletra";   /* Affiliate */
+        var DEchan="";      /* Canal quando existe */
+        var DEsubc="capa";  /* Subcanal capa ou outros. */
+        var Expble=1;       /* Alterar para 0 se não houver 240 pixels de espaço abaixo do 468x60 até o final da pagina */
+        var DEcmpng=1;      /* Alterar para 1 se participa de qualquer campanha vendida pelo UOL "cmpng" */
+        var DEGroup=6;      /* Grupo de afinidade "group" */
+        /* Fim da configuracao */
+        
+        /* NAO ALTERAR DAQUI PARA BAIXO, apenas remova os comentarios se precisar.
+        A linha abaixo deve obrigatoriamente ficar fora da função o valor de 
+        "DErand" nao pode ser diferente para os banners de uma mesma pagina */
+        d=document; var DEt=new Date(); DEt=DEt.getTime(); DErand=Math.floor(DEt*1000*Math.random());
+        
+        /* Verifica resolucao de tela */
+        var scw=0,sch=0; if(screen.height){scw=screen.width;sch=screen.height;}
+        
+        /* Funcao que exibe o banner */
+        function DEshow(ad,pos){
+        /* Verifica tipo de conexao do usuario */
+        	var DEconn=d.body; DEconn.style.behavior='url(#default#clientCaps)'; DEconn=(DEconn.connectionType=='lan')?1:0;
+        	d.write('<scr'+'ipt language="JavaScript1.1" src="http://bn.uol.com.br/js.ng/site=par&chan='+DEchan+'&subchan='+DEsubc+'&affiliate='+DEaff+'&size='+ad+'&page='+pos+'&conntype='+DEconn+'&expble='+Expble+'&reso='+scw+'x'+sch+'&cmpng='+DEcmpng+'&group='+DEGroup+'&tile='+DErand+'?"></scr'+'ipt>');
+        }
+        
+		<!--
+		/* Configurações do Google AdSense */
+		google_ad_client = "pub-3324667063054719";
+		/* 300x250, criado 23/10/10 */
+		google_ad_slot = "0857767572";
+		google_ad_width = 300;
+		google_ad_height = 250;
+		//-->
+		
+		/* Letra selecionada */
+		var letter = null;
+		
+		/* Meta Tags */
+		var metaTitle;
+		var metaDescription;
+		var metaImage;
+
+		var metas = document.getElementsByTagName("meta");
+		if(metas.length > 0) {
+			for (var i = 0; i < metas.length; i++) {
+				if (metas[i].getAttribute('name') == "title") {
+					metaTitle = metas[i].getAttribute("content");
+			    }
+			    if (metas[i].getAttribute('name') == "description") {
+					metaDescription = metas[i].getAttribute("content");
+			    }
+			    if (metas[i].getAttribute('property') == "og:image") {
+					metaImage = metas[i].getAttribute("content");
+			    }
+			}
+		}
+ 
+		function shareOrkut(share){
+			var url = "http://promote.orkut.com/preview?nt=orkut.com";
+			url += "&du=" + share;
+			url += "&tt=" + encodeURI(metaTitle);
+			url += "&cn=" + encodeURI(metaDescription);
+			url += "&tn=" + metaImage;
+			window.open(url, "orkutWindow", "height=496,width=679,menubar=0,resizable=0,scrollbars=0,status=0,titlebar=0,toolbar=0");
+		}
+		
+		function shareTwitter(share, text){
+			var url = "http://twitter.com/share";
+			url += "?url=" + share;
+			url += "&text=" + encodeURI(text);
+			window.open(url, "twitterWindow", "height=450,width=550,menubar=0,resizable=0,scrollbars=0,status=0,titlebar=0,toolbar=0");
+		}
+    </script>   
+</head>
+<script type="text/javascript" src="/includes/js/jquery.head.js"></script>
+<script src="http://connect.facebook.net/pt_BR/all.js#xfbml=1"></script>
+<body>	
+	<script src="http://barra.uol.com.br/b/scripts/1024/bpv1.js?ref=tocaletra&auto=true" type="text/javascript"></script>
+	<div id="geral">	
+		<div id="topo">	    	
+	        <div id="logo">	
+	        	<a href="http://www.tocaletra.com.br"><img src="http://tocaletra.s3.amazonaws.com/images/logotipo-tl.png" title="TocaLetra.com.br - O seu site de letras, traduções e cifras"/></a>
+	        </div>	        
+	        <div id="banner-topo">	
+	        	<script type="text/javascript">DEshow('728x90',1);</script>
+	        </div>	        
+	    </div>
+	    
+	    <div id="artista-letra">
+	    	<p class="artista">Artista</p>
+	        <img src="http://tocaletra.s3.amazonaws.com/images/divisao-artista.png" alt="divisão" width="9" height="31" class="divisao" />	
+	        <ul id="artistas-az"></ul>
+	        <form id="formBusca" action="/busca" accept-charset="UTF-8" method="get" class="busca">
+		        #if ($type == "googleResult")
+		            <input name="q" id="inputSearch" type="text" size="23" maxlength="30" value="$escapeTool.html($q)" />
+				#else
+					<input name="q" id="inputSearch" type="text" size="23" maxlength="30" value="Digite o artista ou a música" />
+		        #end
+	            <select id="categoryOptions">
+	            	<option value="">Geral</option>
+	            	<option value="artist">Artista</option>
+	            	<option value="music">Música</option>
+	            	<option value="lyric">Trecho</option>
+	            </select>
+	            <input name="category" id="categorySearch" type="hidden" style="display:none" disabled="disabled">
+	            <input type="submit" value="buscar" class="botao" />	
+	        </form>
+		</div>
+		
+		<div id="conteudo">
+			<div id="esquerdo">
+		 		#if ($type == "letter")
+		            #parse("artistsLetter.vm")
+		        #end
+		        #if ($type == "lyric")
+		            #parse("lyric.vm")
+		        #end
+		        #if ($type == "artist")
+		            #parse("artist.vm")
+		        #end
+		        #if ($type == "query")
+		            #parse("query.vm")
+		        #end
+		        #if ($type == "register")
+		            #parse("register.vm")
+		        #end
+		        #if ($type == "edit")
+		            #parse("edit.vm")
+		        #end
+		        #if ($type == "newMusic")
+		            #parse("newMusic.vm")
+		        #end
+		        #if ($type == "forgotPassword")
+		            #parse("forgotPassword.vm")
+		        #end
+		        #if ($type == "reportError")
+		            #parse("reportError.vm")
+		        #end
+		        #if ($type == "message")
+		            #parse("message.vm")
+		        #end
+		        #if ($type == "reportContent")
+		            #parse("reportContent.vm")
+		        #end
+		        #if ($type == "privacyPolicies")
+		            #parse("privacyPolicies.vm")
+		        #end
+		        #if ($type == "googleResult")
+		            #parse("googleResult.vm")
+		        #end
+		        #if ($type == "include")
+		            $body
+		        #end
+        	</div>
+        	
+	        <div id="direito">
+		        <div id="patrocinios">		        	            
+		            <div id="login">
+						<div id="loadingBox" style="display:none">
+				              <h2></h2>
+				              <div class="imgLoadingBox"><img src="http://tocaletra.s3.amazonaws.com/images/loadingBox.gif"/></div>
+				        </div> 
+						<div id="loggedBox" class="loggedBox" style="display:none">
+			              <h2>Minha conta</h2>
+			              <a href="/usuario/form/edit" class="avatar" title="Clique para editar seu perfil"><img id="avatarImg" /></a>
+			              <h3><label id="userName"></label> <a id="logoutLink" href="javascript: void(0)">(sair)</a></h3>
+			              <p>
+			                  Contribua:<br />
+			                  <a href="/usuario/form/newMusic" class="new">Nova letra, tradução e/ou cifra</a><br />
+			                  <a href="/usuario/form/reportError" class="erro">Encontrou algum erro? </a><br />
+			                  <a href="/usuario/form/reportContent" class="denuncia">Denunciar conteúdo!</a>
+			              </p>
+			            </div>		            
+			            <div id="loginBox" class="loginBox" style="display:none">
+			              <h2>Acesse sua conta</h2>			              
+			              <div id="loginAlert">
+			              		<img src="http://tocaletra.s3.amazonaws.com/images/erro.png"/><b>Atenção!</b>
+			              		<label id="loginMessage">Seu cadatro não foi confirmado. Entre agora em seu e-mail para confirmar seu cadastro.</label>
+			              </div>
+			              <form id="loginForm" method="post" action="http://tocaletra.com.br/usuario/login">
+			                  <fieldset>
+			                      <label for="emailLogin">E-mail: </label>
+			                      <input type="text" maxlength="255" id="emailLogin" name="email">
+			                                              
+			                      <label for="passLogin">Senha: </label>
+			                      <input type="password" maxlength="55" id="passLogin" name="password"/>			                      
+
+			                      <input type="checkbox" id="keepConnected" name="keepConnected" value="true"/>
+			                      <label for="keepConnected" class="phrase">Manter logado neste computador.</label>			                      
+			                      
+			                      <p><span>Não marcar em computadores públicos ou compartilhados.</span></p>
+			                      <button id="loginButton" value="Entrar" type="submit" class="botao-form acessar">Entrar</button>
+			                  </fieldset>
+			              </form>
+			              <p><a href="/usuario/form/register">Cadastre-se agora mesmo!</a></p>
+			              <p><a href="/usuario/form/forgotPassword">N&atilde;o lembra a senha? N&oacute;s te ajudamos!</a></p>
+			            </div>
+			        </div>
+			        
+			        <div class="ads">
+		                <script type="text/javascript">DEshow('300x250',5);</script>
+		            </div>
+		            
+		            <div id="artistCloud"></div>
+
+					<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+					
+		            <div id="musicCloud"></div>
+
+##		            <script type="text/javascript">
+##		                descrColor="000000"; titleColor="000033"; urlColor="000033"; borderColor="990000"; bgColor="FFFFFF"; altColor="FFFFFF";
+##		                category="4,9,8,1,2,12"; coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="17"; has_search="0";
+##		                numads="4"; type="2"; deslabel="pag-letra";
+##		            </script>
+##		            <div id="af-shopping-uol"><a href="http://shopping.uol.com.br"><span style="text-decoration:none;">An&uacute;ncios Shopping UOL</span></a></div>
+##		            <script type="text/javascript" src="http://adrequisitor-af.shopping.uol.com.br/uolaf.js"></script>
+		            
+##		            <div id="banner">
+##						<script type="text/javascript">
+##							descrColor="000000"; titleColor="CC0000"; urlColor="000066"; borderColor="000033"; bgColor="FFFFFF"; altColor="FFFFFF";
+##							coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="9"; deslabel="pag-letra"; numads="4"; type="1";
+##						</script>
+##						<script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script>
+##					</div>
+					
+		        </div>
+		    </div>
+		</div>
+		
+		<div id="rodape">
+	    	<img src="http://tocaletra.s3.amazonaws.com/images/logotipo-tl-rod.jpg" alt="TocaLetra" class="esq" />
+	        <p class="rodape-txt esq">© Tocaletra 2010 - Todos direitos reservados </p>
+	
+	        <ul>
+	        	<li><a href="/pages/conteudo/politica-de-privacidade.html">Política de privacidade</a> | </li>
+	            <li><a href="/usuario/form/reportContent">Denuncie conteúdo</a> | </li>
+	            <li><a href="/usuario/form/reportError">Contato</a></li> 
+	        </ul>
+	    </div>
+	    <div class="footer">
+			<p>
+				TocaLetra é um site de entretenimento com fins educacionais e de inclusão cultural por meio da música.<br/>
+				Todas as letras de músicas são propriedade dos seus respectivos autores e divulgadas somente para estes fins.<br/>
+	    </div>		
+	</div>
+	
+	<div id="basic-modal-content">
+		<label>Carregando...</label>
+		<img src="http://tocaletra.s3.amazonaws.com/images/loading-bar.gif"/>
+	</div>
+	
+    <script>
+        /* Exibe DHTML Modelo com controle de cookie */
+        var DEpopcfg = "DHTML"+DEaff;
+        var DEshowpop=document.cookie.indexOf(DEpopcfg);
+        if(DEshowpop==-1){ document.cookie=DEpopcfg+"=0"; DEshow('1x1',11); }
+        
+        var artistName = "$!artistName";
+        var artistNameNormalized = "$!artistNameNormalized";
+        var musicNameNormalized = "$!musicNameNormalized";
+        var idtRadioTrack = "$!idtRadioTrack";
+        var artistImages = [];
+		#if ($artistImages && $artistImages.size() > 0)
+        	#set ($rowNum = 0)
+			#foreach ($artistImage in $artistImages)
+				artistImages[$rowNum] = "$artistImage.url";
+				#set ($rowNum = $rowNum + 1)
+			#end
+	    #end
+    </script>
+
+    <script type="text/javascript" src="/includes/js/framework.js"></script>
+	
+	#if ($musicPage)
+		<script 
+		    type="text/javascript" 
+		    src="http://gdata.youtube.com/feeds/api/videos?category=Music&q=$artistNameNormalized+$musicNameNormalized&orderby=relevance&max-results=10&alt=json-in-script&format=5&restriction=BR&callback=loadVideos">
+		</script>
+	#end
+                                                 
+    <!-- SiteCatalyst code version: H.19.3. Copyright 1997-2009 Omniture, Inc. More info available at http://www.omniture.com -->
+    <script language="JavaScript" type="text/javascript" src="http://me.jsuol.com/omtr/tocaletras.js"></script>
+    <script language="JavaScript" type="text/javascript">
+    /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/  
+    var s_code=uol_sc.t();if(s_code)document.write(s_code)</script>
+    <!-- End SiteCatalyst code version: H.19.3. -->
+
+</body>
+
+</html>

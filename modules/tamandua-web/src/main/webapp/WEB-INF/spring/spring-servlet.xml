@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	                       http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<!-- USANDO o velocity properties -->
+	<!-- bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/export/htdocs" />
+		<property name="configLocation" value="/WEB-INF/velocity/velocity.properties" />
+	</bean-->
+    <context:component-scan base-package="br.com.tamandua.view"/>
+	<!-- USANDO o conteudo em disco FUNCIONANDO -->
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoader">
+        	<bean class="org.springframework.core.io.FileSystemResourceLoader" />
+		</property>
+
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">utf-8</prop>
+				<prop key="output.encoding">utf-8</prop>
+			</props>
+		</property>
+		
+		<property name="resourceLoaderPath">
+            <value>file:/export/htdocs/tocaletra.com.br/template</value>
+        </property>
+    </bean>
+
+	<bean id="viewResolvers" class="br.com.tamandua.view.VelocityLayoutViewResolver">
+		<property name="toolboxConfigLocation" value="/WEB-INF/velocity/toolbox.xml" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".vm" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="mappings">
+	    <map>
+	        <entry key="front" value="front.vm" />
+	        <entry key="admin/admFront" value="admin/admFront.vm" />
+	    </map>
+	  </property>
+	</bean>
+	
+	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
+		<property name="location" value="/WEB-INF/spring/spring-view.xml" />
+		<property name="order" value="0" />
+	</bean>
+	
+	<!-- bean id="internalResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.InternalPathMethodNameResolver">
+		<property name="suffix" value="Handler" />
+	</bean>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>text</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="handler"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="**/*">viewController</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="viewController"
+		class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="methodNameResolver" ref="internalResolver" />
+		<property name="delegate" ref="viewDelegate" />
+	</bean>
+	<bean id="viewDelegate" class="br.com.tamandua.view.ViewDelegate"> 
+	</bean-->
+</beans> 

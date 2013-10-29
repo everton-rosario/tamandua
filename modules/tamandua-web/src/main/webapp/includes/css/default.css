@@ -1,0 +1,908 @@
+/* Padronizacao HTML5 */
+header, section, footer, article, aside, nav {display: block;}
+
+/* Padronizacao RESET */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset,  input, p, blockquote, th, td, html {
+	margin: 0; 
+	padding: 0; 
+}
+
+html {
+  height: 100%;
+}
+
+:focus {outline-color:#fff;outline-style:none;outline-width:medium;}
+
+
+body, textarea {
+	color: #333333;
+	font: 10px verdana, arial, helvetica, sans-serif;
+}
+
+div.clear{
+	clear: both;
+	margin-bottom: 50px;
+}
+
+body {
+	background: url('http://tocaletra.s3.amazonaws.com/images/patternBg.png') center top repeat-x #FCFCFC;
+	line-height: 2.1em;
+	text-align: center;
+}
+
+fieldset, img {
+	border:0 none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Padroniza��o FIM DO RESET */
+
+.imgreplace {
+	display: block;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+section#top form {
+	background:url("http://tocaletra.s3.amazonaws.com/images/bg_box_search_inside.png") no-repeat scroll 0 0 transparent;
+	margin: 10px 0 0 10px;
+	padding: 6px 0 0 0;
+	width: 498px;
+	height: 61px;
+}
+
+section#top form fieldset {
+	background:url("http://tocaletra.s3.amazonaws.com/images/bg_box_search_upper_inside.png") no-repeat scroll 0 0 transparent;
+	margin: 0 0 6px 6px;
+	height: 62px;
+}
+
+section#top form fieldset input#inputSearch {
+	border: 0 none;
+	color: #a3a9b5;
+	float: left;
+	font-size: 18px;
+	height: 38px;
+	margin: 7px 0px 0px 9px;
+	vertical-align: middle;
+	width: 418px;
+}
+
+section#top form fieldset input.btSubmit {
+	background:url("http://tocaletra.s3.amazonaws.com/images/btSubmit_inside.png") no-repeat scroll 0 0 transparent;
+	border:0 none;
+	cursor: pointer;
+	float:right;
+	height:37px;
+	margin:7px 13px 0px 0px;
+	width:38px;
+}
+
+section#mainContent{
+	float: left;
+	width: 655px;
+}
+
+section#main {
+	background-color: #fff;
+	margin: 0 auto;
+	padding: 10px;
+	position: relative;
+	text-align: left;
+	width: 970px;
+}
+
+
+section#top {
+	height: 105px;
+	margin: 0 auto;
+	padding: 10px 10px 0 ;
+	width: 970px;
+}
+
+nav.socialmedia {
+	float: right;
+}
+
+nav.socialmedia li{
+	list-style: none outside none;
+	float: left;
+	margin: 0 5px;
+}
+
+
+a.icotwitter {
+	background: url("http://tocaletra.s3.amazonaws.com/images/icon_twitter.gif") repeat scroll 0 0 transparent;
+}
+
+a.icocontato {
+	background: url("http://tocaletra.s3.amazonaws.com/images/icon_email.gif") repeat scroll 0 0 transparent;
+}
+
+header {
+	clear: right;
+}
+
+header form {
+	float: right;
+	margin-top: 10px;
+}
+
+header form legend {
+	display: none;
+}
+
+header form label {
+	float: left;
+}
+
+header form #searchsubmit {
+	background:url("http://tocaletra.s3.amazonaws.com/images/lupa.gif") no-repeat scroll bottom left transparent;
+	border: 0;
+	float: left;
+	height: 35px;
+	width: 40px;
+}
+
+header form #searchsubmit:hover {
+	background-position:top left;
+}
+
+header form #s {
+	border:1px solid #B2B2B2;
+	font-size:20px;
+	height:29px;
+	margin-right:2px;
+	padding:2px;
+	width:283px;
+}
+
+header form #s:focus,
+header form #s:hover {
+	border-color: #7fa5cd;
+}
+
+header h1 a {
+	background:url("http://tocaletra.s3.amazonaws.com/images/logo.png") no-repeat scroll 0 0 transparent;
+	clear:left;
+	float:left;
+	height:84px;
+	width:362px;
+}
+
+section#navLetter{
+	clear:both;
+	height: 76px;
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #caced1;
+}
+
+ul#artistas-az {
+	background:url("http://tocaletra.s3.amazonaws.com/images/artistTitle.png") no-repeat scroll top left transparent;
+	height: 70px;
+	float: left;
+	list-style-type:none;
+	padding-left: 115px;
+	width: 193px;
+}
+
+ul#artistas-az li {
+	display:inline;
+	float: left;
+	width: 21px;
+}
+
+ul#artistas-az li:hover,
+ul#artistas-az li.selected {
+	background-color: #BA1C27;
+}
+
+ul#artistas-az li:hover a,
+ul#artistas-az li.selected a{
+	color: #fff;
+}
+
+ul#artistas-az li a {
+	color: #BA1C27;
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 0 5px;
+}
+
+#ads_top {
+	float: left;
+}
+
+#ads_top object,
+#ads_top embed,
+#ads_top a {
+	margin-left:15px;
+}
+
+section#destaque,
+article#text {
+	float: left;
+	width: 670px;
+}
+
+section#destaque h1 a{
+	color: #0D2D47;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+section#destaque h2 {
+	line-height: 12px;
+}
+
+section#destaque h2 a{
+	color: #7fa5cd;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+section#destaque h3,
+section#destaque h3 a{
+	color: #656B6F;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+article#text{
+	font-size: 13px;
+	margin: 20px 0 30px 0;
+}
+
+article#text p {
+	line-height: 1.5em;
+	margin-bottom: 25px;
+}
+
+article#text ul.categ-rel li {
+	float: left;
+	list-style: none outside none;
+}
+
+article#text .dateauthor {
+	clear: both;
+}
+
+
+aside.music-aside {
+	float: right;
+	width: 300px;
+}
+
+aside.music-aside div {
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/roundedBorder.png") no-repeat bottom;
+	color: #313A45;
+	margin: 0 0 15px 0;
+	padding: 0 0 5px 0;
+	position: relative;
+}
+
+aside.music-aside div.ads,
+aside.music-aside div.ads div,
+#af-shopping-uol,
+#af-shopping-uol div {
+	background-image: none;
+}
+
+aside.music-aside div h2 {
+	background:url("http://tocaletra.s3.amazonaws.com/images/barTitles.png") no-repeat scroll 0 0 transparent;
+	height: 30px;
+	text-indent: -9999px;
+}
+
+aside.music-aside div#showCalendar h2 {
+	background-position: 0 -30px;
+}
+
+aside.music-aside div#showCalendar p, 
+aside.music-aside div#showCalendar ul {
+	margin: 0 5px;
+}
+
+aside.music-aside div#showCalendar p.userLocation {
+	font-size: 1.2em;
+	text-align: right;
+}
+
+aside.music-aside div#showCalendar p a {
+	color: #FF9600;
+}
+
+
+aside.music-aside div#showCalendar ul li.first,
+aside.music-aside div#showCalendar ul li {
+	list-style: none outside none;
+	height: 75px;
+	padding-bottom: 8px;
+}
+
+aside.music-aside div#showCalendar ul li {
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/dotted.png") repeat-x top;
+	padding-top: 9px;	
+}
+
+aside.music-aside div#showCalendar ul li img {
+	float: left;
+	margin-right: 1px;
+}
+
+aside.music-aside div#showCalendar ul li a {
+	color: #313A45;
+	float: left;
+	font-size: 1.1em;
+	height: 75px;
+	padding-left: 7px;
+	width: 207px;
+}
+
+aside.music-aside div#showCalendar ul li a:hover {
+	background-color: #cccccc;
+	text-decoration: none;
+}
+
+aside.music-aside div#showCalendar ul li a h3 {
+	color: #FF9600;
+	font-weight: bold;
+}
+
+aside.music-aside div#showCalendar ul li a p.dtEvent{
+	margin-top: 5px;
+}
+
+aside.music-aside div#showCalendar ul li a p.dtEvent,
+aside.music-aside div#showCalendar ul li a p.location {
+	line-height: 1.3em;
+	margin-left: 0;
+}
+
+aside.music-aside div#showCalendar ul li a span.iconBuy {
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/iconBuy.png") no-repeat top;
+	display: block;
+	height: 15px;
+	width: 55px;
+}
+
+aside.music-aside div#showCalendar ul li a:hover span.iconBuy {
+	background-position: bottom;
+}
+
+aside.music-aside div#artistCloud {
+	text-align: center;
+}
+
+aside.music-aside div#artistCloud a{
+	color: #3F3F3F;
+	display: inline-table;
+	line-height: 1.7em;
+	margin: 0 1px;
+	text-decoration: none;
+}
+
+aside.music-aside div#artistCloud a.cloud0,
+aside.music-aside div#artistCloud a.cloud1,
+aside.music-aside div#artistCloud a.cloud2,
+aside.music-aside div#artistCloud a.cloud3 {
+	background-color: #fff;
+	color: #3F3F3F;
+}
+
+aside.music-aside div#artistCloud a.cloud0:hover,
+aside.music-aside div#artistCloud a.cloud1:hover,
+aside.music-aside div#artistCloud a.cloud2:hover,
+aside.music-aside div#artistCloud a.cloud3:hover {
+	background-color:#3F3F3F;
+	color: #fff;
+}
+
+aside.music-aside div#artistCloud a.cloud0 {
+	font-size: 1em;
+}
+
+aside.music-aside div#artistCloud a.cloud1 {
+	font-size: 1.2em;
+}
+
+aside.music-aside div#artistCloud a.cloud2 {
+	font-size: 1.2em;
+}
+
+aside.music-aside div#artistCloud a.cloud3 {
+	color: #333333;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+aside.music-aside div#artistCloud a.cloud4 {
+	color: #B81A26;
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+aside.music-aside div#artistCloud a.cloud4:hover {
+	background-color: #B81A26;
+	color: #fff;
+}
+
+aside.music-aside div#followBox h2 {
+	background-position: 0 -60px;
+	margin-bottom: 5px;
+}
+
+aside.music-aside div#followBox a {
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/iconFan.png") no-repeat;
+	color: #B81A26;
+	display: block;
+	height: 28px;
+	line-height: 1em;
+	margin: 0 5px 5px 5px;
+	padding: 6px 0 0 40px;
+	text-decoration: none;
+}
+
+aside.music-aside div#followBox a:hover {
+	background-color: #ccc;
+}
+
+aside.music-aside div#followBox a.homePage {
+	background-position: 5px 0;
+}
+
+aside.music-aside div#followBox a:hover.homePage {
+	background-position: 5px -131px;
+}
+
+aside.music-aside div#followBox a.favorite {
+	background-position: 5px -32px;
+}
+
+aside.music-aside div#followBox a:hover.favorite {
+	background-position: 5px -163px;
+}
+
+aside.music-aside div#followBox a.follow {
+	background-position: 5px -64px;
+}
+
+aside.music-aside div#followBox a:hover.follow {
+	background-position: 5px -195px;
+}
+
+aside.music-aside div#followBox a.community {
+	background-position: 5px -96px;
+}
+
+aside.music-aside div#followBox a:hover.community {
+	background-position: 5px -227px;
+}
+
+
+/**
+ * Box login
+ */
+
+aside.music-aside div#loginBox h2 {
+	background-position: 0 -90px;
+	color: #313A45;
+}
+
+div#loginBox fieldset {
+	padding-top: 20px;
+}
+
+div#loginBox label {
+	font-size: 13px;
+	padding-left: 10px;
+}
+
+div#loginBox input {
+	height: 22px;
+	margin-bottom: 10px;
+	width: 200px;
+}
+
+div#loginBox input#passLogin {
+	margin: 0 80px 0 1px;
+	width: 130px;
+	
+}
+
+div#loginBox input#keepConnected {
+	margin: 10px 0 0 10px;
+	width: 10px;
+}
+
+div#loginBox label.phrase{
+	vertical-align: super;
+}
+
+div#loginBox p{
+	color: #FF3300;
+	line-height: 11px;
+	margin: 5px 0 15px 15px;
+	font-size: 10px;
+	text-align: center;	
+}
+
+div#loginBox a {
+	color: #096C8B;
+}
+
+div#loginBox a:hover {
+	text-decoration: underline;
+}
+
+div#loginBox input#submit {
+	background-color: #086C8B;
+	border: 0;
+	color: #FFFFFF;
+	cursor: pointer;
+	margin: 0 0 15px 110px;
+	padding-bottom: 3px;
+	width: 80px;
+	text-align: center;
+}
+
+div#loginBox input#submit:hover {
+	background-color: #FFFFFF;
+	border: 1px solid #086C8B;
+	color: #086C8B;
+}
+
+aside.music-aside div#loggedBox h2 {
+	background-position: 0 -120px;
+	color: #313A45;
+}
+
+div#loggedBox a.avatar img{
+	float: left;
+	margin: 5px;
+	width: 100px; height: 120px;
+}
+
+div#loggedBox h3{
+	font-size: 17px;
+}
+
+div#loggedBox h3 a{
+	color: #3F3F3F;
+	font-size:10px;
+	font-weight: normal;
+}
+
+div#loggedBox p{
+	margin-top: 17px
+}
+
+div#loggedBox p a{
+	color: #096C8B;
+}
+
+div#loggedBox p a.denuncia{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/redFlag.png") no-repeat;
+	color: #f35959;
+	padding: 0px 0 0px 14px;
+}
+
+div#loggedBox p a.erro{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/erro.png") no-repeat;
+	color: #313A45;
+	padding: 0px 0 0px 14px;
+}
+div#loggedBox p a.new{
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/new.png") no-repeat;
+	padding: 0px 0 0px 14px;
+}
+	
+div#loggedBox p a:hover {
+	text-decoration: underline;
+}
+	
+/**
+ * Box login
+ */
+ 
+footer {
+	background-color: #0D2D47;
+	clear: both;
+	color: #fff;
+	height: 32px;
+	margin: 0 auto;
+	text-align: left;
+	width: 990px;
+}
+
+footer p.copyright,
+footer p.links
+ {
+	display:inline;
+	line-height:2.7em;
+}
+
+footer p.copyright {
+	font-size: 1.2em;
+	padding:0.8em 1em 0.7em;
+}
+
+footer p.links {
+	font-size: 1.1em;
+	padding:0.9em 0.5em 0.8em;
+	margin-left: 350px;
+}
+
+footer p.links a {
+	color: #fff;
+}
+
+footer div.clear {
+	margin: 20px 0 50px;
+}
+
+footer div.clear p {
+	color: #000;
+	text-align: center;
+}
+
+/**
+ * Listagem de musicas
+ */
+
+article#text .defaultList{
+	color: #EB191E;
+	float: left;
+	width: 335px;	
+}
+
+article#text .defaultList li{
+	float: left;
+	margin-left: 43px;
+	width: 280px;
+}
+
+article#text .defaultList li:hover{
+	background-color: #f3f3f3;
+}
+	
+article#text .defaultList a{
+	color: #313A45;
+	display: block;
+	text-decoration: none;
+}
+
+article#text .defaultList a:hover{
+	color: #EB191E;
+}
+
+/**
+ * Listagem de artistas
+ */
+article#text #listArtist li{
+	width: 290px;	
+}
+
+/**
+ * Box de letras + populares
+ */
+/*
+article#text  #mainLyrics {
+	background: transparent url("http://tocaletra.s3.amazonaws.com/images/barMainLyrics.png") no-repeat bottom;
+	color: #313A45;
+	margin: 0 0 15px 0;
+	padding: 0 0 5px 0;
+	position: relative;
+}*/
+
+article#text #mainLyrics h2 {
+	background:url("http://tocaletra.s3.amazonaws.com/images/barMainLyrics.png") no-repeat scroll 0 0 transparent;
+	height: 30px;
+	text-indent: -9999px;
+}
+
+ /**
+ * Marca��o para artistas
+ */
+
+article#text .defaultList li.marcacao_vermelha,
+article#text .defaultList li.marcacao_vermelha a,
+.marcacao_vermelha a,a:hover{
+	color: #FF0000;
+	text-decoration: none;
+}
+
+article#text .defaultList li.marcacao_amarelo,
+article#text .defaultList li.marcacao_amarelo a,
+.marcacao_amarelo a,a:hover{
+	color: #FF9900;
+	text-decoration: none;
+}
+
+article#text .defaultList li.marcacao_verde,
+article#text .defaultList li.marcacao_verde a,
+.marcacao_verde a,a:hover{
+	color: #33CC33;
+	text-decoration: none;
+}
+
+article#text .defaultList li.marcacao_azul,
+article#text .defaultList li.marcacao_azul a,
+.marcacao_azul a,a:hover{
+	color: #0000FF;
+	text-decoration: none;
+}
+
+
+/**
+ * Form
+ *  errorCommunicates
+ *  sendLyric
+ */
+
+.forms label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.forms label.tab {
+	font-weight: normal;
+}
+
+.forms label.tab input{
+	width: 20px;	
+}
+
+.forms input,
+.forms select,
+.forms textarea{
+	height:22px;
+	margin-bottom:15px;
+	width:400px;
+}
+
+.forms textarea{
+	height:200px;
+}
+
+.forms #simpleMessage{
+	display: none;
+}
+
+.forms #actions{
+	border: 1px solid #ccc;
+	margin: 10px 0;
+	padding: 30px 110px;
+	width: 185px;
+}
+
+.forms #actions button{
+	background-color:#086C8B;
+	border:0 none;
+	color:#FFFFFF;
+	cursor:pointer;
+	height:25px;
+	padding-bottom:2px;
+	text-align:center;
+	width:80px;
+}
+
+.forms #actions button:hover {
+	background-color: #FFFFFF;
+	border: 1px solid #086C8B;
+	color: #086C8B;
+}
+
+.forms #sendLyric #translateBox{
+	display: none;
+}
+
+.forms #recoverPassword #actions{
+	padding: 30px 85px;
+	width: 230px;
+}
+
+.forms #recoverPassword #actions button#submitMailTo{
+	width:143px;
+}
+
+/**
+ * Listagem de busca
+ */
+
+article#text .defaultSearch{
+	color: #2E4251;
+	float: left;
+	width: 655px;	
+}
+
+article#text .defaultSearch li{
+	float: left;
+	margin: 0 0 20px 43px;
+	width: 610px;
+}
+
+article#text .defaultSearch li:hover{
+	background-color: #f3f3f3;
+}
+	
+article#text .defaultSearch li p{
+	color: #000;
+	margin: 0;
+}
+article#text .defaultSearch a{
+	color: #313A45;
+	display: block;
+	text-decoration: none;
+}
+
+article#text .defaultSearch a:hover,
+article#text .defaultSearch li h3 a{
+	color: #BA1C27;
+}
+
+/**
+ * Legenda das cores para o administrador
+ */
+.tableColors{
+	font-weight:bold;
+	text-align:center;
+}
+
+.tableColors tr td{
+	width:80px;
+	border:1px solid;
+	border-spacing:0px;
+}
+
+.tableColors tr td.vermelho{
+	width:80px;
+	border:1px solid;
+	border-spacing:0px;
+	background-color: #FF0000;
+}
+		
+.tableColors tr td.amarelo{
+	width:80px;
+	border:1px solid;
+	border-spacing:0px;
+	background-color: #FF9900;
+}
+
+.tableColors tr td.verde{
+	width:80px;
+	border:1px solid;
+	border-spacing:0px;
+	background-color: #33CC33;
+}
+		
+.tableColors tr td.azul{
+	width:80px;
+	border:1px solid;
+	border-spacing:0px;
+	background-color: #0000FF;
+}
+	
+.buttonAdm{
+			border-size: 0px;
+			border-style: none;
+			background: inherit;
+			background-color: #FFFFFF;
+			font: inherit;
+			font-size: 13px;
+			color: blue;
+			cursor: hand;
+			cursor: pointer;
+			padding: 0px;
+}
+
+
+

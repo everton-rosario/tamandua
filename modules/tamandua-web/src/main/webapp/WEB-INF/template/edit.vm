@@ -1,0 +1,86 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Editar Cadastro</strong>
+</div>
+<div id="titulo">
+	<h2>Editar Cadastro</h2>
+	<h3>Altere aqui as informações em seu cadastro!</h3>
+</div>				
+<article id="text" class="forms">
+	<div id="edit">
+		<fieldset>
+			<form id="editForm" action="/usuario/edit" method="post" enctype="multipart/form-data">
+				
+				<label for="name">Nome completo:</label>
+				<input type="text" name="name" value="$!user.name" id="name" size="45" class="validate[required,maxLength[100]]">  
+				
+				<label for="avatar">Avatar:</label>															
+				<input type="file" name="avatar" id="avatar" class="fileAvatar">
+				
+				<label for="email">E-mail Atual:</label>
+				<p>$!user.email</p>
+				
+				<label for="newEmail">Novo E-mail:</label>
+				<input type="text" name="newEmail" id="newEmail" value="$!newUser.email" size="45" class="validate[custom[email],maxLength[100],requiredIf[confirmNewEmail]]">
+				
+				<label for="confirmEmail">Confirmar novo e-mail:</label>
+				<input type="text" name="confirmNewEmail" id="confirmNewEmail" value="$!newUser.email" size="45" class="validate[custom[email],maxLength[100],requiredIf[newEmail]],confirm['newEmail']">
+				
+				<label for="password">Senha atual:</label>
+				<input type="password" name="password" id="password" class="validate[length[6,12],requiredIf[newPassword],requiredIf[confirmNewPassword]]">
+				
+				<label for="newPassword">Nova senha:</label>
+				<input type="password" name="newPassword" id="newPassword" class="validate[length[6,12],requiredIf[password],requiredIf[confirmNewPassword]]">
+				
+				<label for="confirmNewPassword">Confirmar nova senha:</label>
+				<input type="password" name="confirmNewPassword" id="confirmNewPassword" class="validate[length[6,12],requiredIf[password],requiredIf[newPassword],confirm['newPassword']]">
+									
+				<div id="actions">
+					<button id="submitButton" value="Enviar" type="button" class="botao-form enviar">Enviar</button>
+					<button id="resetButton" value="Limpar" type="button" class="botao-form limpar">Limpar</button>
+				</div>					
+			</fieldset>
+		</form>
+	</div>
+</article>
+<script type="text/javascript">
+	#if($emailExist)
+		$("#newEmail").showPrompt("$emailExist","error",false,false,"centerRight");
+	#end
+	#if($invalidPassword)
+		$("#password").showPrompt("$invalidPassword","error",false,false,"centerRight");
+	#end
+	#if($invalidFile)
+		$("#avatar").showPrompt("$invalidFile","error",false,false,"centerRight");
+	#end
+	
+	function closePromptErrors(){
+		$("#name").closePrompt(true);
+		$("#avatar").closePrompt(true);
+		$("#newEmail").closePrompt(true);	
+		$("#confirmNewEmail").closePrompt(true);
+		$("#password").closePrompt(true);
+		$("#newPassword").closePrompt(true);
+		$("#confirmNewPassword").closePrompt(true);
+	}
+	$("#editForm").validationEngine({
+		submitFunction:function(){
+			$("#basic-modal-content").modal();
+		}
+	});
+	$("#submitButton").click(function(){
+		$("#editForm").submit();
+	});
+	
+	$("#resetButton").click(function(){
+		closePromptErrors();
+		$("#name").val("");
+		$("#avatar").val("");	
+		$("#newEmail").val("");	
+		$("#confirmNewEmail").val("");
+		$("#password").val("");
+		$("#newPassword").val("");
+		$("#confirmNewPassword").val("");
+	});
+	
+</script>

@@ -1,0 +1,86 @@
+.ac_results {
+	padding: 0px;
+	border: 1px solid #A7BCCF;
+        border-top:0;
+	background-color: white;
+	overflow: hidden;
+	z-index: 99999;
+	top: 46px;
+	left: 229px;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+        font-family:Arial;
+	margin: 0 8px 0 8px;
+	padding: 2px 5px;
+	cursor: default;
+	display: block;
+	/* 
+	if width will be 100% horizontal scrollbar will apear 
+	when scroll mode will be used
+	*/
+	/*width: 100%;*/
+	font: menu;
+	font-size: 11px;
+	/* 
+	it is very important, if line-height not setted or setted 
+	in relative units scroll will be broken in firefox
+	*/
+	line-height: 22px;
+	overflow: hidden;
+        text-align:left;
+ /*       background-image: url('http://radio.imguol.com/dots.gif'); */
+        background-position: 0 25px;
+        background-repeat: repeat-x;
+        color:#2D404F;
+        width:275px;
+}
+
+.ac_results li span{
+  float:left; 
+  line-height:22px;
+  }
+  
+.ac_results li strong{
+  float:left;
+  width:208px;
+  }
+  
+.ac_results li.artist, .ac_results li.media, .ac_results li.release {
+  padding-top:30px;
+  background-image:url(http://radio.imguol.com/artist_top.gif);
+  background-position:-8px 0;
+  background-repeat:no-repeat;
+  }
+
+.ac_results li.media {
+  background-image:url(http://radio.imguol.com/media_top.gif);
+  }
+  
+.ac_results li.release {
+  background-image:url(http://radio.imguol.com/release_top.gif);
+  }
+.ac_results li.artist {
+    top: 30px;
+  }
+
+.ac_odd {
+	background-color: #fff;
+}
+
+.ac_over {
+	background-color: #E1F0F7;
+	color: white;
+}
+
+#autocomplete_box {
+	position: relative;	
+}

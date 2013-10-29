@@ -1,0 +1,63 @@
+<meta name="title" content="Lista de $artists.size() artistas que começam com a letra $letter.toUpperCase()" />
+<meta name="description" content="Lista de $artists.size() artistas que começam com a letra $letter.toUpperCase() - no TocaLetra você encontra mais de 2 milhões de Letras de Música. Também encontra Vídeos, Imagens, Cifras e ouve as músicas de seus artistas preferidos." />
+<title>Listagem de Artistas -  $artists.size() iniciando com $letter.toUpperCase()</title>
+<link rel="canonical" href="http://www.tocaletra.com.br$permalinkTool.linkToLetter($letter)" />
+<!-- X -->
+<script>
+	letter = "$letter";
+	descrColor="000000"; titleColor="CC0000"; urlColor="000066"; borderColor="000033"; bgColor="FFFFFF"; altColor="FFFFFF";
+	coddisplaysupplier="adb29daaacbd47a6bc92f3f2d86af736"; formatId="2"; deslabel="pag-letra"; numads="2"; type="1";
+</script>
+
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Letra $letter.toUpperCase()</strong>
+</div>
+
+<div id="panel-artistas">
+	<div id="info-artistas">
+		<div id="dados-letra">
+		    <p id="nome-musica">Índice de artistas que iniciam com a letra $letter.toUpperCase()</p>
+		    <p id="nome-artista">$artists.size() artistas</p>
+		</div>		
+		<div id="share-panel-no-gallery">
+			<a id="orkut-button" class="share-button" title="Orkut" href="javascript: void(0)"
+				onclick="shareOrkut('http://www.tocaletra.com.br$permalinkTool.linkToLetter($letter)')"></a>
+			<a id="twitter-button" class="share-button" title="Twitter" href="javascript: void(0)"
+				onclick="shareTwitter('http://www.tocaletra.com.br$permalinkTool.linkToLetter($letter)', 'Lista de $artists.size() artistas com a letra $letter.toUpperCase() no @tocaletra.')"></a>
+			<fb:like href="http://www.tocaletra.com.br$permalinkTool.linkToLetter($letter)" layout="button_count" show_faces="false" width="300"></fb:like>
+		</div>
+	</div>
+</div>
+
+<div class="banner"><script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script></div>
+
+<div id="listagem">
+	#set ($maxColumn = $artists.size()/3)
+	#set ($modColumn = $artists.size()%3)
+	#if ($modColumn > 0) 
+		#set ($maxColumn = $maxColumn + 1)
+	#end
+	#set ($maxColumnBase = $maxColumn)
+	#set ($indexItemHi = 0)
+
+   <div class="coluna">
+       <ol>
+		   #foreach ($artist in $artists)
+		   		#if ($indexItemHi >= $maxColumn)
+		   	    	#set ($maxColumn = $maxColumn + $maxColumn)
+		   	    	#set ($indexRestart = $indexItemHi + 1)
+					</ol>
+					</div>
+					<div class="coluna">
+					<ol start="$indexRestart">
+		   	    #end
+		   	    <li><a title="$artist.name - Letras, cifras e música" href="$permalinkTool.linkToArtistUri($artist.uri)">$artist.name</a> </li>
+				
+				#set ($indexItemHi = $indexItemHi + 1)
+		   #end
+	   </ol>
+   </div>
+</div>
+
+<div class="banner"><script type="text/javascript" src="http://adrequisitor-af.lp.uol.com.br/uolaf.js"></script></div>

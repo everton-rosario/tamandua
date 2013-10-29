@@ -1,0 +1,43 @@
+<project name="tamandua-search" default="deploy" basedir=".">
+	
+	<property environment="env"/>
+	<property name="tomcat.home" value="${env.TC_TOMCAT_HOME}"/>
+	<property name="apache.documentRoot" value="${env.TC_DOCUMENTS}"/>
+	<property name="maven.mvn" value="${env.M2_HOME}/bin/${env.TC_MAVEN_EXEC}"/>
+	<property name="webapp.dir" value="src/main/webapp"/>
+	<property name="war.file" value="target/tamandua-searcher-ws-*.war"/>
+	<property name="project.name" value="tamandua-search"/>
+	
+	<target name="deploy" depends="copy-war" />
+	
+	<target name="make-war">
+		<exec executable="${maven.mvn}" failonerror="true">
+			<arg value="clean"/>
+			<arg value="install"/>
+		</exec>
+	</target>
+	
+	<target name="copy-war" depends="make-war">
+		<delete dir="${tomcat.home}/webapps/${project.name}" />
+		<delete file="${tomcat.home}/webapps/${project.name}.war" />
+		<copy tofile="${tomcat.home}/webapps/${project.name}.war">
+			<fileset file="${war.file}" />
+		</copy>
+	</target>
+	
+	<target name="tomcat-start">
+		<echo message="Iniciando o Tomcat..."/>
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	    </java>
+	</target>
+	
+	<target name="tomcat-stop">
+		<echo message="Parando o Tomcat..."/>
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	    	<arg line="stop"/>
+	    </java>
+	</target>
+
+</project>

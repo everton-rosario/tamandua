@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	                       http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+    <!-- Configura quais pacotes fara varredura pelas marcacoes/anotacoes do Spring -->
+    <context:component-scan base-package="br.com.tamandua"/>
+
+    <!-- Artificio para criar uma classe que facilita o acesso aos beans marcados como @Component (Ex. Os DAOs) -->
+    <bean id="contextApplicationContextProvider" class="br.com.tamandua.persistence.app.ApplicationContextProvider"></bean>
+    <context:annotation-config />
+
+    <!-- Indica qual a persistenceUnit que utilizara -->
+    <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+        <property name="persistenceXmlLocations">
+            <list>
+                <value>classpath:/META-INF/persistence.xml</value>
+            </list>
+        </property>
+        <!-- property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver"/>
+        </property-->
+        <property name="defaultDataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- O entity manager factory da persistenceUnit MySQL -->
+    <bean id="entityManagerFactoryMySql" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitManager" ref="persistenceUnitManager" />
+        <property name="persistenceUnitName" value="tamandua-persistence-pu"/>
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <!-- A simple transaction manager for our (single) EntityManagerFactory.  -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactoryMySql"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="org.gjt.mm.mysql.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://base.tocaletra.com.br:3306/tamandua_db"/>
+        <property name="user" value="crawler"/>
+        <property name="password" value="crawler"/>
+        <property name="initialPoolSize" value="2"></property>
+        <property name="minPoolSize" value="1"></property>
+        <property name="maxPoolSize" value="10"/>
+        <property name="checkoutTimeout" value="1000"/> <!--  Wartezeit auf freie Pool-Connection -->
+        <property name="maxStatements" value="50"></property>
+        <property name="automaticTestTable" value="C3P0_TEST_TABLE"></property>
+        <property name="testConnectionOnCheckin" value="true"></property>
+        <property name="idleConnectionTestPeriod" value="60"></property> <!--  in Sekunden -->
+    </bean>
+
+    <!-- Exception translation bean post processor -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
+   	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${persistence.mailSender.host}" />
+		<property name="port" value="${persistence.mailSender.port}" />
+		<property name="username" value="${persistence.mailSender.username}" />
+		<property name="password" value="${persistence.mailSender.password}" />
+    	<property name="javaMailProperties">
+    		<props>
+        		<prop key="mail.smtp.auth">true</prop>
+        		<prop key="mail.mime.charset">UTF-8</prop>
+        	</props>
+        </property>
+	</bean>
+
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath">
+			<value>file:/export/htdocs/tocaletra.com.br/template/mail</value>
+		</property>
+	</bean>
+    
+    <!--
+        Instruct Spring to perform declarative transaction management automatically
+        on annotated classes (we want to use Spring's declarative @Transaction management)
+    -->  
+    <tx:annotation-driven/>
+    
+    <!-- Configura que o Spring fara uma varredura para obter as anotacoes e suporte a JPA -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+</beans>

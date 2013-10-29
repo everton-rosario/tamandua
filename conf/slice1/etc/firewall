@@ -1,0 +1,58 @@
+#! /bin/bash
+# My firewall.
+
+# Close de door 
+iptables -t nat -F
+iptables -t mangle -F
+iptables -F
+iptables -X
+iptables -P INPUT DROP
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+
+# The public IP address is eth0. You can let me know the exactly ip to allow IN in case you have more than one.
+PUB_IF="eth0"
+PUB_IP=`ifconfig $PUB_IF | grep 'inet addr' | awk '{ print $2; }' | cut -d: -f2`
+
+# WEB
+#iptables -A INPUT -d $PUB_IP -m state --state NEW -p tcp --dport 80 -j ACCEPT
+
+iptables -A INPUT -i eth0 -s 187.45.63.11 -p tcp --destination-port 80 -j ACCEPT
+iptables -A INPUT -i eth0 -s 187.105.246.145 -p tcp --destination-port 80 -j ACCEPT
+iptables -A INPUT -i eth0 -s 187.21.233.43 -p tcp --destination-port 80 -j ACCEPT
+
+# SSH
+#iptables -A INPUT -d $PUB_IP -m state --state NEW -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -i eth0 -s 187.45.63.11 -p tcp --destination-port 22 -j ACCEPT
+
+#It seems that I have another interface non public, let me open it:
+iptables -A INPUT -i eth1 -j ACCEPT
+
+# Proteção contra worms
+# -------------------------------------------------------
+iptables -A FORWARD -p tcp --dport 135 -i PRIV_IF -j REJECT
+
+
+# Proteção contra syn-flood
+# -------------------------------------------------------
+iptables -A FORWARD -p tcp --syn -m limit --limit 2/s -j ACCEPT
+
+
+# Proteção contra ping da morte
+# -------------------------------------------------------
+iptables -A FORWARD -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT
+
+
+# Proteção contra port scanners
+# -------------------------------------------------------
+iptables -N SCANNER
+iptables -A SCANNER -m limit --limit 15/m -j LOG --log-level 6 --log-prefix "FIREWALL: port scanner: "
+iptables -A SCANNER -j DROP
+iptables -A INPUT -p tcp --tcp-flags ALL FIN,URG,PSH -i $PUB_IF -j SCANNER
+iptables -A INPUT -p tcp --tcp-flags ALL NONE -i $PUB_IF -j SCANNER
+iptables -A INPUT -p tcp --tcp-flags ALL ALL -i $PUB_IF -j SCANNER
+iptables -A INPUT -p tcp --tcp-flags ALL FIN,SYN -i $PUB_IF -j SCANNER
+iptables -A INPUT -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -i $PUB_IF -j SCANNER
+iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN,RST -i $PUB_IF -j SCANNER
+iptables -A INPUT -p tcp --tcp-flags SYN,FIN SYN,FIN -i $PUB_IF -j SCANNER
+

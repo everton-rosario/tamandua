@@ -1,0 +1,7 @@
+<body>
+	#foreach ($letterMap in $lettersMap)
+		<li>
+			<a id="letter_$letterMap.letter" href="$permalinkTool.linkToLetter($letterMap.letter)" title="$letterMap.size artistas com a letra $letterMap.letter.toUpperCase()">$letterMap.letter.toUpperCase()</a>
+		</li>
+	#end
+</body>

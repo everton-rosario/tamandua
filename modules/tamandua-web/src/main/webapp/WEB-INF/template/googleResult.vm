@@ -1,0 +1,36 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Busca</strong>
+</div>
+<div id="titulo">
+	<h2>Busca</h2>
+	<h3>$q.toUpperCase()</h3>
+</div>
+<div id="text">
+	<div id="search-bar">
+		<label>Buscando...</label>
+		<img src="http://tocaletra.s3.amazonaws.com/images/loading-bar.gif"/>
+	</div>
+	<iframe width="660px" 
+	        height="1645px" 
+	        frameborder="0" 
+	        scrolling="no" 
+	        name="googleSearchFrame"
+			#if ($category == "artist")
+				src="http://www.google.com.br/cse?cx=partner-pub-3324667063054719%3A13autc-d60a&ie=UTF-8&q=$escapeTool.url($q)&ad=w9&num=15&sa=Pesquisar&siteurl=tocaletra.uol.com.br"
+			#end
+			#if ($category == "music")
+				src="http://www.google.com.br/cse?cx=partner-pub-3324667063054719%3Avgfqr7-bir6&ie=UTF-8&q=$escapeTool.url($q)&ad=w9&num=15&sa=Pesquisar&siteurl=tocaletra.uol.com.br"
+			#end
+			#if ($category == "lyric")
+				src="http://www.google.com.br/cse?cx=partner-pub-3324667063054719%3A3xc4t-ugr66&ie=UTF-8&q=$escapeTool.url($q)&ad=w9&num=15&sa=Pesquisar&siteurl=tocaletra.uol.com.br"
+			#else
+				src="http://www.google.com.br/cse?cx=partner-pub-3324667063054719%3Ab63kgi-330s&ie=UTF-8&q=$escapeTool.url($q)&ad=w9&num=15&sa=Pesquisar&siteurl=tocaletra.uol.com.br"
+			#end        
+	        marginwidth="0" 
+	        marginheight="0" 
+	        hspace="0" 
+	        vspace="0" 
+	        allowtransparency="true">
+	</iframe>
+</div>

@@ -1,0 +1,1 @@
+ALTER TABLE `tamandua_db`.`image` ADD COLUMN `flag_public` VARCHAR(1) NOT NULL DEFAULT 'N';

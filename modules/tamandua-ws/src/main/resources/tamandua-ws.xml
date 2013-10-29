@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+        JAVA_HOME="/usr/bin/"
+        JETTY_CONSOLE="/export/logs/tamandua-ws.log"
+        JAVA_OPTIONS="-Xms64M -Xmx64M -Dlog4j.configuration=log4j.properties -Duser.timezone=America/Sao_Paulo"
+        JETTY_HOME="/usr/share/jetty"
+-->
+<Configure class="org.mortbay.jetty.Server">
+        <Set name="Connectors">
+                <Array type="org.mortbay.jetty.Connector">
+                        <Item>
+                                <New class="org.mortbay.jetty.nio.SelectChannelConnector">
+                                        <Set name="port">8080</Set>
+                                </New>
+                        </Item>
+                </Array>
+        </Set>
+        <Set name="handler">
+                <New class="org.mortbay.jetty.webapp.WebAppContext">
+                        <Set name="contextPath">/tamandua-ws</Set>
+                        <Set name="war">/opt/webapps/tamandua-ws/tamandua-ws.war</Set>
+                </New>
+        </Set>
+</Configure>
+

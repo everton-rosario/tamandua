@@ -1,0 +1,26 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Busca</strong>
+</div>
+<div id="titulo">
+	<h2>Busca</h2>
+	<h3>$q</h3>
+	$pageResult.totalResults itens encontrados
+</div>
+        
+<div id="text">
+  	<ol class="search">
+   		#foreach ($result in $pageResult.resultList)
+       		<li>
+       			<h3><a href="$permalinkTool.linkToMusicUri($result.musicUri)"><em>$result.musicTitle</em> - $result.artistName</a></h3>
+       			#if ($result.text.length() > 160)
+       				<p>$result.text.toString().substring(0,160)...</p>
+       			#else
+       				<p>$result.text</p>
+       			#end
+       	
+		       <a href="$permalinkTool.linkToMusicUri($result.musicUri)">http://www.tocaletra.com.br$permalinkTool.linkToMusicUri($result.musicUri)</a>
+       		</li>
+   		#end
+   	</ol>
+</div>

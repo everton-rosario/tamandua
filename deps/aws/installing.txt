@@ -1,0 +1,3 @@
+Dependencias para a execução mais rápida do AWS da amazon.
+
+mvn install:install-file -Dfile=saxon9he.jar -DgroupId=net.sf.saxon -DartifactId=saxon9he  -Dversion=9.0.2j -Dpackaging=jar

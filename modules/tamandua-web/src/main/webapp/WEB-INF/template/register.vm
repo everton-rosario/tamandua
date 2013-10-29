@@ -1,0 +1,77 @@
+<div id="breadcrumbs">
+	<a href="http://tocaletra.uol.com.br" title="TocaLetra.com.br">TocaLetra</a> » 
+	<strong>Cadastro</strong>
+</div>
+<div id="titulo">
+	<h2>Cadastro</h2>
+	<h3>Ainda não se cadastrou? É GRÁTIS, registre-se!</h3>
+</div>
+
+<article id="text" class="forms">
+	<div id="register">
+		<fieldset>
+			<form id="registerForm" action="/usuario/save" method="post" enctype="multipart/form-data">
+				
+				<label for="name">Nome completo:</label>
+				<input type="text" value="$!user.name" name="name" id="name" size="45" class="validate[required,maxLength[100]]"/>
+				
+				<label for="avatar">Avatar:</label>
+				<input type="file" name="avatar" id="avatar" class="fileAvatar"/>
+								
+				<label for="email">E-mail:</label>
+				<input type="text" value="$!user.email" name="email" id="email" size="45" class="validate[required,custom[email],maxLength[100]]"/>
+				
+				<label for="cemail">Confirme o e-mail:</label>
+				<input type="text" value="$!user.email" name="cemail" id="cemail" size="45" class="validate[required,custom[email],confirm['email'],maxLength[100]]"/>
+				
+				<label for="password">Senha:</label>
+				<input type="password" name="password" id="password" class="validate[required,length[6,12]]"/>
+				
+				<label for="cpassword">Confirme a senha:</label>
+				<input type="password" name="cpassword" id="cpassword" class="validate[required,length[6,12]],confirm['password']"/>
+				
+				<div id="actions">
+					<button id="submitButton" value="Enviar" type="button" class="botao-form enviar">Enviar</button>
+					<button id="resetButton" value="Limpar" type="button" class="botao-form limpar">Limpar</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</article>
+<script>
+	#if($emailExist)
+		$("#email").showPrompt("$emailExist","error",false,false,"centerRight");
+	#end
+	
+	#if($invalidFile)
+		$("#avatar").showPrompt("$invalidFile","error",false,false,"centerRight");
+	#end
+	
+	function closePromptErrors(){
+		$("#name").closePrompt(true);
+		$("#email").closePrompt(true);	
+		$("#avatar").closePrompt(true);	
+		$("#cemail").closePrompt(true);
+		$("#password").closePrompt(true);
+		$("#cpassword").closePrompt(true);
+	}
+	
+	$("#registerForm").validationEngine({
+		submitFunction:function(){
+			$("#basic-modal-content").modal();
+		}
+	});
+	$("#submitButton").click(function(){
+		$("#registerForm").submit();
+	});
+	
+	$("#resetButton").click(function(){
+		closePromptErrors();
+		$("#name").val("");
+		$("#avatar").val("");
+		$("#email").val("");	
+		$("#cemail").val("");
+		$("#password").val("");
+		$("#cpassword").val("");
+	});
+</script>

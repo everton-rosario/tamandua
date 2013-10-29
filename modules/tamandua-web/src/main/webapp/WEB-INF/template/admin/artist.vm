@@ -1,0 +1,421 @@
+
+	<script type="text/javascript"> 
+		$(function () {
+			   $('#editArtist').hide();
+			   $('#newMusic').hide();
+			   $('#artist_dtBirth').mask("99/99/9999");   
+			   $('#artist_dtEnd').mask("99/99/9999"); 
+			   $('#button_dtBirth').click(function(){
+					$(this).calendario({ 
+					target:'#artist_dtBirth'
+					});
+			  });
+			  
+			  $('#button_dtEnd').click(function(){
+					$(this).calendario({ 
+					target:'#artist_dtEnd'
+					});
+			  });
+			  
+			  $('#button_dtRelease').click(function(){
+					$(this).calendario({ 
+					target:'#music_dtRelease'
+				 });
+			  });
+			  
+			  $(".thumbs a").click(function(){  
+					var largePath = $(this).attr("href");
+					var largeAlt = $(this).attr("title");
+					$("#imageReal").attr({ src: largePath, alt: largeAlt });
+					$("h2 em").html(" <img src=" + largePath+"/>"); 
+					return false;
+			 });
+			  
+			  #if($artist.flag_public == "S")
+					$('#buttonPublic').hide();
+					$('#buttonNoPublic').show();
+			  #else	
+					$('#buttonPublic').show();
+					$('#buttonNoPublic').hide();
+			  #end
+			  
+			  #if($artist.flag_moderate == "S")
+					$('#buttonModerate').hide();
+					$('#buttonNoModerate').show();
+			  #else
+					$('#buttonModerate').show();
+					$('#buttonNoModerate').hide();
+			  #end
+			  
+			  $('a[rel*=facebox]').facebox();
+			  
+		});
+				
+		function showEdit(){
+		  $('#editArtist').show();
+		  $('#buttonEdit').hide();
+		  $('#newMusic').hide();
+		  $('#buttonNew').show();
+		}
+		function showNew(){
+		  $('#newMusic').show();
+		  $('#buttonNew').hide();
+		  $('#buttonEdit').show();
+		  $('#editArtist').hide();
+		}
+				
+		function cancelEdit(){
+		  $('#editArtist').hide();
+		  $('#buttonEdit').show();	
+		}
+		function cancelNew(){
+		  $('#newMusic').hide();
+		  $('#buttonNew').show();	
+		}
+		 var field = "";
+		 var field_img = "";
+		 function setURL(url){
+			$('#facebox').hide();
+			$(field).val(url);
+			$(field_img).attr('src',url);
+		 }
+		 function setField(fd,fd_img){
+			field = fd;
+			field_img = fd_img;
+		 }
+		 	  
+	</script>
+	
+	<style>
+		.content-image{
+			width:600px;
+			height:auto;
+		}
+		
+		.box-image{
+			float:left;
+			width:180px;
+			padding:10px 10px 10px 0;
+		}
+		
+		.imagesGallery {	
+			margin: 25px auto;
+			padding: 0;	width: 580px;
+		}
+		
+		#imageReal {border: solid 1px #ccc;	padding: 5px;}
+	
+		.thumbs img {border: solid 1px #ccc; width: 100px; height: 100px; padding: 4px;}
+		.thumbs img:hover {	border-color: #FF9900;}
+	
+		.chooseImage{
+			margin-bottom: 20px;
+			margin-left: 15px;
+		}
+		
+		
+	</style>
+	
+	<div id="mydiv" style="display:none"> 
+		<div id="thumbs" class="navigation">
+			<ul class="thumbs">
+				#foreach ($image in $artist.getAllImages())
+					<li>
+						<a onclick="setURL('$image.url')" rel="facebox">
+							<img id='$image.uri' src="$image.url" width="80" height="80"/>
+						</a>
+					</li>
+				#end
+				
+			</ul>
+		</div>
+	</div> 
+	<div id="uploadDiv" style="display: none">
+		<form id="uploadForm" action="upload" method="POST" enctype="multipart/form-data">
+			<input size="50" type="file" name="upload" id="upload"/><br/>
+			<input type="hidden" id="artistUri" name="artistUri" value="$!artist.uri"/>
+			<label>Descrição:</label>
+			<br />
+			<textarea cols="50" rows="6" id="description" name="description"></textarea><br/>
+			<input type="submit" value="Salvar" onclick="javascript: $('#basic-modal-content').modal();" />
+		</form>
+	</div> 
+	<div class="imagesGallery" id="removeImageDiv" style="display: none">
+		<p class="thumbs">
+			<input type="hidden" name="artistId" id="artistId" value="$!artist.idArtist"/>
+			#foreach ($image in $artist.getAllImages())
+				<input type="checkbox" name="image_ids" id="image_ids" value="$image.idImage" class="chooseImage"/><a href="$image.url" title="Image 3"><img src="$image.url" /></a>			
+			#end
+			<br />
+			<br />
+			<input type="button" value="Remover selecionadas" onclick="javascript:removeImages();" />
+		</p>
+	</div> 
+
+<section id="destaque">
+	<h1>
+		#set($htmlArtist = $artist.uri + '.html')
+     	#set($htmlArtist = $htmlArtist.replaceAll("/",""))  
+		<a href="/admin/artista/$htmlArtist"><strong>$artist.name</strong></a>
+	</h1>
+	<h3>$musics.size() m&uacute;sicas</h3>
+	<div id="menuAdm">
+		
+	  		<input type="button" id="buttonNew" class="buttonAdm" value="Nova Música" onclick="javascript:showNew();"/> || 
+			<input type="button" id="buttonEdit" class="buttonAdm" value="Editar Artista" onclick="javascript:showEdit();"/> ||
+			<input type="button" class="buttonAdm" value="Moderar Artista" onclick="publishModerate('artists', 'moderate', true);" /> ||
+			<input type="button" class="buttonAdm" value="Desmoderar Artista" onclick="publishModerate('artists', 'moderate', false);" /> ||
+			<input type="button" class="buttonAdm" value="Publicar Artista" onclick="publishModerate('artists', 'publish', true);" /> ||
+			<input type="button" class="buttonAdm" value="Despublicar Artista" onclick="publishModerate('artists', 'publish', false);" /> || 
+			<input type="button" class="buttonAdm" value="Moderar Todas" onclick="publishModerateAll('musics', 'moderate', true);" /> ||
+			<input type="button" class="buttonAdm" value="Publicar Todas" onclick="publishModerateAll('musics', 'publish', true);"/> ||
+			<input type="button" class="buttonAdm" value="Desmoderar Todas" onclick="publishModerateAll('musics', 'moderate', false);" /> ||
+			<input type="button" class="buttonAdm" value="Despublicar Todas" onclick="publishModerateAll('musics', 'publish', false);"/>
+					
+</div>
+				
+		<br />
+		<fieldset id="newMusic">
+			<form method="post" id="form-music">
+				<input type="hidden" name="artist_uri" id="artist_uri" value="$!artist.uri"/>
+				<p>
+					<label>Nome da Música:</label>
+					<label><input size="20" type="text" id="music_name" name="music_name" value="$!music.title" style="width:300px;"/></label>
+				</p>
+				
+				<p>
+					<label>Data de release:</label>					
+					<label>
+						<input type="text" id="music_dtRelease" name="music_dtRelease" value="$!date.format($music.dtRelease)" style="width:80px;"/>
+						<input type="button" class="buttonCalendar" id="button_dtRelease" />
+					</label>
+					<br />
+					<label>Idioma:</label>
+					<input type="radio" value="pt-br" name="language">Português (Brasil)
+					<input type="radio" value="es" name="language">Espanhol
+					<input type="radio" value="en" name="language">Inglês
+					<br />
+					<br />
+					<label>Tipo:</label>
+					<select name="lyricType" id="lyricType">
+						<option value="ORIGINAL" selected="selected">ORIGINAL</option>
+						<option value="TRADUCTION">TRADUCTION</option>
+						<option value="TABLATURE">TABLATURE</option>
+						<option value="ADAPTATION">ADAPTATION</option>
+					</select>
+					<br />
+					<br />
+					<label>Letra:</label><br />
+					<label>
+						<textarea rows="10" cols="110" id="lyric_text"></textarea>
+					</label>	
+				</p>
+				<div style="float:left; padding:10px;">
+					<input type="button" value="Salvar" id="salvar_musica" />
+					<input type="reset" value="Cancelar" id="cancelar_musica" onclick="javascript:cancelNew();" />
+				</div>	
+			</form>	
+		</fieldset>
+		<fieldset id="editArtist">
+			<form method="post" id="form-contato">
+				<input type="hidden" name="artist_letters" id="artist_letters" value="$!artist.letters"/>
+				<input type="hidden" name="artist_id" id="artist_id" value="$!artist.idArtist"/>
+				<input type="hidden" name="artist_uri" id="artist_uri" value="$!artist.uri"/>
+				
+				<input type="hidden" id="image" name="image" value="$artist.image.uri" />
+				<input type="hidden" id="imageHuge" name="imageHuge" value="$artist.imageHuge.uri" />
+				<input type="hidden" id="imageTiny" name="imageTiny" value="$artist.imageTiny.uri" />		
+				<p>
+					<label>Artista:</label><br />
+					<label><input size="20" type="text" name="artist_name" id="artist_name" value="$!artist.name" style="width:300px;"/></label>
+				</p>
+				<p>
+					<label>Data de Nascimento:</label><br />
+					<label>
+						<input type="text" id="artist_dtBirth" name="artist_dtBirth" value="$!date.format($artist.dtBirth)" style="width:80px;"/>
+						<input type="button" class="buttonCalendar" id="button_dtBirth" />
+					</label>
+				</p>
+				<p>
+					<label>Data de Falecimento:</label><br />
+					<label>
+						<input type="text" id="artist_dtEnd" name="artist_dtEnd" value="$!date.format($artist.dtEnd)" style="width:80px;"/>
+						<input type="button" class="buttonCalendar" id="button_dtEnd" />	
+					</label>
+				</p>
+				<br />
+				<p>
+					<label>Imagens do Artista</label><br />
+				</p>
+				<div class="content-image">
+					<div class="box-image">
+						<a href="#mydiv" onclick="setField('#image','#image_img')" rel="facebox">Trocar Imagem:</a><br />
+						#if ($artist.image.uri != "")
+							<img id="image_img" src="$artist.image.uri" width="80" height="80" />
+						#end
+					</div>
+					<div class="box-image">		
+						<a href="#mydiv" onclick="setField('#imageHuge','#imageHuge_img')" rel="facebox">Trocar Imagem (Grande):</a><br />
+						#if ($artist.imageHuge.uri != "")
+							<img id="imageHuge_img" src="$artist.imageHuge.uri" width="80" height="80" />
+						#end
+					</div>
+					<div class="box-image">
+						<a href="#mydiv" onclick="setField('#imageTiny','#imageTiny_img')" rel="facebox">Trocar Imagem (Pequena):</a><br />
+						#if ($artist.imageTiny.uri != "")
+							<img id="imageTiny_img"  src="$artist.imageTiny.uri" width="80" height="80" />
+						#end
+					</div>	
+				</div>
+				<div style="margin-top:140px;">
+					<input type="submit" value="Salvar" id="enviar_artista" />
+					<input type="button" value="Adicionar Imagem" id="adicionar_imagem" />
+					<input type="button" value="Remover Imagem" id="remover_imagem" />
+					<a id="uploadLink" href="#uploadDiv" rel="facebox" display="style: none"></a>
+					<a id="removeLink" href="#removeImageDiv" rel="facebox" display="style: none"></a>
+					<input type="reset" value="Cancelar" id="cancelar_artista" onclick="javascript:cancelEdit();" />
+				</div>
+			</form>
+		</fieldset>
+
+	</section>
+
+	
+		#set ($maxColumn = $musics.size()/2)
+		#set ($maxColumnBase = $maxColumn)
+		#set ($indexItemHi = 0)
+		#set ($indexItemBase = 0)
+				
+		##Hack para garantir mesmo tamanho visual das colunas			
+		#foreach ($music in $musics)
+       		## aumento divisor de colunas caso nome da listaquebra linha
+       	    #if ($music.title.length() > 39)
+       	    	#if ($indexItemBase < $maxColumnBase)
+	       	    	#set ($maxColumn = $maxColumn - 1)
+	       	    	#if ($music.title.length() > 78)
+	       	    		#set ($maxColumn = $maxColumn - 1)
+	       	    	#end
+	       	    #else
+	       	    	#set ($maxColumn = $maxColumn + 1)
+	       	    	#if ($music.title.length() > 78)
+	       	    		#set ($maxColumn = $maxColumn + 1)
+	       	    	#end
+	       	    #end
+       	    #end
+       	    #set ($indexItemBase = $indexItemBase+1)
+       	#end
+		
+	<article id="text">
+
+	<div id="mainLyrics">
+				<h2>Letras mais populares</h2>
+
+				<input type="button" class="buttonAdm" value="Moderar Selecionados" onclick="publishModerateSelected('musics', 'moderate', true)"/> ||
+            	<input type="button" class="buttonAdm" value="Desmoderar Selecionados" onclick="publishModerateSelected('musics', 'moderate', false)"/> ||
+            	<input type="button" class="buttonAdm" value="Publicar Selecionados" onclick="publishModerateSelected('musics', 'publish', true)"/> ||
+            	<input type="button" class="buttonAdm" value="Despublicar Selecionados" onclick="publishModerateSelected('musics', 'publish', false)"/> 
+            	<br />
+            	<br />
+            	<input type="button" class="buttonAdm" name="check" value="Habilitar todos" onclick="checkAll('music_ids', true);"/> ||
+				<input type="button" class="buttonAdm" name="noCheck" value="Desabilitar todos" onclick="checkAll('music_ids', false);"/>
+				<br />
+				<br />
+				
+				<ol class="defaultList">
+				
+		           #foreach ($music in $musics)
+		           	    #if ($indexItemHi == $maxColumn)
+		           	    	#set ($indexRestart = $indexItemHi + 1)
+				   			</ol>
+							<ol class="defaultList" start="$indexRestart">
+				           	    	
+						#end
+			           	    	#if($music.flag_moderate == "N" && $music.flag_public == "N")
+									<li class="marcacao_vermelha">
+								#elseif($music.flag_moderate == "S" && $music.flag_public == "N")
+									<li class="marcacao_amarelo">
+								#elseif($music.flag_moderate == "S" && $music.flag_public == "S")
+									<li class="marcacao_verde">
+								#else
+									<li class="marcacao_azul">
+								#end	           	     
+										<input type="checkbox" name="music_ids" id="music_ids" value="$music.idMusic"/><a title="Ver música $music.title" href="/admin/musica$music.url">$music.title</a>
+									</li>
+										
+									#set ($indexItemHi = $indexItemHi + 1)
+							   #end
+					          </ol>
+			</div>
+
+			
+##           <ol class="defaultList">
+##           #foreach ($music in $musics)
+##           	    #if ($maxColumn == $indexItem)
+##           	    	#set ($indexRestart = $indexItem + 1)
+##					</ol>
+##					<ol class="defaultList" start="$indexRestart">           	    	
+##          	    #end 
+##				<li><a title="Ver música $music.title" href="/musica$music.uri/">$music.title</a> </li>
+##				
+##				#set ($indexItem = $indexItem + 1)
+##		   #end
+##           </ol>
+	
+</article>
+
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				// We only want these styles applied when javascript is enabled
+				$('div.navigation').css({'width' : '600px','float' : 'left'});
+				$('div.content').css('display', 'block');
+
+				// Initially set opacity on thumbs and add
+				// additional styling for hover effect on thumbs
+				var onMouseOutOpacity = 0.67;
+				$('#thumbs ul.thumbs li').opacityrollover({
+					mouseOutOpacity:   onMouseOutOpacity,
+					mouseOverOpacity:  1.0,
+					fadeSpeed:         'fast',
+					exemptionSelector: '.selected'
+				});
+				
+				// Initialize Advanced Galleriffic Gallery
+				var gallery = $('#thumbs').galleriffic({
+					delay:                     2500,
+					numThumbs:                 21,
+					preloadAhead:              21,
+					enableTopPager:            false,
+					enableBottomPager:         false,
+					maxPagesToShow:            7,
+					imageContainerSel:         '#slideshow',
+					controlsContainerSel:      '#controls',
+					captionContainerSel:       '#caption',
+					loadingContainerSel:       '#loading',
+					renderSSControls:          false,
+					renderNavControls:         false,
+					playLinkText:              '',
+					pauseLinkText:             '',
+					prevLinkText:              '',
+					nextLinkText:              '',
+					nextPageLinkText:          '',
+					prevPageLinkText:          '',
+					enableHistory:             false,
+					autoStart:                 false,
+					syncTransitions:           true,
+					defaultTransitionDuration: 900,
+					onSlideChange:             function(prevIndex, nextIndex) {
+						// 'this' refers to the gallery, which is an extension of $('#thumbs')
+						this.find('ul.thumbs').children()
+							.eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+							.eq(nextIndex).fadeTo('fast', 1.0);
+					},
+					onPageTransitionOut:       function(callback) {
+						this.fadeTo('fast', 0.0, callback);
+					},
+					onPageTransitionIn:        function() {
+						this.fadeTo('fast', 1.0);
+					}
+				});
+			});
+		</script>
+		
